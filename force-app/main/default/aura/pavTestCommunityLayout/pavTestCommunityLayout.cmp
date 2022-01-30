@@ -1,0 +1,21 @@
+<aura:component implements="forceCommunity:Layout" access="global" description="pavTestCommunityLayout">
+    <aura:attribute name="container1" type="aura.component[]"/>
+    <aura:attribute name="header" type="aura.component[]"/>
+    <aura:attribute name="footer" type="aura.component[]"/>
+
+    <div class="container"> 
+                   {!v.container1}
+                </div>
+  
+         
+    <!-- <ltng:require 
+    styles="{!join(',',$Resource.Bootstrap4_1_1 + '/css/bootstrap.css',
+            $Resource.BootstrapSelect + 'bootstrap-select-1.13.0/css/bootstrap-select.css'
+            )}"
+    scripts="{!join(',',$Resource.Bootstrap4_1_1 + '/js/bootstrap.js',
+             $Resource.BootstrapSelect + 'bootstrap-select-1.13.0/js/bootstrap-select.js')}"
+    afterScriptsLoaded="{!c.scriptsLoaded}" />  -->
+    
+  
+  
+</aura:component>

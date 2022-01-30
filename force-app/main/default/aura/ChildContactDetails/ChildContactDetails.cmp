@@ -1,0 +1,4 @@
+<aura:component implements="force:appHostable,flexipage:availableForRecordHome,force:hasRecordId" access="global" >
+	  <aura:handler name="doInit" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="contList" type="List" />
+</aura:component>

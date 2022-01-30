@@ -1,0 +1,71 @@
+<aura:component implements="forceCommunity:themeLayout,forceCommunity:availableForAllPageTypes"
+                access="global" controller="PPW_CommunityThemeLayoutController">
+    <aura:attribute name="contactUs" type="Boolean" default="true"/>
+    <aura:attribute name="caseRecordType" type="Object" default="{}"/>
+   <aura:handler name="init" value="{!this}" action="{!c.init1}" />  
+    <aura:attribute name="succesMes" type="String" />
+    
+   
+            <div class="demo-only demo-only_viewport" style="height:4.5rem;">
+            
+            <div class="slds-notification-container">
+                
+                <div  aria-atomic="false" class="slds-assistive-text">task notification: Call Two: Jane Johnson</div>
+                <section class="slds-notification" role="dialog" aria-labelledby="noti77" aria-describedby="dialog-body-id-42">
+                    <div class="slds-notification__body slds-notification__target slds-media" id="dialog-body-id-42">
+                        
+                            <span class="slds-icon_container slds-icon-standard-task slds-media__figure" title="task">
+                                
+                            </span>
+                            <div class="slds-media__body">
+                                <aura:if isTrue="{!v.succesMes}">
+                                    <br/>
+                                    <div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_warning" role="alert">
+                                        <span class="slds-assistive-text">warning</span>
+                                        <span class="slds-icon_container slds-icon-utility-warning slds-m-right_x-small" title="Description of icon when needed">
+                                          
+                                        </span>
+                                        <h2>{!v.succesMes}
+                                            
+                                        </h2>
+                                        <div class="slds-notify__close">
+                                            <button class="slds-button slds-button_icon slds-button_icon-small" title="Close">
+                                               
+                                                <span class="slds-assistive-text">Close</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <aura:set attribute="else">
+                                        <h2 class="slds-text-heading_small slds-m-bottom_xx-small" id="noti77">
+                                            <span class="slds-assistive-text">task notification:</span>Create New Case</h2>
+                                        <lightning:recordEditForm aura:id="newCase" 
+                                                                  recordTypeId="{!v.caseRecordType.caseRecordTypeId}"
+                                                                  objectApiName="Case"
+                                                                  onsuccess="{!c.onSuccess1}"
+                                                                  onsubmit="{!c.onSubmit1}">
+                                            <lightning:messages />
+                                            
+                                            <lightning:inputField fieldName="Subject" />
+                                            <lightning:inputField fieldName="Issue_Category__c" />
+                                            <lightning:inputField fieldName="Issue_Type__c" />
+                                            <lightning:inputField fieldName="Description__c" />
+                                            
+                                            <lightning:button class="slds-m-top_small" variant="brand" type="submit"
+                                                              name="Create Case" label="Create Case" />
+                                        </lightning:recordEditForm>
+                                    </aura:set>
+                                </aura:if>
+                            </div>
+                       
+                        <button class="slds-button slds-button_icon slds-button_icon-container slds-notification__close"
+                                title="Dismiss Call Two: Jane Johnson notification" onclick="{!c.closeCaseWindow}">
+                           <lightning:icon iconName="utility:close" alternativeText="Close" title="Close" size="x-small"/>
+                            <span class="slds-assistive-text">Close</span>
+                        </button>
+                    </div>
+                </section>
+            </div>
+        </div>
+          
+       
+</aura:component>

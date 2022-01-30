@@ -1,0 +1,46 @@
+/* espComponent.css */
+  .titleBar {
+    padding: 12px;
+    background:none;
+  }
+.title {
+    font-size:25px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 1);
+    /* text-weight:700; */
+}
+
+.title a:link, a:visited {
+    color: #dddfd4;
+    text-decoration:none;
+    font-size: 18px;
+    margin-right: 25px;
+
+}
+.intro {
+    font-size: 14px;
+    line-height: 1.3em;
+    margin-bottom: 30px;
+
+}
+
+.bwidth {
+    width: 200px;
+
+}
+.header {
+    margin-bottom:10px;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+.slds-form-element__static {
+    font-size: .85rem !important;
+}
+
+
+.slds-form-element__label {
+  font-size: .95rem !important;
+  
+}

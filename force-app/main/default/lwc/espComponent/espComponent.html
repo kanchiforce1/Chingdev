@@ -1,0 +1,60 @@
+<template>
+    <div class="slds-align--absolute-center">
+        <lightning-spinner data-id="spinner" variant="brand" size="large" class="slds-hide"> </lightning-spinner>
+    </div>
+
+    <div class="titleBar">
+
+        <div if:true={createbtnFlg}>
+            <div class="header">
+                <p>Welcome!</p>
+            </div>
+            <div class="intro">
+                <p>Welcome to Amazon Publishing’s Editorial Service Performance (ESP) tool,
+                    our mechanism for tracking editorial service data. ESP records are used to track project complexity,
+                    evaluate services, and identify issues. This data provides an essential source of
+                    quality information that we use to assess current titles and help plan for future projects.
+                    We appreciate your partnership in raising the bar on editorial quality!</p>
+            </div>
+
+            <div if:true={createbtnFlg} class="slds-box slds-theme_shade slds-p-horizontal_x-small"
+                style="background-color: #EEEEEE;height:100px;">
+
+
+                <div class="slds-align_absolute-center">
+                    To continue, please create a new record by
+                </div>
+                <div class="slds-align_absolute-center">
+                    <button class="slds-button slds-button_success slds-m-top_x-small bwidth"
+                        onclick={newEsp}>Create</button>
+                    <!--<lightning-button class="slds-m-top_x-small" variant="success" label="Create" title="Create" onclick={newEsp}> </lightning-button> -->
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <!--<tempalte if:true={espCancelled}>
+          
+            <div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_info" role="alert"> ESP status is closed </div>
+        </tempalte>-->
+
+        <tempalte if:true={espNewRec}>
+            <c-esp-create-component onespcancel={getChinookRecords} esprec={espNewRec} title={title}>
+            </c-esp-create-component>
+
+        </tempalte>
+        <tempalte if:true={espCompleteRec}>
+            <c-esp-create-component onespcancel={getChinookRecords} esprec={espCompleteRec} title={title}>
+            </c-esp-create-component>
+
+        </tempalte>
+        <!--<tempalte if:true={espRec}>
+            <c-esp-create-component esprec={espNewRec}></c-esp-create-component>
+       
+        </tempalte>-->
+
+    </div>
+</template>

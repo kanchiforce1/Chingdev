@@ -1,0 +1,31 @@
+.graycolor {
+  background-color: #EEEEEE;
+}
+
+
+.justify {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+bold {
+  font-weight:bolder;
+  color: black;
+}
+
+.headerFontSize {
+  font-size:25px;
+}
+
+.iconColor1 {
+  fill: #000000 !important;
+}
+
+.fieldLabelSize {
+  font-size:13px;;
+}
+
+.fieldDataSize {
+  font-size:14px;
+
+}

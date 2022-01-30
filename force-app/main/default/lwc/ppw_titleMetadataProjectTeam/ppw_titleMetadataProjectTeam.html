@@ -1,0 +1,17 @@
+<template>
+	<template if:true={titleId}>
+		<div class="slds-card">
+			<div class="slds-m-top_small slds-m-left_small">
+				<h2 class="slds-card__header-title hideHelpicon"> <span> Project Team</span> </h2>
+				<lightning-record-view-form record-id={titleId} object-api-name="Title__c">
+					<div class="slds-m-top_small"></div>
+					<lightning-output-field field-name="Acquiring_Editor__c"> </lightning-output-field>
+					<lightning-output-field field-name="Current_Editor__c"> </lightning-output-field>
+					<lightning-output-field field-name="Production_Manager__c"> </lightning-output-field>
+					<lightning-output-field field-name="Art_Director__c"> </lightning-output-field>
+					<lightning-output-field field-name="Marketing_Manager__c"> </lightning-output-field>
+				</lightning-record-view-form>
+			</div>
+		</div>
+	</template>
+</template>

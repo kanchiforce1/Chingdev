@@ -1,0 +1,83 @@
+<template>
+
+    <div>
+        <div class="slds-page-header" >
+            <div class="slds-page-header__row">
+                <div class="slds-page-header__col-title">
+                    <div class="slds-media">
+                        <div class="slds-media__figure"> <span class="slds-icon_container slds-icon-standard-opportunity"
+                                title="opportunity">
+    
+                                <c-svg-icon svgicon="/utility-sprite/svg/symbols.svg#paste"
+                                    style-class="slds-icon slds-page-header__icon iconColorProject PTFIconSize" aria-hidden="true">
+                                </c-svg-icon>
+                                <span class="slds-assistive-text">Project Details</span>
+                            </span>
+                        </div>
+
+
+
+                        <div class="slds-media__body" >
+                            <div class="slds-page-header__name">
+                                <div class="slds-page-header__name-title">
+                                   <h1> 
+                                    <span class="slds-page-header__title slds-truncate">
+                                       PPW Transmittal Form 
+                                    </span>
+                                    </h1>
+                                       
+                                    
+                                    <h3 if:true={project}>
+                                         <span class="slds-page-header__name-meta slds-truncate" if:true={project.series__r}>
+                                            <a name={project.Series__r.Id} onclick={nagivateTotitle}
+                                                target="_blank">{project.Series__r.Series_Title__c}</a>
+    
+                                        </span>
+                                        <span class="slds-page-header__name-meta slds-truncate" if:true={project.series__r}>
+                                            <a name={project.Title__r.Id} onclick={nagivateTotitle}
+                                                target="_blank">{project.Title__r.Full_Title_Name__c}</a>
+    
+                                        </span>
+                                    </h3>
+                                </div>
+                            </div>
+                            <template if:true={project}>
+                            <p if:true={project.Title__r} class="slds-page-header__name-meta">{project.Name} • {project.Title__r.Marty_Title_ID__c} •
+                                {project.Title__r.Status__c}</p>
+                            
+                            <p if:true={project.Series__r} class="slds-page-header__name-meta">{project.Name} • {project.Series__r.Wombat_Series_ID__c}
+                               </p>
+                            </template>
+                        </div>
+    
+    
+    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><br>
+  
+        <div class="slds-box slds-theme_default">
+            <div data-id="title">
+                <c-ppw_servicesearchlookup label="Title" action-type="bulk" style="font-size:16px;"
+                    eventname="selecttitle" onselecttitle={selecttitle} picklist-vals={titles}>
+                </c-ppw_servicesearchlookup>
+                <div class="slds-m-bottom_large"></div>
+            </div>
+
+            <div data-id="vendor">
+                <c-ppw_servicesearchlookup label="Vendor" action-type="bulk" style="font-size:16px;"
+                    eventname="selectvendor" onselectvendor={selectvendor} picklist-vals={vendors}>
+                </c-ppw_servicesearchlookup>
+                <div class="slds-m-bottom_large"></div>
+            </div>
+        </div>
+
+        <div class="slds-m-bottom_large"></div>
+
+        <div if:true={isVendor_MartyId}>
+            <c-ppw_transmittal-component martyid={martyid} vendor={vendor}></c-ppw_transmittal-component>
+        </div>
+  
+</template>

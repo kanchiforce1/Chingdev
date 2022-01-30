@@ -1,0 +1,129 @@
+<template>
+
+	<!--Service Prep Form Modal-->
+	<template if:true={isModalconfirm}>
+	   <!-- Modal/Popup Box LWC starts here -->
+	   <section role="dialog" tabindex="-1" aria-modal="true" class="slds-modal slds-fade-in-open  slds-modal_small">
+	   
+		   <div class="slds-modal__container">
+			   <!-- Modal/Popup Box LWC header here -->
+			   <header style="background-color: rgb(255, 193, 7)" class="slds-modal__header">
+				   <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModal}>
+					   <lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse" size="small"></lightning-icon>
+						<span class="slds-assistive-text">Close</span> </button>
+				   <h2 class="slds-text-heading_small slds-hyphenate">Attention</h2> 
+			   </header>
+			   <!-- Modal/Popup Box LWC body starts here -->
+		   
+			   <div class="slds-modal__content slds-p-around_small" >
+				<p>Clicking OK will finalize the questions and make the Acquisition Section read-only. 
+				</br>
+				Confirm your answers are correct before clicking OK.</p>
+			   </div>
+			   <!-- Modal/Popup Box LWC footer starts here -->
+			   <footer class="slds-modal__footer">
+				   <lightning-button data-id="proceed" variant="brand" label="OK" title="OK" onclick={onProceed}>
+				   </lightning-button> &nbsp;
+				   <lightning-button data-id="cancel" variant="brand" label="Cancel" title="Cancel" onclick={closeModal}>
+				   </lightning-button>
+   
+			   </footer>
+		   </div>
+	   </section>
+	   <div class="slds-backdrop slds-backdrop_open"></div>
+   </template>
+   
+   <!--Service Prep Form Modal-->
+   <template if:true={isModalValid}>
+	   <!-- Modal/Popup Box LWC starts here -->
+	   <section role="dialog" class="slds-modal slds-fade-in-open  slds-modal_small">
+	   
+		   <div class="slds-modal__container">
+			   <!-- Modal/Popup Box LWC header here -->
+			   <header style="background-color: rgb(220, 53, 69)" class="slds-modal__header">
+				   <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeCreatePsModal}>
+					<lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse" size="small"></lightning-icon>
+					<span class="slds-assistive-text">Close</span>
+				   </button>
+				   <h2 class="slds-text-heading_small slds-hyphenate">Responses Required  </h2> 
+			   </header>
+			   <!-- Modal/Popup Box LWC body starts here -->
+		   
+			   <div class="slds-modal__content slds-p-around_small" >
+				Responses are mandatory for all questions in the Acquisition Section. Answer all questions before submitting.
+			   </div>
+			   <!-- Modal/Popup Box LWC footer starts here -->
+			   <footer class="slds-modal__footer">
+				   <lightning-button data-id="cancel" variant="brand" label="Close" title="Close" onclick={closeModal}>
+				 </lightning-button>
+   
+			   </footer>
+		   </div>
+	   </section>
+	   <div class="slds-backdrop slds-backdrop_open"></div>
+   </template>
+   
+   <div class="slds-grid slds-gutters slds-wrap" if:true={isEnabledForm}>
+		   
+		   
+	   
+		   <!--Left card body metdata abd buttons-->
+		   <div class="slds-size_2-of-12">
+			   
+				   <div class="slds-m-bottom_large"></div>
+				   <lightning-vertical-navigation selected-item="Acquisition" onselect={handleSelect}>
+					   <lightning-vertical-navigation-section label="">
+						   <lightning-vertical-navigation-item label="Acquisition" name="Acquisition"></lightning-vertical-navigation-item> 
+						   <lightning-vertical-navigation-item label="Design" name="Design"></lightning-vertical-navigation-item>
+						   <lightning-vertical-navigation-item label="Editorial" name="Editorial"></lightning-vertical-navigation-item>
+					   </lightning-vertical-navigation-section>
+			   
+				   <lightning-vertical-navigation-section  class="slds-align_absolute-center">
+					   <lightning-button class="slds-size_10-of-12" data-id="savesPrep" variant="brand" label="Save Service Prep" title="Save Service Prep"
+						   onclick={onServicePrep}></lightning-button>
+					   <div class="slds-m-bottom_xx-small"></div>
+					   <lightning-button class="slds-size_10-of-12" data-id="create" variant="brand" label="Create Services" title="Create Services"
+						   onclick={onServicePrep} style="width:100%;"></lightning-button>
+				   
+				   </lightning-vertical-navigation-section>
+					   
+				   </lightning-vertical-navigation>
+		   </div>
+		   <div class="slds-size_10-of-12 ">
+		   <div class="slds-m-left_x-small slds-m-right_small" data-id="servicesPrep">
+			   <!--Right card body with form questions and responses-->
+			   <div data-id="isacq" class="isacp">
+				   <template for:each={acqSubCat} for:item="a">
+			   
+					   <div key={a} class="mb-3">
+						   <c-ppw_-service-prep-quesions key1={a} question-static-map={questionStaticMap}
+						   smap={acquisitionQuestion} ser-type-sub-questions-map={serTypeSubQuestionsMap} 
+						   onansweredquestion={answeredQuestion}></c-ppw_-service-prep-quesions>
+					   </div>
+				   </template>
+			   </div>
+			   <div data-id="isdes" class="isdes">
+				   <template for:each={desSubCat} for:item="a">
+					   <div key={a} class="mb-3">
+						   <c-ppw_-service-prep-quesions key1={a} smap={DesignSQuestion} question-static-map={questionStaticMap}
+						   ser-type-sub-questions-map={serTypeSubQuestionsMap} onansweredquestion={answeredQuestion}></c-ppw_-service-prep-quesions>
+					   </div>
+				   </template>
+			   </div>
+			   <div data-id="isedi" class="isedi">
+				   <template for:each={ediSubCat} for:item="a">
+					   <div key={a} class="mb-3">
+						   <c-ppw_-service-prep-quesions key1={a} smap={EditorialSQuestion} question-static-map={questionStaticMap}
+						   ser-type-sub-questions-map={serTypeSubQuestionsMap} onansweredquestion={answeredQuestion}></c-ppw_-service-prep-quesions>
+					   </div>
+				   </template>
+			   </div>
+		   </div>
+	   </div>
+	   </div>
+	   <div if:false={isEnabledForm}>
+		   No Service Prep Form found for this project, please contact your System Adminstartor for further info.
+	   </div>
+	   <!--Code for Service prep from, we will have the form and all-->
+   
+   </template>

@@ -1,0 +1,16 @@
+<aura:component implements="force:appHostable,forceCommunity:availableForAllPageTypes">
+    <lightning:fileCard fileId="0691H000007lbAN" description="Sample Description"/>
+    <aura:registerEvent name="UrlNavigationEvt" type="c:UrlNavigationEvt"/>
+    <aura:attribute name="name1" type="String"/> 
+    <aura:attribute name="name2" type="String"/> 
+    <aura:attribute name="name3" type="String"/> 
+    
+    <aura:handler event="aura:locationChange" action="{!c.update}"/>
+    
+    {!v.name1}
+    {!v.name2}
+    {!v.name3}
+	<lightning:button  
+        label="Click here to fire an application event"
+        onclick="{!c.fireApplicationEvent}" /> jooo
+</aura:component>

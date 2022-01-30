@@ -1,0 +1,180 @@
+<template>
+	<div class="slds-m-top_medium"></div>
+
+	<!--Info Message to users-->
+	<div data-id="serviceHelp" class="slds-box" style=" background-color: rgb(209, 236, 241); color: rgb(12, 84, 96);">
+		<c-svg-icon svgicon="/utility-sprite/svg/symbols.svg#breadcrumbs"
+                    style-class="slds-icon iconColorBreadCrumb slds-icon_medium">
+        </c-svg-icon>
+		<span if:false={projectService}> &nbsp;To create a new service, only the <strong>Service</strong> and <strong>Service Type</strong> are initially required. </span>
+		<span if:true={projectService}> You are editing a Project Service record. Please note that the curent status of the record will impact what fields may be editible at a given time.</span>
+	</div>
+
+	<div class="slds-m-bottom_medium"></div>
+
+	<!--Honor dependencies box-->
+	<div class="slds-box">
+		<div class="slds-text-heading_small">Dependencies  &nbsp; </div>
+		<div class="slds-m-bottom_small"></div>
+		<div class="slds-m-left_xx-small">
+		<lightning-input name="honorDependencies" type="checkbox" checked={newProjectService.honorDependencies} label="Honor Service Dependencies" onchange={onHandler}> </lightning-input>
+		<div class="slds-m-bottom_small"></div>
+		<p>Checking this box will configure the proper dependencies on the timeline in censhare.</p>
+	</div>
+	</div>
+
+	<div class="slds-m-bottom_medium"></div>
+	
+	<!--Dates Box-->
+	<div class="slds-box" if:true={projectService}>
+		<div class="slds-text-heading_small"> Key Dates & Scheduling &nbsp; </div>
+		<div class="slds-m-bottom_small"></div>
+		<div class="slds-grid slds-gutters">
+			<div class="slds-m-bottom_small"></div>
+			<div class="slds-col">
+				<div class="slds-col slds-m-bottom_x-small">
+					<label class="slds-form-element__label"> Estimated Start Date </label>
+					<div class="slds-form-element__control">
+						<div class="slds-form-element__static">
+							<lightning-formatted-date-time value={projectService.Estimated_Start_Date__c} year="numeric" month="short" day="2-digit"> </lightning-formatted-date-time>
+						</div>
+					</div>
+				</div>
+				<div class="slds-col slds-m-bottom_x-small">
+					<label class="slds-form-element__label"> Estimated Completion Date</label>
+					<div class="slds-form-element__control">
+						<div class="slds-form-element__static">
+							<lightning-formatted-date-time value={projectService.Estimated_Completion_Date__c} year="numeric" month="short" day="2-digit"> </lightning-formatted-date-time>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="slds-col">
+				<div class="slds-col slds-m-bottom_x-small">
+					<label class="slds-form-element__label"> Actual Start Date </label>
+					<div class="slds-form-element__control">
+						<div class="slds-form-element__static">
+							<lightning-formatted-date-time value={projectService.Actual_Start_Date__c} year="numeric" month="short" day="2-digit"> </lightning-formatted-date-time>
+						</div>
+					</div>
+				</div>
+				<div class="slds-col slds-m-bottom_x-small">
+					<label class="slds-form-element__label"> Actual Completion Date </label>
+					<div class="slds-form-element__control">
+						<div class="slds-form-element__static">
+							<lightning-formatted-date-time value={projectService.Actual_Completion_Date__c} year="numeric" month="short" day="2-digit"> </lightning-formatted-date-time>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="slds-m-bottom_medium"></div>
+
+	<!--Service details box-->
+	<div class="slds-box">
+		<div class="slds-text-heading_small"> Service Details </div>
+		<div class="slds-grid slds-gutters slds-wrap slds-m-left_xx-small">
+			<div class="slds-m-bottom_small"></div>
+			
+			<!-- Service, service type lookup fields-->
+			<div class="slds-col slds-size_1-of-2" if:true={services}>
+				<c-ppw_servicesearchlookup label="Service" custom-help-text="The top level service grouping used to filter the type/complexity below." selectedlabel={selectedService} eventname="selectservice" onselectservice={selectservice} picklist-vals={services}></c-ppw_servicesearchlookup>
+			</div>
+			
+			<div class="slds-col slds-size_1-of-2">
+				<c-ppw_servicesearchlookup label="Service Type" custom-help-text="The detailed type/complexity of the service." eventname="selectservicetype" onselectservicetype={selectservicetype} picklist-vals={serviceType}></c-ppw_servicesearchlookup>
+			</div>
+			<div class="slds-m-bottom_small"></div>
+
+			<div class="slds-col slds-size_1-of-1" if:true={serviceDescription}>
+				<div class="slds-m-bottom_small"></div>
+				<label class="slds-form-element__label">Service Description </label>
+				<c-custom-help-text text="Details about the specific service type." style-class="slds-icon-text-default ms-help-icon" icon-name="utility:info"> </c-custom-help-text>
+				<div class="slds-form-element__control">
+					<div class="slds-form-element__static"> {serviceDescription} </div>
+				</div>
+			</div>	
+
+			<div class="slds-m-bottom_small"></div>
+
+			<div class="slds-col slds-m-top_xxx-small"  if:true={wikiAdditionalLink}>
+					<a style="background-color:#007BFF;color:white;" class="slds-badge slds-badge_lightest sWiki" href={wikiAdditionalLink} target="_blank">
+						Wiki/Additional Information</a>
+
+			</div>
+			
+			
+		
+		</div>
+	</div>
+	<div class="slds-m-bottom_medium"></div>
+	<!--Vendor and rate details box-->
+	<div class="slds-box">
+		<div class="slds-text-heading_small"> Vendor & Rate Details  &nbsp;
+		<!--	<c-custom-help-text text="The available vendors based on their status, active rate, approved services, and approved locale." style-class="slds-icon-text-default icon-margin" icon-name="utility:info"> </c-custom-help-text> -->
+		</div>
+		<div class="slds-grid slds-gutters slds-wrap slds-m-left_xx-small">
+			<div class="slds-m-bottom_small"></div>
+			<div class="slds-col slds-size_1-of-2">
+				<c-ppw_servicesearchlookup custom-help-text="The available vendors based on their status, active rate, approved services, and approved locale." label="Vendor" eventname="selectvendor" onselectvendor={selectvendor} picklist-vals={vendors}></c-ppw_servicesearchlookup>
+			</div>
+			<div class="slds-col slds-size_1-of-2 slds-m-top_small">
+				<div>
+					<label class="slds-form-element__label"> {rateLabel} </label>
+					<div class="slds-form-element__control">
+						<div class="slds-form-element__static"> {rateAmountMultiplier} </div>
+					</div>
+
+					<label class="slds-form-element__label"> Rush Fee (%)</label>
+					<c-custom-help-text text="Our standard starting place for rush fee percentages is 25%." style-class="slds-icon-text-default ms-help-icon" icon-name="utility:info"> 
+					</c-custom-help-text>  
+					<div class="slds-form-element__control">
+						<lightning-input type="number" variant="label-hidden" name="rushFee" label="Rush Fee" placeholder="0.00" value={newProjectService.rushFee} varient="label-hidden" formatter="decimal" step="any" onblur={onHandler}> </lightning-input>
+					</div>
+
+					
+					<div class="slds-m-bottom_x-small"></div>
+					<lightning-input if:true={isCustomQuote} type="number" name="rateAmount" value={newProjectService.rateAmount} label="Custom Quote" placeholder="Custom Quote" formatter="decimal" step="any" onblur={onHandler}></lightning-input>
+					<lightning-input if:true={isaddRateInput} type="number" name="additionalRateInput" value={newProjectService.additionalRateInput} label={estimatedInputLabel} placeholder="Additional rate input" formatter="decimal" step="any" onblur={onHandler}></lightning-input>
+
+					<label class="slds-form-element__label"> Rate Amount </label>
+					<c-custom-help-text text="Please enter the rate amount here to override the total calculated Rate & Est. Cost with your personalized rate amount." style-class="slds-icon-text-default ms-help-icon" icon-name="utility:info"> 
+					</c-custom-help-text>  
+					<div class="slds-form-element__control">
+						<lightning-input  variant="label-hidden" class="textInput" type="number" name="psAmount" placeholder="Rate Amount" formatter="decimal" step="any" value={newProjectService.psAmount} onblur={onHandler}></lightning-input>
+					</div> 
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="slds-m-bottom_medium"></div>
+	
+	<!--Notes section-->
+	<div class="slds-box">
+		<div class="slds-text-heading_small"> Service Notes &nbsp; </div>
+		<div class="slds-grid slds-gutters slds-wrap slds-m-left_xx-small">
+		<div class="slds-m-bottom_small"></div>
+		<div class="slds-col">
+		
+		
+		<label class="slds-form-element__label"> Notes to Vendor  </label>
+		<c-custom-help-text text="Vendor notes are external facing, and provide additional context for the service for the vendor." style-class="slds-icon-text-default ms-help-icon" icon-name="utility:info"> 
+		</c-custom-help-text>  
+		<div class="slds-m-bottom_x-small"></div>
+		<lightning-input-rich-text name="externalVendorNote" value={newProjectService.externalVendorNote} onblur={onHandler}> </lightning-input-rich-text>
+		
+		<div class="slds-m-bottom_small"></div>
+
+		<label class="slds-form-element__label"> Internal Only Notes  </label>
+		<c-custom-help-text text="Internal facing notes only" style-class="slds-icon-text-default ms-help-icon" icon-name="utility:info"> 
+		</c-custom-help-text>  
+		<div class="slds-m-bottom_x-small"></div>
+		<lightning-textarea variant="label-hidden" name="internalVendorNote" value={newProjectService.internalVendorNote} onblur={onHandler}></lightning-textarea>
+	
+	</div>
+	</div>
+	</div>
+</template>

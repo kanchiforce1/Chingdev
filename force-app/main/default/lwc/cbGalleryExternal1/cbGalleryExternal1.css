@@ -1,0 +1,39 @@
+.content {
+    padding: 8px;
+    background-color: #ffffff;
+    border-radius: 0.25rem;
+}
+
+a {
+    color: inherit;
+}
+
+img.product {
+    height: none;
+    max-width: 100px;
+    pointer-events: none;
+}
+
+.girdalign {
+    height: none;
+    min-width: 300px;
+    max-width: 300px;
+   overflow: auto;
+}
+
+.title {
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.row {
+    display: flex;
+    border-bottom: solid 1px #f3f2f2;
+}
+
+.row div:first-child {
+    width: 80px;
+}
+
+.row div:nth-child(2) {
+    flex: 1;
+}

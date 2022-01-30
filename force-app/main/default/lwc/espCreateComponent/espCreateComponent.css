@@ -1,0 +1,35 @@
+.subheader {
+text-transform: uppercase;
+letter-spacing: 2px;
+font-size: 18px;    
+}
+
+.bwidth1 {
+    width: 150px;
+        
+}
+.section {
+    margin: 15px auto;
+    padding: 8px;
+    border: 2px solid #3fb0ac;
+    
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.slds-form-element__static {
+    font-size:20pt;
+}
+
+label.slds-form-element__label {
+    font-size:.99rem !important;
+    display: none;
+}
+
+
+label.slds-form-element__label .slds-no-flex {
+    display: none;
+    
+    
+}

@@ -1,0 +1,152 @@
+<template>
+
+    <table class="slds-table slds-table_bordered slds-table_fixed-layout slds-table_cell-buffer table-test">
+        <thead>
+            <tr class="slds-line-height_reset tabHeader">
+                <template for:each={tableHeaders} for:item="th">
+                    <th class="" scope="col" key={th}>
+                        <div class="slds-truncate" title={th}>
+                            <span>
+                                <bold class="fieldLabelSize">{th}</bold>
+                            </span>
+                        </div>
+                    </th>
+                </template>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="slds-hint-parent">
+                <td class="">
+                    <div class="slds-truncate fieldDataSize" title={value.ASIN__c}>
+                        {value.ASIN__c}
+                    </div>
+                </td>
+                <td class="">
+                    <div class="slds-truncate fieldDataSize" title={value.ASIN__c}>
+                        {value.ISBN_13__c}
+                    </div>
+                </td>
+                <td class="">
+                    <div class="slds-truncate fieldDataSize" title={value.ASIN__c}>
+                        {value.APub_Publish_Date__c}
+                    </div>
+                </td>
+                <td class="">
+                    <div class="slds-truncate fieldDataSize" title={value.ASIN__c}>
+                        {value.Trim_Width__c}
+                    </div>
+                </td>
+                <td class="">
+                    <div class="slds-truncate fieldDataSize" title={value.ASIN__c}>
+                        {value.Trim_Height__c}
+                    </div>
+                </td>
+                <td class="">
+                    <div class="slds-truncate fieldDataSize" title={value.ASIN__c}>
+                        {value.Initial_Page_Count__c}
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+<!--
+
+    <template if:true={value}>
+        <div class="mb-3" if:true={asin} key={x}>
+
+            <span class="slds-form-element__label">
+                <bold>ASIN</bold>
+            </span>
+            <div class="slds-form-element__control">
+                <div class="slds-form-element__static">{value.ASIN__c}
+                </div>
+            </div>
+
+        </div>
+
+        <div class="mb-3" if:true={isbn_13}>
+
+
+            <span class="slds-form-element__label">
+                <bold>ISBN-13</bold>
+            </span>
+            <div class="slds-form-element__control">
+                <div class="slds-form-element__static">{value.ISBN_13__c}
+                </div>
+            </div>
+
+        </div>
+
+        <div class="mb-3" if:true={asign}>
+            <span class="slds-form-element__label">
+                <bold>Publication Date</bold>
+            </span>
+            <div class="slds-form-element__control">
+                <div class="slds-form-element__static">
+                    {value.APub_Publish_Date__c}
+                </div>
+            </div>
+
+        </div>
+
+        <div if:true={paperBackOrHandOver}>
+
+
+            <div class="mb-3" if:true={trim_width}>
+                <span class="slds-form-element__label">
+                    <bold>Trim Width</bold>
+                </span>
+                <div class="slds-form-element__control">
+                    <div class="slds-form-element__static">
+                        {value.Trim_Width__c}
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="mb-3" if:true={trim_height}>
+
+                <span class="slds-form-element__label">
+                    <bold>Trim Height</bold>
+                </span>
+                <div class="slds-form-element__control">
+                    <div class="slds-form-element__static">
+                        {value.Trim_Height__c}
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="mb-3" if:true={interior_paper_stock}>
+
+                <span class="slds-form-element__label">
+                    <bold>Interior Stock</bold>
+                </span>
+                <div class="slds-form-element__control">
+                    <div class="slds-form-element__static">
+                        {value.Interior_Paper_Stock__c}
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="mb-3" if:true={interior_paper_stock}>
+
+                <span class="slds-form-element__label">
+                    <bold>Initial Page Count</bold>
+                </span>
+                <div class="slds-form-element__control">
+                    <div class="slds-form-element__static">
+                        {value.Initial_Page_Count__c}
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </template> -->
+
+
+</template>

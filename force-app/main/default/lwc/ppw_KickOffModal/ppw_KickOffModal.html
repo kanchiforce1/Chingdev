@@ -1,0 +1,101 @@
+<template>
+	<!-- Modal/Popup Box LWC starts here -->
+	<section role="dialog" tabindex="-1" aria-modal="true" class="slds-modal slds-fade-in-open  slds-modal_x-small">
+		<div if:true={spinner}>
+            <lightning-spinner class="spins" alternative-text="Loading" size="large"></lightning-spinner>
+        </div>
+        <div class="slds-modal__container">
+			<!-- Modal/Popup Box LWC header here -->
+			<header class="slds-modal__header">
+				<button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeCreatePsModal}>
+					<lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse" size="small"></lightning-icon> <span class="slds-assistive-text">Close</span> </button>
+				<h2 class="slds-text-heading_medium slds-hyphenate">
+					<c-svg-icon svgicon="/utility-sprite/svg/symbols.svg#setup_assistant_guide"
+						style-class="slds-icon slds-icon-text-default slds-current-color iconStyle">
+					  </c-svg-icon> &nbsp;
+					Kick Off Checklist
+            </h2> 
+		</header>
+			<!-- Modal/Popup Box LWC body starts here -->
+
+
+			<div class="slds-modal__content slds-p-around_medium">
+				<table style="width:100%">
+					
+                    <tr if:false={series}>
+						<td style="font-size:18px;" width="80%">
+                            <div class="slds-m-left_large slds-m-vertical_small">
+							Status of the Title is Contracted
+                        </div>
+						</td>
+						<td width="20%" align="right">
+							<div if:true={titleStatus}>
+								<c-svg-icon svgicon="/utility-sprite/svg/symbols.svg#success"
+						style-class=" slds-float_right slds-icon slds-icon_large slds-icon-text-default slds-current-color kickoffIconSize iconColorGreen">
+					  </c-svg-icon> 
+
+                            </div>
+							<div if:false={titleStatus}>
+								<c-svg-icon svgicon="/utility-sprite/svg/symbols.svg#clear"
+						style-class="slds-float_right slds-icon slds-icon_large slds-icon-text-default slds-current-color kickoffIconSize iconColorRed">
+					  </c-svg-icon> 
+							</div>
+						</td>
+					</tr>
+
+					<tr>
+						<td style="font-size:18px;" width="80%">
+                            <div class="slds-m-left_large slds-m-vertical_small">
+							 Project Service Status: Scheduling 
+                        </div>
+						</td> 
+						<td width="20%" align="right">
+							<div if:true={isStatusScheduled}>
+								
+
+								<c-svg-icon svgicon="/utility-sprite/svg/symbols.svg#success"
+						style-class=" slds-float_right slds-icon slds-icon_large slds-icon-text-default slds-current-color kickoffIconSize iconColorGreen">
+					  </c-svg-icon> 
+							</div>
+							<div if:false={isStatusScheduled}>
+								
+								<c-svg-icon svgicon="/utility-sprite/svg/symbols.svg#clear"
+						style-class="slds-float_right slds-icon slds-icon_large slds-icon-text-default slds-current-color kickoffIconSize iconColorRed">
+					  </c-svg-icon> 
+							</div>
+						</td>
+					</tr>
+				</table>
+				<div data-id="forceKickOffStatus" style="width: 300px;display:none;"> <span class="badge badge-info" style="word-break: break-all;">Contacting Censhare, Updating Project..</span> </div>
+			</div>
+
+			<!-- Modal/Popup Box LWC footer starts here -->
+			<footer class="slds-modal__footer" onclick={hideDropDown}>
+				<!--Force kick off logic-->
+				<div style="display:inline;" if:false={isForceKickoff}>
+					<div class="slds-dropdown-trigger slds-dropdown-trigger_click" data-id="forceKickoff" aria-expanded="false"
+						aria-haspopup="dialog" role="combobox">
+						<lightning-button icon-position="right" data-id="force" class="slds-var-m-left_xx-small" variant="destructive"
+							label="Force Kick Off Service" title="Force Kick Off Service" icon-name="utility:chevrondown"
+							onclick={onnewOpen}> </lightning-button>
+						<div class="slds-dropdown slds-dropdown_fluid slds-dropdown_small">
+							<lightning-textarea data-id="createIn" aria-autocomplete="list" role="textbox"
+								name="Force Kick Off Service Comments" label="Force Kick Off Service Comments"
+								class="slds-m-left_x-small slds-m-right_x-small slds-m-bottom_x-small"> </lightning-textarea>
+							<lightning-button data-id="create" variant="destructive" class="slds-var-m-right_x-small" name="reject"
+								label="Kick Off" title="Create" onclick={forceKickedOff}> </lightning-button>
+						</div>
+					</div>
+				</div>
+
+				<!--Kick off Button-->
+				<lightning-button disabled={isContractedScheduled} icon-name={savebtnIcon} variant="success" data-id="kickoff"
+					label={savebtnLabel} title={savebtnLabel} onclick={kickOffServiceFun} style="color:white;" class="slds-m-left_x-small fillWhite">
+				</lightning-button>
+				<lightning-button label="Close" title="Non-primary action" onclick={closeCreatePsModal} class="slds-m-left_x-small">
+				</lightning-button>
+			</footer>
+		</div>
+	</section>
+	<div class="slds-backdrop slds-backdrop_open"></div>
+</template>

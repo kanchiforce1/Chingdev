@@ -1,0 +1,56 @@
+<template>
+
+   
+    <div data-id="resultBox" class="slds-form-element slds-lookup slds-is-close" data-select="single">
+
+        <div class="slds-form-element__control">
+
+            <div class="slds-input-has-icon slds-input-has-icon--right">
+
+            <div class="slds-show slds-m-top_small">
+                 
+
+                <div class="slds-m-bottom_small"></div>
+                        
+                <lightning-input   type="search"  onclick={searchField} onfocusout={onhide} onkeyup={searchField}
+                         data-id="inputText" placeholder={selectedlabel} value={value}
+                        label={label} variant="label-hidden" name="Search Martyid or Title Name" 
+                        ></lightning-input> 
+                </div>
+            </div>
+
+        </div>
+        <ul style="min-height:40px;margin-top:0px !important" 
+            class="slds-listbox slds-dropdown_length-5 slds-listbox_vertical slds-dropdown_fluid slds-lookup__menu resultClass"
+            role="listbox">
+        
+            <template if:true={isservice} for:each={searchRecords} for:item="serecord">
+                <li role="presentation" class="slds-listbox__item" key={serecord.value} onclick={setSelectedRecord}
+                    data-value={serecord.value} data-label={serecord.label} >
+            
+                    <div class="slds-media slds-listbox__option slds-listbox__option_entity slds-listbox__option_has-meta"
+                        role="option">
+            
+                        <span class="slds-media__body">
+            
+                            <span class="slds-listbox__option-meta slds-listbox__option-meta_entity" style="font-size:16px;">
+                                {serecord.label} </span>
+                        </span>
+                    </div>
+                </li>
+            
+            </template>
+            
+        </ul>
+        <div if:true={notfound}>
+            No result found. 
+        </div>
+        <div if:true={LoadingText}>
+            Loading... 
+        </div>
+
+
+    </div>
+
+
+</template>

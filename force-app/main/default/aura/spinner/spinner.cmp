@@ -1,0 +1,11 @@
+<aura:component >
+	<div aura:id="spinnerId" class="slds-spinner_container">
+    <div class="slds-spinner--brand  slds-spinner slds-spinner--large slds-is-relative" role="alert">
+        <span class="slds-assistive-text">Loading</span>
+        <div class="slds-spinner__dot-a"></div>
+        <div class="slds-spinner__dot-b"></div>
+
+        <p style="transform: translate(-32%, -50%) rotate(-90deg);width: 320px;text-align: center;"> please wait while loading </p>
+    </div>
+</div>
+</aura:component>

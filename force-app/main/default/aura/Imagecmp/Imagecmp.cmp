@@ -1,0 +1,7 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global" >
+    <aura:attribute name="docId" type="String" default="" />
+  
+     <a target="_blank" href="{!'https://chingdev-dev-ed--c.na72.content.force.com/sfc/servlet.shepherd/version/download/'+v.docId}">
+	<img src="{!'https://chingdev-dev-ed--c.na72.content.force.com/sfc/servlet.shepherd/version/download/'+v.docId}"/>
+    </a>
+    </aura:component>

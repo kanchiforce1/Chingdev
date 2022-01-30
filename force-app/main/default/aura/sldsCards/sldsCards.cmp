@@ -1,0 +1,118 @@
+<aura:component >
+    
+    
+    <article class="slds-card">
+        <div class="slds-card__header slds-grid">
+           
+                <div class="box"></div>
+               
+                <div class="slds-no-flex">
+                  TESTET
+            </div><br/>
+             <div class="box"></div>
+               
+                <div class="slds-no-flex">
+                  TESTET
+            </div><br/>
+             <div class="box"></div>
+               
+                <div class="slds-no-flex">
+                  TESTET
+            </div> <br/>
+             <div class="box"></div>
+               
+                <div class="slds-no-flex">
+                  TESTET
+            </div><br/>
+       
+        </div>
+        <div class="slds-card__body slds-card__body_inner">Anything can go into the card body</div>
+        <footer class="slds-card__footer">
+            <a class="slds-card__footer-action" href="javascript:void(0);">View All
+                <span class="slds-assistive-text">Accounts</span>
+            </a>
+        </footer>
+    </article>
+    
+    <label class="slds-form-element__label">Last Name</label>
+    <!--lightning help text for input field-->
+    <lightning:helptext content="Please enter your last name" /> 
+   
+    
+    
+    <section aria-describedby="dialog-body-id-98" aria-label="Dialog Title" class="slds-popover slds-nubbin_right" role="dialog">
+        <button class="slds-button slds-button_icon slds-button_icon-small slds-float_right slds-popover__close" title="Close dialog">
+          test
+            <span class="slds-assistive-text">Close dialog</span>
+        </button>
+        <div class="slds-popover__body" id="dialog-body-id-98">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+    </section>
+    
+    
+    <section class="slds-popover slds-popover_warning slds-nubbin_bottom-left" role="dialog" aria-labelledby="dialog-heading-id-2" aria-describedby="dialog-body-id-2">
+        <button class="slds-button slds-button_icon slds-button_icon-small slds-float_right slds-popover__clos slds-button_icon" title="Close dialog">
+           
+            <span class="slds-assistive-text">Close dialog</span>
+        </button>
+        <header class="slds-popover__header">
+            <div class="slds-media slds-media_center slds-has-flexi-truncate ">
+                <div class="slds-media__figure">
+                    <span class="slds-icon_container slds-icon-utility-warning">
+                       
+                    </span>
+                </div>
+                <div class="slds-media__body">
+                    <h2 class="slds-truncate slds-text-heading_medium" id="dialog-heading-id-2" title="Review warning">Review warning</h2>
+                </div>
+            </div>
+        </header>
+        <div class="slds-popover__body slds-popover_warning__body" id="dialog-body-id-2">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore. <a href="javascript:void(0);" title="Learn More">Learn More</a></p>
+        </div>
+    </section>
+    
+    
+     <aura:attribute name="myNumber" type="integer" default="10"/>
+    <ui:inputNumber aura:id="number" label="Enter a number: " value="{!v.myNumber}" onError="{!c.handleError}"/>
+    <ui:button label="Validate" press="{!c.handleValidate}"/>
+    
+     <div class="slds-form-element__control">
+            <div class="slds-input-has-icon slds-input-has-icon--right slds-has-error">
+                <div aura:id="lookup-pill" class="slds-pill-container" >
+                    <div aura:id="lookupField" class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right"  style="width: 100%;">
+                        
+                        <ui:inputText click="{!c.onfocus}"
+                                      updateOn="keyup"
+                                 	  aura:id="lookupId"
+                                      keyup="{!c.keyPressController}"
+                                      class="slds-lookup__search-input slds-input inputSize"
+                                      value="{!v.SearchKeyWord}"
+                                      labelClass="{!v.cmpName}"
+                                      placeholder="search.. "
+                                      />
+                        
+                        <span class="slds-icon_container slds-icon-utility-search slds-input__icon slds-input__icon_right">
+                            <lightning:icon iconName="utility:search" size="x-small" alternativeText="icon"/>
+                        </span>
+                    </div> 
+
+                    <aura:iteration items="{!v.lstSelectedRecords}" var="sr">
+                        <lightning:pill class="slds-m-around_xx-small" label="{!sr.label}" name="{!sr.value}" onremove="{! c.clear }">
+                            <aura:set attribute="media">
+                                <lightning:icon iconName="{!v.IconName}" size="x-small" alternativeText="icon"/>
+                            </aura:set>
+                        </lightning:pill>
+                    </aura:iteration>
+                </div>
+                <div class="form-element__help has-error uiInputLookError"> Enter a number more than 10 </div>
+            </div>
+         
+        </div>
+    
+     <lightning:input type="password" aura:id="pwd" label="Enter your password" name="input1"  />
+    
+
+    <button class="slds-button slds-button_icon slds-button_icon-small slds-float_right slds-popover__clos slds-button_icon" title="Close dialog" label="passwordcheck" onclick="{!c.checkk}"> passowr    </button>
+</aura:component>

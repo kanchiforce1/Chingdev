@@ -1,0 +1,51 @@
+<template>
+    <div class="slds-grid slds-wrap" if:true={data}>
+        
+          <!-- top Panel Section -->
+          <div class="slds-small-size--12-of-12 slds-m-bottom_medium" if:true={data.project}>
+
+                <c-ppw_-highlights-panel project={data.project} record-id={data.project.Id}></c-ppw_-highlights-panel>
+            </div>
+          <div class="slds-m-bottom_medium"></div>
+        <!-- Left Panel Section -->
+        <div class="slds-small-size--2-of-12">
+            <div class="slds-var-m-right_medium">
+                <div class="slds-col" if:true={data.project}>
+                    <c-ppw_-buttons-component ongetrefreshpanels={getrefreshpanels} series={data.series} title={data.title} project={data.project} record-id={data.project.Id}></c-ppw_-buttons-component>
+                </div>
+                
+            </div>
+        
+
+        <!-- Left Panel Section -->
+        <div class="slds-m-bottom_medium"></div>
+        
+            <div class="slds-var-m-right_medium">
+                <div class="slds-col " if:true={data.project}>
+                   <c-title-projectteam title={data.title} series={data.series}  title-id={data.project.Title__c}></c-title-projectteam > 
+                </div>
+                
+            </div>
+        
+
+    </div>
+        
+        <!-- Middle body section -->
+        <div class="slds-small-size--8-of-12">
+            <div class="slds-col slds-var-m-right_small">
+                <span><c-ppw-project-service-panels series={data.series} record-id={recordId}></c-ppw-project-service-panels></span>
+            </div>
+        </div>
+    
+    
+    <!-- Right body section -->
+    <div class="slds-small-size--2-of-12" if:true={data}>
+        <div class="slds-var-m-right_medium">
+            <div class="slds-col hideHelpicon">
+                <c-ppw-title-metadata titledata={data} ></c-ppw-title-metadata>
+            </div>
+            
+        </div>
+    </div>
+    </div>
+</template>

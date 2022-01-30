@@ -1,0 +1,106 @@
+.THIS .index-title {
+    font-size: 50px;
+    font-family: dm serif display;
+    font-size: 32px;
+    font-weight: 400;
+    color: var(--purple);
+}
+            
+ .THIS  .index-main-text {
+    text-align: left;
+    padding-left: 4%;
+}
+            
+ .THIS .i-amphtml-layout-size-defined .i-amphtml-fill-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+   
+ .THIS .i-amphtml-replaced-content .i-amphtml-screen-reader {
+    padding: 0!important;
+    border: none!important;
+}
+            
+         .THIS .i-amphtml-blurry-placeholder .i-amphtml-fill-content {
+    display: block;
+    height: 0;
+    max-height: 100%;
+    max-width: 100%;
+    min-height: 100%;
+    min-width: 100%;
+    width: 0;
+    margin: auto;
+}
+            
+            
+            .THIS .tile {
+    width: 100%;
+    align-self: flex-start;
+}
+          .THIS  .four-icons {
+    display: flex;
+    flex-direction: column;
+    align-items: initial;
+    color: #0b1649;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+            
+           .THIS .salesforce-news>h3 {
+    font-size: 21px;
+    font-family: dm serif display,Arial,Tahoma,sans-serif;
+    color: var(--purple);
+}
+                       .THIS h3 {
+    font-size: 21px;
+    font-family: dm serif display,Arial,Tahoma,sans-serif;
+    color: var(--purple);
+}
+                                    
+                                    .THIS h1 h2 h3 h4 h5 h6 {
+    font-family: dm serif display,Arial,Tahoma,sans-serif;
+    color: var(--purple);
+}
+                                                
+                                               .THIS .article-tile>p {
+    color: #fff;
+    font-size: 14px;
+}
+                                                
+                                               .THIS .article-tile>h4 .article-tile>p {
+    text-shadow: 0 -1px 1px rgba(255,255,255,.3);
+}
+                                                
+                                                .THIS .article-tile>h4 .article-tile>p {
+    text-shadow: 0 -1px 1px rgba(255,255,255,.3);
+}
+                                                
+                                               .THIS .contact {
+    background: linear-gradient(0deg,rgba(255,255,255,1),rgba(232,237,249,1));
+    text-align: center;
+    padding-top: 80px;
+}
+                                                
+                                                .THIS footer {
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    background-color: #0b1649;
+    color: #fff;
+    padding: 51px 24px;
+}
+                                                
+                                               .THIS .navigation-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 12px;
+}
+                                               .THIS .navigation-container {
+    padding: 20px 60px;
+}
+                                                
+                                               .THIS body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}

@@ -1,0 +1,52 @@
+.THIS .cCenterPanel  {
+   margin: 0 !important;
+      padding: 0 !important;
+}
+.THIS .cCenterPanel {
+   margin: 0 !important;
+      padding: 0 !important;
+}
+.THIS .slds-m-top--x-large {
+   margin: 0 !important;
+      padding: 0 !important;
+}
+
+.THIS .slds-p-horizontal--medium {
+   margin: 0 !important;
+      padding: 0 !important;
+}
+
+.THIS .cFooterPanel {
+  margin: 0 !important;
+      padding: 0 !important;
+}
+
+
+
+.THIS .contentPanel:before,
+.THIS .contentPanel:after {
+    content: " ";
+    display: table;
+}
+.THIS .contentPanel:after {
+    clear: both;
+}
+
+
+
+
+.THIS div {
+    padding-left: 0rm !important;
+    padding-right: 0rm !important;
+    padding-bottom: 0rm
+}
+
+.THIS .contentPanel:before,
+.THIS .contentPanel:after {
+    content: " ";
+    display: table;
+    width:100%;
+}
+.THIS .contentPanel:after {
+    clear: both;
+}

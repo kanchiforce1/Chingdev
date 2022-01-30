@@ -1,0 +1,26 @@
+.marginss {
+    position:absolute;
+    margin-left:-62px;
+    margin-top:-45px;
+}
+
+.dateTooltip {
+    position:absolute;
+    margin-left:-12px;
+    margin-top:-60px;
+}
+
+td th {
+    text-align:center !important;
+    vertical-align:middle;
+   } 
+
+   .sOpen {
+    background-color:rgb(63, 143, 241);
+    color: white;
+}
+
+.sReviewRequest {
+    background-color:#42A2B9;
+    color:white;
+}

@@ -1,0 +1,13 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+	
+    
+    <div class="slds-small-size--12-of-12">
+            
+                <div class="slds-col ">
+                    <c:ppw_transmittalComponent ></c:ppw_transmittalComponent>
+                </div>
+                
+            
+        </div>
+    
+</aura:component>

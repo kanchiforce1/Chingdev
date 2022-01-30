@@ -1,0 +1,28 @@
+.slds-modal__container {
+    max-width: 110rem !important;
+    width: 90% !important;
+}
+
+.custom .slds-modal__Container {
+    max-width: 80rem !important;
+    width: 80% !important;
+} 
+
+
+.backgroundInverse {
+    position: relative;
+    background-color: #16325c;
+  
+}
+.slds-modal__content {
+    min-height: 71%;
+    overflow-y: visible;
+}
+.spins::after {
+    position: absolute;
+    content: 'Please wait while loading';
+    width: 100%;
+    text-align: center;
+    top: calc(50% + 3em);
+    font-weight: bold;
+}

@@ -1,0 +1,19 @@
+<template>
+    <div class="slds-form-element__icon">
+        <a href="javascript:void(0);" class="slds-form-element__icon slds-align-middle" onclick={handleOnClick}
+            onmouseout={handleMouseLeave} onmouseover={handleMouseEnter} tabindex="-1">
+            <lightning-icon class={styleClass} size="xx-small" icon-name={iconName} variant={varient}>
+            </lightning-icon>
+            <span class="slds-assistive-text">Help</span>
+        </a>
+        <div data-id="divHelp"
+            class="slds-popover slds-popover_tooltip ms-help-popup-in-header slds-hide"
+            role="tooltip" aria-live="polite">
+            <div class="slds-popover__body ms-help-popup-body" style="color: white;">
+                {text}
+                <!--<ui:outputText value="{!v.text}"/>-->
+            </div>
+        </div>
+
+    </div>
+</template>

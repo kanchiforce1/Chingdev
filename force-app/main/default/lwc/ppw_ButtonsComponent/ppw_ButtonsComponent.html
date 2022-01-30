@@ -1,0 +1,170 @@
+<template>
+	
+		<div class="slds-wrap" >
+			<div class="slds-card">
+				
+					
+		<!-- Buttons component code-->
+			<lightning-vertical-navigation>
+
+
+				<lightning-vertical-navigation-section>
+						<h4 class="slds-card__header-title slds-m-left_small slds-m-bottom_x-small"> <span> Actions & Links</span> </h4>
+	
+						<lightning-vertical-navigation-item-icon
+							label="Create New Service"
+							name="newService"
+							onclick={openCreatePsModal}
+							icon-name="utility:new">
+						</lightning-vertical-navigation-item-icon>
+
+
+					<div class="slds-dropdown-trigger slds-dropdown-trigger_click"> 
+						
+						<lightning-vertical-navigation-item-icon
+							label="Project Chatter"
+							name="chatter"
+							onclick={pushNotification}
+							icon-name="utility:comments">
+						</lightning-vertical-navigation-item-icon>
+						<span if:true={projectnotifyCount} aria-hidden="true" class="slds-notification-badge slds-incoming-notification slds-show-notification"> {projectnotifyCount}</span>
+					</div>
+
+
+						<lightning-vertical-navigation-item-icon
+							label="Bundle Services"
+							name="bundleService"
+							onclick={openBundleModal}
+							icon-name="utility:new">
+						</lightning-vertical-navigation-item-icon>
+
+						<lightning-vertical-navigation-item-icon if:false={series}
+							label="Service Prep"
+							name="ServicePrep"
+							onclick={openModal}
+							icon-name="utility:task"
+						> 
+						</lightning-vertical-navigation-item-icon>
+
+						<lightning-vertical-navigation-item-icon
+							label="Transmittal Form"
+							name="Transmittal Form"
+							icon-name="utility:paste"
+							onclick={openCreatePsModal}>
+						</lightning-vertical-navigation-item-icon>
+
+						<lightning-vertical-navigation-item-icon data-id="cBrief" if:false={series}
+							label="Creative Brief"
+							class="nav-cBrief"
+							name="Creative Brief"
+							title={title}
+							icon-name="utility:image" onclick={nagivateToCBPage}>
+						</lightning-vertical-navigation-item-icon>
+
+						<lightning-vertical-navigation-item-icon
+							label="Bulk Actions"
+							name="Bulk Actions"
+							onclick={bulkAction}
+							icon-name="utility:overflow">
+						</lightning-vertical-navigation-item-icon>
+
+						<lightning-vertical-navigation-item-icon
+							label="View in Censhare"
+							name="Censhare"
+							icon-name="utility:new_window"
+							onclick={nagivateToPage}>
+						</lightning-vertical-navigation-item-icon>
+
+
+					</lightning-vertical-navigation-section>
+			</lightning-vertical-navigation>
+
+
+			<nav class="slds-nav-vertical" aria-label="Sub page">
+				<div class="slds-nav-vertical__overflow">
+					<button class="slds-button slds-button_reset slds-nav-vertical__action slds-nav-vertical__action_overflow"
+						aria-controls="search-results" aria-expanded="false" onclick={showmore}>
+						
+						  <c-svg-icon svgicon="/utility-sprite/svg/symbols.svg#chevronright"
+                    style-class="slds-icon slds-icon_xx-small iconColorLTBlue marginDown">
+                </c-svg-icon> &nbsp; &nbsp;
+						<span class="slds-nav-vertical__action-text ">Reports
+							<span class="slds-assistive-text">Reports</span>
+						</span>
+					</button>
+					<div data-id="showmore-results" class="slds-hide slds-m-left_large">
+						<ul aria-describedby="folder-header">
+
+							<lightning-menu-item onclick={report} label="Project Cost Information" prefix-icon-name="utility:moneybag" value="item1"></lightning-menu-item>
+							   <lightning-menu-item onclick={report} label="Author Title & Series History" prefix-icon-name="utility:knowledge_base" value="item2"></lightning-menu-item>
+							   <lightning-menu-item onclick={report} label="Author Preferences" prefix-icon-name="utility:engage" value="item3"></lightning-menu-item>
+							   <lightning-menu-item onclick={report} label="Related ESP Metrics" prefix-icon-name="utility:chart" value="item3"></lightning-menu-item>
+				   
+
+							<!--
+							<li class="slds-nav-vertical__item">
+								<a href="javascript:void(0);" class="slds-nav-vertical__action" prefix-icon-name="utility:moneybag">Project Cost Information</a>
+							</li>
+							
+							<li class="slds-nav-vertical__item">
+								<a href="javascript:void(0);" class="slds-nav-vertical__action">Author Title & Series History</a>
+							</li>
+							<li class="slds-nav-vertical__item">
+								<a href="javascript:void(0);" class="slds-nav-vertical__action">Author Preferences</a>
+							</li>
+							<li class="slds-nav-vertical__item">
+								<a href="javascript:void(0);" class="slds-nav-vertical__action">Related ESP Metrics</a>
+							</li> -->
+							
+						</ul>
+					</div>
+				</div>
+			</nav>
+		</div>
+	</div>
+	
+    <!--Service Prep Form Modal-->
+	<template if:true={isModalOpen}>
+		<!-- Modal/Popup Box LWC starts here -->
+		<section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open  slds-modal_medium">
+			<div if:true={spinner}>
+				<lightning-spinner data-id="spinner" class="spins" alternative-text="Loading" size="large"></lightning-spinner>
+			</div>
+			<div class="slds-modal__container">
+				<!-- Modal/Popup Box LWC header here -->
+				<header class="slds-modal__header">
+					<button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModal}>
+						<lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse" size="small"></lightning-icon> <span class="slds-assistive-text">Close</span> </button>
+					<h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Service Prep Form - <template if:true={project.Title__r}>{project.Title__r.Name} </template></h2> </header>
+				<!-- Modal/Popup Box LWC body starts here -->
+				<div class="slds-modal__content slds-p-around_medium" >
+					<c-ppw_-service-prep-form series={series} onspinner={spinner1} ongetrefreshpanels={getrefreshpanels} onlastmodefieddate={serPrepmodifiedDate} record-id={recordId}> </c-ppw_-service-prep-form>
+				</div>
+				
+				<!-- Modal/Popup Box LWC footer starts here -->
+				<footer class="slds-modal__footer">
+                    Last Modified By: 
+					<span class="slds-m-left_xxx-small"> {LastModifiedBy} </span> 
+					
+				</footer>
+			</div>
+		</section>
+		<div class="slds-backdrop slds-backdrop_open"></div>
+	</template>
+
+ 
+
+
+    <!--Create Service Modal-->
+	<template if:true={isCreatePsModal}>
+		<c-ppw-project-service-modal ongetrefreshpanels={getrefreshpanels} series={series} service-action-type="create" project={project} onclosecreatepsmodal={closeCreatePsModal} ></c-ppw-project-service-modal>
+	</template>
+
+	<template if:true={isBulkAction}>
+		<c-ppw_-bulk-actions record-id={recordId} series={series} title={title} project={project} ongetrefreshpanels={getrefreshpanels} onclosemodal={closebulkAction}></c-ppw_-bulk-actions>
+	</template>
+	<template if:true={isBundledService}>
+		<c-ppw_-bundled-service record-id={recordId} series={series} title={title} project={project} ongetrefreshpanels={getrefreshpanels} onclosemodal={closebulkAction}></c-ppw_-bundled-service>
+	</template>
+
+</template>

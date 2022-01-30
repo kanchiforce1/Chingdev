@@ -1,0 +1,73 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global" >
+    <aura:attribute name="cbiList" description="list of CBI for the underlying image section" type="cbi__c[]" required="required" />
+    <aura:attribute name="sectionName" description="name of the section to be used in the component" type="String" required="required" />
+    <aura:attribute name="sectionID" description="unique identifier for the accordian section" type="String" required="required" />
+    <aura:attribute name="imageCount" description="number of images in the section" type="Integer" required="required" />
+    
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a role="button" data-toggle="collapse" data-target="{!'#collapse'+sectionID}">
+                    <label class="form-element__label">{!sectionName}</label>
+                    <div styleClass="badge">Form label {!imageCount} </div>
+                    
+                </a>
+            </h4>
+        </div>
+        <!-- <lightning:recordForm recordId="{!v.recordId}" 
+                              objectApiName="Account"
+                              fields="Name" >  -->
+        <div id="{!'collapse'+sectionID}" class="panel-collapse collapse in">
+            <div class="panel-body">
+                <div class="row">
+                    <aura:iteration items="{!v.cbiList}" var="x">
+                        
+                        <div class="col-md-3">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <div class="thumbnail">
+                                        <!--  <a target="_blank" href="{!URLFOR($Action.Attachment.Download, x.Image_Path__c)}">
+                                        <img class="img-rounded" src="{!URLFOR($Action.Attachment.Download, x.Image_Path__c)}" /> -->
+                                        
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="slds-form-element__label">Form label</label>
+                                        <lightning:input value="{!x.Related_To__c}" class="{!if(x.Related_To__c == null, 'form-control required', 'form-control')}" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-element__label">Form label</label>
+                                        <lightning:textarea value="{!x.Caption__c}" class="form-control" />
+                                    </div>
+                                    
+                                    <div styleClass="form-group">
+                                        <label class="form-element__label">Form label</label>
+                                        <div layout="inline" class="{!if(x.Image_Section__c == null, 'required', '')}">
+                                            <lightning:input value="{!x.Image_Section__c}" class="form-control required">
+                                                
+                                            </lightning:input>
+                                        </div>
+                                    </div>
+                                    
+                                    <div styleClass="form-group" id="conceptNumber">
+                                        <aura:if isTrue="{!if(x.Image_Section__c =='Concept Imagery', True, False)}">
+                                            <div class="form-group">
+                                                <label class="form-element__label">Form label</label>
+                                                <lightning:input value="{!x.Concept__c}" class="{!if(x.Concept__c == null, 'form-control required', 'form-control')}" />
+                                            </div>
+                                        </aura:if>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-element__label">Form label</label>
+                                        <lightning:input value="{!x.Priority__c}" class="{!if(x.Priority__c == null, 'form-control required', 'form-control')}" />
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <lightning:input type="checkbox" value="{!x.Delete__c}" /> <label class="form-element__label">Form label</label>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>                           
+                        </div>
+                    </aura:iteration>
+                </div>
+            </div></div></div></aura:component>

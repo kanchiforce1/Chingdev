@@ -1,0 +1,33 @@
+<template>
+    <lightning-card>
+        <div class="slds-var-p-around_xx-small slds-grid">
+            <template if:false={loadFinished}>
+                <div class="spinnerContainer">
+                    <lightning-spinner alternative-text="Loading" size="small"></lightning-spinner>
+                </div>
+            </template>
+            <div id="attachmentCombobox" class="slds-col slds-size_2-of-3">
+                <lightning-combobox
+                    class="slds-p-top_large slds-p-right_medium"
+                    name="progress"
+                    value={value}
+                    label="Choose an attachment"
+                    placeholder="Choose an attachment..."
+                    options={picklistOptions}
+                    variant="label-hidden"
+                    onchange={handleChange} ></lightning-combobox>
+            </div>
+            <div id="fileUploader" class="slds-p-around_xxx-large slds-col slds-size_1-of-3">
+                <lightning-file-upload
+                class="slds-p-top_xxx-small"
+                label="Attach document"
+                name="fileUploader"
+                accept={acceptedFormats}
+                record-id={recordId}
+                onuploadfinished={handleUploadFinished}
+                multiple>
+        </lightning-file-upload>
+            </div>
+        </div>
+    </lightning-card>
+</template>

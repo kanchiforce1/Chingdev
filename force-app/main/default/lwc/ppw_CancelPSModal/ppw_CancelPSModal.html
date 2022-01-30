@@ -1,0 +1,57 @@
+<template>
+    <!-- Modal/Popup Box LWC starts here -->
+    <section role="dialog" tabindex="-1" aria-modal="true" aria-hidden="true" class="slds-modal slds-fade-in-open  slds-modal_small">
+        <div if:true={spinner}>
+            <lightning-spinner class="spins" alternative-text="Loading" size="large"></lightning-spinner>
+        </div>
+        <div class="slds-modal__container slds-modal_small">
+          <!-- Modal/Popup Box LWC header here -->
+          <header class="slds-modal__header">
+              <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeCreatePsModal}>
+                  <lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse" size="small"></lightning-icon> 
+                  <span class="slds-assistive-text">Close</span> </button>
+              <h2 class="slds-text-heading_medium slds-hyphenate">
+                <c-svg-icon svgicon="/utility-sprite/svg/symbols.svg#clear"
+						style-class="slds-icon slds-icon-text-default slds-current-color iconStyle">
+					  </c-svg-icon> &nbsp;  
+                Cancel Service</h2> </header>
+          <!-- Modal/Popup Box LWC body starts here -->
+         
+          <div class="slds-modal__content slds-p-around_medium">
+            <h1 style="font-size:20px;">Cancellation Options</h1>
+            <div class="slds-m-bottom_medium"></div>
+           <h2>Cancel Service Only</h2> 
+           <div class="slds-m-bottom_xx-small"></div>
+           <p>This option will update the service's status to cancelled.</p>
+
+           <div class="slds-m-bottom_small"></div>
+
+           <h2>Cancel and Create a New Service</h2> 
+           <div class="slds-m-bottom_xx-small"></div>
+           <p>This option will update the service's status to cancelled, and automatically create a new service of the same service type. 
+               The new service will not have a vendor assigned to it.</p>
+
+               <div class="slds-m-bottom_x-small"></div>
+               <div if:true={options}>
+               <lightning-combobox data-id="canel"
+               name="progress"
+               label=""
+               value={value}
+               placeholder="Select a Cancel Reason"
+               options={options}
+               onchange={handleChange} ></lightning-combobox>
+               <div class="slds-m-bottom_xx-large"></div>
+               </div>
+          </div>
+          
+          
+          <!-- Modal/Popup Box LWC footer starts here -->
+          <footer class="slds-modal__footer"> 
+          <lightning-button data-id="cancels" icon-name={savebtnIcon} variant="destructive" label={savebtnLabel} title={savebtnLabel} onclick={cancelService} class="slds-m-left_x-small"></lightning-button>
+          <lightning-button label="Close" title="Non-primary action" onclick={handleClick} class="slds-m-left_x-small"></lightning-button>
+  
+          </footer>
+      </div>
+  </section>
+  <div class="slds-backdrop slds-backdrop_open"></div>
+  </template>

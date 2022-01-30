@@ -1,0 +1,109 @@
+<template>
+  
+<template if:true={titleId}>
+  <div class="slds-m-left_small">
+    <article class="slds-card slds-p-bottom_x-small slds-m-bottom_x-small" if:true={titleId}>
+      <div class="slds-card__header slds-grid">
+        <header class="slds-media slds-media_center slds-has-flexi-truncate">
+          <div class="slds-media__body">
+            <h4 class="slds-text-heading_medium">
+              <!-- <svg
+                class="slds-icon slds-icon_large slds-icon-text-default slds-current-color slds-m-right_x-small slds-m-bottom_x-small slds-p-right_x-small slds-border_right">
+               <use xlink:href="/assets/icons/standard-sprite/svg/symbols.svg#data_integration_hub"></use> 
+              </svg>-->
+              <!-- <lightning-icon icon-name="standard:data_integration_hub"></lightning-icon>
+              <lightning-icon src="/apexpages/slds/latest/assets/icons/utility-sprite/svg/symbols.svg#emoji">
+              </lightning-icon> -->
+            <template if:true={titleD}>
+                Title Metadata
+              </template>
+              <template if:true={seriesD}>
+                Series Metadata
+              </template>
+            </h4>
+          </div>
+        </header>
+      </div>
+      <div class="slds-card__body slds-card__body_inner">
+        <!-- <div if:false={titleId} class="slds-m-around_small slds-text-heading_small">Please select a title above to fetch appropriate title metadata.</div> -->
+        <template if:true={titleD}>
+       
+            <div class="slds-form-element__label fieldLabelSize">
+                <span class="fieldLabelSize">Status</span>
+            </div>
+            <div class="slds-form-element__control">
+                <div class="slds-form-element__static fieldDataSize">
+                    {titleD.Status__c} </div>
+            </div>
+     
+          <span class="slds-form-element__label">
+              <span class="fieldLabelSize">Title ID</span>
+          </span>
+          <div class="slds-form-element__control">
+              <div class="slds-form-element__static fieldDataSize">
+                  {titleD.Marty_Title_ID__c} </div>
+          </div>
+    
+        <span class="slds-form-element__label">
+            <span class="fieldLabelSize">Rush Fee</span>
+        </span>
+        <div class="slds-form-element__control">
+            <div class="slds-form-element__static fieldDataSize">
+              <lightning-formatted-date-time value={titleD.Digital_Publication_Date__c}
+              year="numeric" month="short" day="2-digit">
+          </lightning-formatted-date-time>
+                 </div>
+        </div>
+     </template>
+
+     <template if:true={seriesD}>
+       
+      <div class="slds-form-element__label fieldLabelSize">
+          <span class="fieldLabelSize">Series Title</span>
+      </div>
+      <div class="slds-form-element__control">
+          <div class="slds-form-element__static fieldDataSize">
+              {seriesD.Series_Title__c} </div>
+      </div>
+
+    <span class="slds-form-element__label">
+        <span class="fieldLabelSize">Wombat Series ID</span>
+    </span>
+    <div class="slds-form-element__control">
+        <div class="slds-form-element__static fieldDataSize">
+            {seriesD.Wombat_Series_ID__c} </div>
+    </div>
+
+</template>
+
+  
+
+
+
+
+      </div>
+
+
+
+    </article>
+
+    <article class="slds-card slds-p-bottom_x-small slds-m-bottom_small" if:false={titleId} style="background-color: #EEEEEE;height:200px;">
+      
+          <!--  <apex:image url="{!$Resource.APubLogo}" /> -->
+          <div class="slds-text-heading_medium slds-align_absolute-center" style="height:12rem">
+
+            Please select title.
+
+        </div>
+
+    
+    </article>
+
+  </div>
+
+
+
+
+
+</template>
+</template>

@@ -1,0 +1,1019 @@
+<template>
+
+    <!--Error Jumbotron section starts from here-->
+
+    <div class="slds-box slds-theme_shade slds-align_absolute-center" if:false={confirmExists}
+        style="background-color: #EEEEEE;height:200px;">
+
+        <div class="slds-form">
+
+            <!--  <apex:image url="{!$Resource.APubLogo}" /> -->
+            <div class="slds-text-heading_large slds-align_absolute-center">
+
+                This project is unavailable.
+
+            </div>
+            <div class="slds-align_absolute-center">
+                If you feel you reached this page in error, please reach out directly to your production
+                manager.
+            </div>
+
+        </div>
+    </div>
+    <div class="slds-theme_default">
+    <!--Confirmations which are in confirming status-->
+
+    <div if:true={confirmExists}>
+        <template if:true={requiredActionCon}>
+
+            <div class="slds-var-m-right_large slds-var-m-left_medium">
+                <div class="col-lg-4 ">
+                    <div class="slds-text-heading_large slds-var-m-left_medium">
+                        <span>
+                            <bold>Services Requiring Attention</bold>
+
+                        </span>
+                    </div>
+                </div>
+                <br />
+
+                <!--Confirmation table section starts from here-->
+                <!-- table -->
+               
+                <div class="slds-card">
+                    <!-- slds-table slds-table_cell-buffer slds-table_bordered  <table class="slds-table slds-table_cell-buffer slds-table_bordered"> -->
+                    <table
+                        class="slds-wrap slds-cell-wrap slds-table slds-table_bordered slds-table_cell-buffer" width="100%">
+
+
+                        <thead>
+                            <tr class="slds-line-height_reset tabHeader">
+                                <th class="slds-cell-wrap" scope="col">
+                                    <div class="slds-truncate" title="Service">
+                                        <span>
+                                            <bold class="fieldLabelSize">Service</bold>
+                                        </span>
+                                    </div>
+                                </th>
+                                <th class="slds-cell-wrap" scope="col">
+                                    <div class="slds-truncate" title="Estimated Start Date">
+                                        <span>
+                                            <bold class="fieldLabelSize">Estimated Start Date</bold>
+                                        </span>
+                                    </div>
+                                </th>
+                                <th class="slds-cell-wrap" scope="col">
+                                    <div class="slds-truncate" title="Estimated Completion Date">
+                                        <span>
+                                            <bold class="fieldLabelSize" style="word-wrap: normal;">Estimated Completion Date</bold>
+                                        </span>
+                                    </div>
+                                </th>
+                                <th class="slds-cell-wrap" scope="col">
+                                    <div class="slds-truncate" title="Your Service Rate">
+                                        <span>
+                                            <bold class="fieldLabelSize">Your Service Rate</bold>
+                                        </span>
+                                    </div>
+                                </th>
+
+                                <th class="slds-cell-wrap" scope="col">
+                                    <div class="slds-truncate" title="Service Amount">
+                                        <span>
+                                            <bold class="fieldLabelSize"> Service Amount</bold>
+                                        </span>
+                                    </div>
+                                </th>
+                                <th class="slds-cell-wrap" scope="col">
+                                    <div class="slds-truncate" title="Status">
+                                        <span>
+                                            <bold class="fieldLabelSize">Status</bold>
+                                        </span>
+                                    </div>
+                                </th>
+
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <template for:each={requiredActionCon} for:item="sName">
+                                <tr class="slds-hint-parent" key={sName}>
+                                    <td class="" key={sName}>
+                                        <div class="slds-truncate fieldDataSize" title="Service">
+                                            {sName.c.Project_Services__r.Service_Type_Complexity__c} 
+                                        </div>
+                                    </td>
+                                    <td class="" key={sName}>
+                                        <div class="slds-truncate fieldDataSize" title="Estimated Start Date">
+                                            <lightning-formatted-date-time
+                                                value={sName.c.Project_Services__r.Estimated_Start_Date__c}
+                                                year="numeric" month="short" day="2-digit">
+                                            </lightning-formatted-date-time>
+
+                                        </div>
+                                    </td>
+                                    <td class="" key={sName}>
+                                        <div class="slds-truncate fieldDataSize" title="Estimated Completion Date">
+                                            <lightning-formatted-date-time
+                                                value={sName.c.Project_Services__r.Estimated_Completion_Date__c}
+                                                year="numeric" month="short" day="2-digit">
+                                            </lightning-formatted-date-time>
+
+                                        </div>
+                                    </td>
+                                    <td class="" key={sName}>
+                                        <div class="slds-truncate fieldDataSize" title="Your Service Rate"
+                                            if:true={sName.c.Project_Services__r.Rate__c}>
+                                            {psCurrency}
+                                            {sName.c.Project_Services__r.Rate__r.Rate_Amount__c}
+                                            ({sName.c.Project_Services__r.Rate__r.Rate_Multiplier__c})
+                                        </div>
+                                    </td>
+                                    
+                                    <td class="" key={sName}>
+                                        <div class="slds-truncate fieldDataSize" title="Service Amount">
+                                            {sName.c.Confirmed_Amount_with_Currency__c}
+                                        </div>
+                                    </td>
+                                    <td class="">
+                                        <div class="slds-truncate fieldDataSize" title="Status">
+                                            {sName.c.Project_Services__r.Status__c}
+                                            <span class="slds-var-m-left_x-small">
+                                                <c-svg-icon svgicon="/utility-sprite/svg/symbols.svg#warning"
+                                                    style-class="slds-icon slds-icon_xx-small iconColor">
+                                                </c-svg-icon>
+                                            </span>
+                                        </div>
+                                    </td>
+                                    
+
+                                    <td class="">
+                                        <div class="slds-truncate fieldDataSize" title="Open Confirmation Modal">
+                                            <span class="slds-badge fieldLabelSize" id={sName.c.Id}
+                                                onclick={selectConfirmation}>
+                                                <span class="slds-m-left_large">Open</span>
+                                            </span>
+                                        </div>
+                                    </td>
+
+                                    <td class="" > 
+
+                                    <div style="display:table;margin-top:-6px;" class="slds-dropdown-trigger slds-dropdown-trigger_click">
+                                
+                                
+                                        <lightning-icon onclick={pushNotification} name={sName.c.Project_Services__r.Id}
+                                            class="slds-button slds-button_icon slds-button_icon slds-button_icon-container slds-button_icon-small slds-global-actions__notifications slds-global-actions__item-action slds-incoming-notification"
+                                            icon-name="utility:connected_apps" alternative-text="Connected" size="xx-small" title="small">
+                                        </lightning-icon>
+                                
+                                        <span if:true={sName.c.Project_Services__r.Chatter_Count_External__c} aria-hidden="true"
+                                            class="slds-notification-badge slds-incoming-notification slds-show-notification">
+                                            {sName.c.Project_Services__r.Chatter_Count_External__c}</span>
+                                    
+                                </div>
+                                     
+                                      
+                                    </td>
+
+
+                                </tr>
+                            </template>
+                            <template if:false={requiredActionConExist}>
+                                <tr class="slds-hint-parent slds-text-color_destructive slds-text-heading_small">
+                                    <td colspan="6" style="text-align:center"> No services require attention..</td>
+                                </tr>
+
+
+                            </template>
+
+                        </tbody>
+
+                    </table>
+                </div>
+                <br />
+                <br />
+
+
+                <br />
+            </div>
+        </template>
+    </div>
+
+
+    
+    <!-- All confirmations table section irrespective other than confirming status-->
+    <div if:true={confirmExists}>
+        <template if:true={CofirmationsFlg}>
+
+            <div class="slds-var-m-right_large slds-var-m-left_medium">
+                <div class="slds-grid ">
+                    <div class="slds-text-heading_large slds-var-m-left_medium">
+                        <span>
+                            <bold>All Accepted Services</bold>
+                        </span>
+                    </div>
+                            <span>
+                                <button class="slds-button slds-button_neutral confirmatioHistoryBtn slds-m-left_small"
+                                    title="Confirmation History" onclick={openConhistory}>
+                                    Confirmation History
+                                </button>
+                            </span>
+
+                      
+                </div>
+                <br />
+
+                <!--Confirmation table section starts from here-->
+                <!-- table -->
+                
+                    <div class="slds-card">
+                        <!-- slds-table slds-table_cell-buffer slds-table_bordered  <table class="slds-table slds-table_cell-buffer slds-table_bordered"> -->
+                        <table
+                        class="slds-wrap slds-cell-wrap slds-table slds-table_bordered slds-table_cell-buffer" width="100%">
+
+                            <thead>
+                                <tr class="slds-line-height_reset tabHeader">
+                                    <th class="slds-cell-wrap" scope="col">
+                                        <div class="slds-truncate" title="Service">
+                                            <span>
+                                                <bold class="fieldLabelSize">Service</bold>
+                                            </span>
+                                        </div>
+                                    </th>
+                                    <th class="slds-cell-wrap" scope="col">
+                                        <div class="slds-truncate" title="Estimated Start Date">
+                                           <bold class="fieldLabelSize" style="margin-right: 0.5;">Estimated Start Date</bold> 
+                                        </div>
+                                       
+                                    </th>
+                                    <th class="slds-cell-wrap" scope="col">
+                                        <div class="slds-truncate" title="Estimated Completion Date">
+                                            <span>
+                                                <bold class="fieldLabelSize">Estimated Completion Date</bold>
+                                            </span>
+                                        </div>
+                                    </th>
+                                    <th class="slds-cell-wrap" scope="col">
+                                        <div class="slds-truncate" title="Your Service Rate">
+                                            <span>
+                                                <bold class="fieldLabelSize">Your Service Rate</bold>
+                                            </span>
+                                        </div>
+                                    </th>
+
+                                    <th class="slds-cell-wrap" scope="col">
+                                        <div class="slds-truncate" title="Service Amount">
+                                            <span>
+                                                <bold class="fieldLabelSize"> Service Amount</bold>
+                                            </span>
+                                        </div>
+                                    </th>
+                                    <th class="slds-cell-wrap" scope="col">
+                                        <div class="slds-truncate" title="Status">
+                                            <span>
+                                                <bold class="fieldLabelSize">Status</bold>
+                                            </span>
+                                        </div>
+                                    </th>
+
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <template for:each={confirmations} for:item="sName">
+                                    <tr class="slds-hint-parent" key={sName}>
+                                        <td class="" key={sName}>
+                                            <div class="slds-truncate fieldDataSize" title="Service">
+                                                {sName.c.Project_Services__r.Service_Type_Complexity__c}
+                                            </div>
+                                        </td>
+                                        <td class="" key={sName}>
+                                            <div class="slds-truncate fieldDataSize" title="Estimated Start Date">
+                                                <lightning-formatted-date-time
+                                                    value={sName.c.Project_Services__r.Estimated_Start_Date__c}
+                                                    year="numeric" month="short" day="2-digit">
+                                                </lightning-formatted-date-time>
+
+                                            </div>
+                                        </td>
+                                        <td class="" key={sName}>
+                                            <div class="slds-truncate fieldDataSize" title="Estimated Completion Date">
+                                                <lightning-formatted-date-time
+                                                    value={sName.c.Project_Services__r.Estimated_Completion_Date__c}
+                                                    year="numeric" month="short" day="2-digit">
+                                                </lightning-formatted-date-time>
+
+                                            </div>
+                                        </td>
+                                        <td class="" key={sName}>
+                                            <div class="slds-truncate fieldDataSize" title="Your Service Rate"
+                                                if:true={sName.c.Project_Services__r.Rate__c}>
+                                                {psCurrency}
+                                                {sName.c.Project_Services__r.Rate__r.Rate_Amount__c}
+                                                ({sName.c.Project_Services__r.Rate__r.Rate_Multiplier__c})
+                                            </div>
+                                        </td>
+                                        
+                                        <td class="" key={sName}>
+                                            <div class="slds-truncate fieldDataSize" title="Service Amount">
+                                                {sName.c.Confirmed_Amount_with_Currency__c}
+                                            </div>
+                                        </td>
+                                        <td class="">
+                                            <div class="slds-truncate fieldDataSize" title="Status">
+                                                {sName.c.Project_Services__r.Status__c}
+                                            </div>
+                                        </td>
+                                        
+
+                                        <td class="">
+                                            <div class="slds-truncate fieldDataSize" title="Open Confirmation Modal"
+                                                id={sName.c.Id} onclick={selectConfirmation}>
+                                                <span class="slds-badge fieldLabelSize">
+                                                    <span class="slds-m-left_large">Open </span>
+                                                </span>
+                                            </div>
+                                        </td>
+
+                                        <td class=""> 
+
+                                            <div style="display:table;margin-top:-6px;" class="slds-dropdown-trigger slds-dropdown-trigger_click">
+                                        
+                                        
+                                                <lightning-icon onclick={pushNotification} name={sName.c.Project_Services__r.Id}
+                                                    class="slds-button slds-button_icon slds-button_icon slds-button_icon-container slds-button_icon-small slds-global-actions__notifications slds-global-actions__item-action slds-incoming-notification"
+                                                    icon-name="utility:connected_apps" alternative-text="Connected" size="xx-small" title="small">
+                                                </lightning-icon>
+                                        
+                                                <span if:true={sName.c.Project_Services__r.Chatter_Count_External__c} aria-hidden="true"
+                                                    class="slds-notification-badge slds-incoming-notification slds-show-notification">
+                                                    {sName.c.Project_Services__r.Chatter_Count_External__c}</span>
+                                            
+                                        </div>
+                                        </td>
+
+
+                                    </tr>
+                                </template>
+
+                                <template if:false={allConfirmExists}>
+                                    <tr class="slds-hint-parent slds-text-color_destructive slds-text-heading_small">
+                                        <td colspan="6" style="text-align:center"> No services yet to work on..</td>
+                                    </tr>
+
+
+                                </template>
+                            </tbody>
+
+                        </table>
+                    
+                </div>
+                <br />
+                <br />
+
+
+                <!-- confirmation history modal-->
+
+                <div if:true={confirmationHistory} id={serviceName} onclick={closeModal}>
+
+                    <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open slds-modal_small"
+                        id="modalcHistoryId" aria-labelledby="conHistoryHeading" aria-modal="true" aria-hidden="true"
+                        aria-describedby="modalConHistory">
+
+
+                        <div class="slds-modal__container" onclick={stopPropagation}>
+                            <header class="slds-modal__header" id="conHistoryHeading">
+                                <button class="slds-button slds-modal__close slds-button_icon-inverse" title="Close"
+                                    onclick={closeModal}>
+                                    <c-svg-icon svgicon="/utility-sprite/svg/symbols.svg#close"
+                                        style-class="slds-icon fillWhite">
+                                    </c-svg-icon>
+                                    <span class="slds-assistive-text">Close</span>
+                                </button>
+
+
+
+                                <!--Confirmation modal header logic starts from here-->
+                                <div class="slds-align_absolute-center">
+                                    <div class="slds-grid slds-wrap">
+                                        <div class="slds-text-heading_medium">
+                                            <span>
+                                                <bold> Confirmation History </bold>
+                                            </span>
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+                            </header>
+                            <div class="slds-modal__content slds-var-p-around_medium" id="modalConHistory">
+
+                                <template for:each={transmittalData.serviceName} for:item="sName">
+
+                                    <div key={sName}>
+
+                                        <c-ppw_transmittal-conf-history
+                                            service-based-con={transmittalData.serviceBasedCon} s-name={sName}
+                                            service-based-confirmation={transmittalData.serviceBasedConfirmation}
+                                            confirmation-tbl-headers={transmittalData.confirmationTblHeaders}
+                                            service-based-confirmation-map={transmittalData.serviceBasedConfirmationMap}>
+                                        </c-ppw_transmittal-conf-history>
+                                        <br />
+                                    </div>
+
+                                </template>
+
+
+
+                            </div>
+                            <footer class="slds-modal__footer" onclick={hideDropDown}>
+
+                                <button class="slds-button slds-button_neutral" title="Close" onclick={closeModal}>
+                                    Close
+                                </button>
+
+
+                            </footer>
+                        </div>
+                    </section>
+                    <div class="slds-backdrop slds-backdrop_open"></div>
+                </div>
+
+
+                <!-- Confirmation open internal modal section starts from here -->
+                <div if:true={selectConfirmationId} data-id={allRenderId} onclick={closeModal}>
+
+                    <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open slds-modal_small"
+                        id="modalId" aria-labelledby="modal-heading-01" aria-modal="true" aria-hidden="true"
+                        aria-describedby="modal-content-id-1">
+
+
+                        <div class="slds-modal__container" if:true={selectedCon} onclick={stopPropagation}>
+                            <header class="slds-modal__header">
+                                <button class="slds-button slds-modal__close slds-button_icon-inverse" title="Close"
+                                    onclick={closeModal}>
+                                    <c-svg-icon svgicon="/utility-sprite/svg/symbols.svg#close"
+                                        style-class="slds-icon fillWhite">
+                                    </c-svg-icon>
+                                    <span class="slds-assistive-text">Close</span>
+                                </button>
+
+
+
+                                <!--Confirmation modal header logic starts from here-->
+                                <div class="slds-align_absolute-center">
+                                    <div class="slds-grid slds-wrap">
+                                        <div class="slds-text-heading_medium">
+                                            <span>
+                                                <bold>{selectedCon.c.Confirmed_Service__c} </bold>
+                                            </span>
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+                            </header>
+                            <div class="slds-modal__content slds-var-p-around_medium" id="modal-content-id-1">
+
+                                <c-apub_status-path-panel current-step={psStatus} object-name="Project_Services__c"
+                                    field-name="Status__c" remove-vals={removeStatusVals}> </c-apub_status-path-panel>
+
+                                <!--Actual Fields section within the modal starts from here-->
+                                <div class="slds-card__body  slds-card__body_inner">
+
+                                    <div class="slds-grid slds-gutters ">
+                                        <lightning-button label="post notification" onclick={postnotificaion}></lightning-button>
+                                        <div class="slds-col">
+
+                                            <div if:true={selectedCon.esitmatedStartDate}>
+
+                                                <label class="slds-form-element__label">
+                                                    <bold class="fieldLabelSize"> Estimated Start Date </bold>
+                                                </label>
+                                                <c-custom-help-text
+                                                    text="This date reflects the estimated start of the full set of service tasks. 
+                                                    For vendor task start dates, please open the service for further details."
+                                                    style-class="slds-icon-text-default ms-help-icon"
+                                                    icon-name="utility:info">
+                                                </c-custom-help-text>
+                                                <div class="slds-form-element__control">
+                                                    <div class="slds-form-element__static fieldDataSize">
+                                                        <lightning-formatted-date-time
+                                                            value={selectedCon.c.Project_Services__r.Estimated_Start_Date__c}
+                                                            year="numeric" month="short" day="2-digit">
+                                                        </lightning-formatted-date-time>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        
+
+                                            <div if:true={selectedCon.esitmatedStartDate}>
+
+                                                <label class="slds-form-element__label">
+                                                    <bold class="fieldLabelSize"> Estimated Completion Date </bold>
+                                                </label>
+                                                <c-custom-help-text
+                                                    text="This date reflects the estimated completion of the full set of service tasks. 
+                                                    For vendor task completion dates, please open the service for further details."
+                                                    style-class="slds-icon-text-default ms-help-icon"
+                                                    icon-name="utility:info">
+                                                </c-custom-help-text>
+                                                <div class="slds-form-element__control">
+                                                    <div class="slds-form-element__static fieldDataSize">
+                                                        <lightning-formatted-date-time
+                                                            value={selectedCon.c.Project_Services__r.Estimated_Completion_Date__c}
+                                                            year="numeric" month="short" day="2-digit">
+                                                        </lightning-formatted-date-time>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div if:true={selectedCon.actualStartDate}>
+
+
+                                                <span class="slds-form-element__label">
+                                                    <bold class="fieldLabelSize">Actual Start Date</bold>
+                                                </span>
+                                                <div class="slds-form-element__control">
+                                                    <div class="slds-form-element__static fieldDataSize">
+                                                        <lightning-formatted-date-time
+                                                            value={selectedCon.c.Project_Services__r.Actual_Start_Date__c}
+                                                            year="numeric" month="short" day="2-digit">
+                                                        </lightning-formatted-date-time>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div if:true={selectedCon.actualCompleteDate}>
+                                                <span class="slds-form-element__label">
+                                                    <bold class="fieldLabelSize">Actual Completion Date</bold>
+                                                </span>
+                                                <div class="slds-form-element__control">
+                                                    <div class="slds-form-element__static fieldDataSize">
+                                                        <lightning-formatted-date-time
+                                                            value={selectedCon.c.Project_Services__r.Actual_Completion_Date__c}
+                                                            year="numeric" month="short" day="2-digit">
+                                                        </lightning-formatted-date-time>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+
+
+
+                                        <div class="slds-col">
+                                            <div if:true={selectedCon.rateAmount}>
+
+                                                <span class="slds-form-element__label">
+                                                    <bold class="fieldLabelSize">Your Service Rate</bold>
+                                                </span>
+                                                <div class="slds-form-element__control">
+                                                    <div class="slds-form-element__static fieldDataSize">
+                                                        {psCurrency}
+                                                        {selectedCon.c.Project_Services__r.Rate__r.Rate_Amount__c}
+                                                        ({selectedCon.c.Project_Services__r.Rate__r.Rate_Multiplier__c})
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div if:true={selectedCon.perWordFlg}>
+                                                <span class="slds-form-element__label">
+                                                    <bold class="fieldLabelSize">Manuscript word count</bold>
+                                                </span>
+                                                <div class="slds-form-element__control">
+                                                    <div class="slds-form-element__static fieldDataSize">
+                                                        {selectedCon.predevWordCount}</div>
+                                                </div>
+
+                                            </div>
+
+
+                                            <div if:true={selectedCon.RushFee}>
+                                                <span class="slds-form-element__label">
+                                                    <bold class="fieldLabelSize">Rush Fee</bold>
+                                                </span>
+                                                <div class="slds-form-element__control">
+                                                    <div class="slds-form-element__static fieldDataSize">
+                                                        {selectedCon.c.Confirmed_Rush_Fee__c} %
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div if:true={selectedCon.calculatedamountincludingRushFee}>
+                                                <label class="slds-form-element__label" style="margin-right: 0.5;">
+                                                    <bold class="fieldLabelSize"> Service Amount </bold>
+                                                </label>
+                                                <c-custom-help-text
+                                                    text="Calculated amount including Rush Fee"
+                                                    style-class="slds-icon-text-default ms-help-icon"
+                                                    icon-name="utility:info">
+                                                </c-custom-help-text>
+                                                <br>
+                                                <span class="fieldDataSize" style="margin-right: 0.5rem;">
+                                                    {selectedCon.c.Confirmed_Amount_with_Currency__c}
+                                                </span>
+                                                <template if:true={selectedCon.marketting_vendorManager}>
+
+                                                    <c-custom-help-text
+                                                        text="Rate Amount has been modified by Marketing Manager/Vendor Manager"
+                                                        style-class="slds-icon-text-default ms-help-icon"
+                                                        icon-name="utility:warning" varient="warning">
+                                                    </c-custom-help-text>
+                                                </template>
+
+
+                                            </div>
+
+                                        <div if:true={selectedCon.rate_flg}>
+                                                <div if:true={selectedCon.inputRateAmount_Flg}>
+                                                    <div class="font-weight-light left-label">
+                                                        {selectedCon.c.estimatedAdditionalRate}
+                                                    </div>
+                                                    
+                                                    
+                                                    <div if:true={selectedCon.additionalRate}>
+                                                        <label class="slds-form-element__label" style="margin-right: 0.5;">
+                                                            <bold class="fieldLabelSize"> {additionalRateStringlabel} </bold>
+                                                            
+                                                        </label>
+                                                        
+                                                        <lightning-input value={additionalRateInput}
+                                                            class="form-control slds-var-p-right_large"
+                                                            name="additionalRateInput" variant="label-hidden"
+                                                            onchange={valueChange}
+                                                            placeholder={selectedCon.c.Project_Services__r.Additional_Rate_Input__c}
+                                                            >
+                                                        </lightning-input>
+                                                        <div class="warningTextClr"
+                                                        if:true={selectedCon.additionalRateStatus}>
+                                                        *Please provide an estimate.
+                                                        </div>
+                                                    </div>
+
+                                                    <div if:true={additionalRateOpPanel}>
+                                                        <label class="slds-form-element__label" style="margin-right: 0.5;">
+                                                            <bold class="fieldLabelSize"> {additionalRateStringlabel} </bold>
+                                                            
+                                                        </label>
+
+                                                        <div class="slds-form-element__control">
+                                                            <div class="slds-form-element__static fieldDataSize">
+                                                                {selectedCon.c.Project_Services__r.Additional_Rate_Input__c}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+
+    
+
+                                                <!--  <span class="slds-form-element__label">
+                                                        <bold class="fieldLabelSize">
+                                                            selectedCon.c.Confirmed_Addl_Rate_Input__c</bold>
+                                                    </span>
+                                                    <div class="slds-form-element__control">
+                                                        <div class="slds-form-element__static"
+                                                            if:true={selectedCon.c.additionalRateInputVendor_notOpen}>
+                                                            {selectedCon.c.Confirmed_Addl_Rate_Input__c} </div>
+                                                    </div> --> 
+
+                                                </div>
+                                            </div>
+
+
+                                            <div if:true={selectedCon.customQuoteRateMultiplier}>
+                                                <div class="slds-var-m-right_xx-large">
+
+
+                                                    <lightning-input value={customQuote} label="Custom Quote"
+                                                        onchange={valueChange} name="customQuote"
+                                                        html-placeholder={selectedCon.c.Project_Services__r.Custom_Quote_Amount__c}
+                                                        if:true={selectedCon.statusOpen}>
+                                                    </lightning-input>
+                                                </div>
+                                                <div class="slds-form-element__control">
+                                                    <div class="slds-form-element__static"
+                                                        if:true={selectedCon.statusNotOpen}>
+                                                        {selectedCon.c.Project_Services__r.Custom_Quote_Amount__c}
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+
+                                    <div class="slds-grid slds-gutters ">
+                                        <div class="slds-col">
+                                            <div if:true={selectedCon.vendorNoteRT}>
+
+                                                <lightning-record-view-form
+                                                    record-id={selectedCon.c.Project_Services__c}
+                                                    object-api-name="Project_Services__c">
+                                                    <div class="slds-form-element__control">
+                                                        <div class="slds-form-element__static fieldDataSize">
+                                                            <span class="slds-form-element__label">
+                                                                <bold class="fieldLabelSize">Specific Service Notes</bold>
+                                                            </span>
+                                                            <lightning-output-field field-name="Vendor_Notes_RT__c"
+                                                                variant="label-hidden">
+                                                            </lightning-output-field>
+
+                                                        </div>
+                                                    </div>
+                                                </lightning-record-view-form>
+                                            </div>
+
+                                        </div>
+                                        <div class="slds-col">
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <!--Footer section along with its buttons starts from here-->
+                            <footer class="slds-modal__footer" if:true={selectedCon.footerDisplay}
+                                onclick={hideDropDown}>
+
+
+
+                                <div class="slds-clearfix">
+                                    <div class="slds-float_right">
+
+                                        {selectedCon.statusOpen} {selectedCon.c.Id}
+                                        <div if:true={selectedCon.statusOpen}> 
+                                            <div data-id="censhareId"
+                                                class="slds-badge slds-badge_lightest badge-success slds-m-right_small slds-hide">
+                                                Contacting Censhare, Updating Project..
+                                            </div>
+                                            <button class="slds-button slds-button_success" variant="success" label="Accept " name="accept"
+                                            title="Accept" onclick={onActionService} style="color:white;"> Accept </button>
+                                           <!-- <button class="slds-button slds-button_success" variant="success" title="Accept" onclick={onActionService} style="color:white;"> Accept </button> -->
+
+
+
+                                            <div class="slds-dropdown-trigger slds-dropdown-trigger_click"
+                                                data-id="rejectMenu" aria-expanded="false" aria-haspopup="dialog"
+                                                role="combobox">
+                                                <lightning-button icon-position="right" class="slds-var-m-left_xx-small"
+                                                    variant="destructive" label="Reject Service" title="Reject Service"
+                                                    icon-name="utility:chevrondown" onclick={onReject}>
+
+                                                </lightning-button>
+                                                <div class="slds-dropdown slds-dropdown_fluid slds-dropdown_small">
+
+                                                    <lightning-textarea data-id="rejectId" aria-autocomplete="list"
+                                                        role="textbox" name=rejectionReason value={rejectionReason}
+                                                        label="Enter reason for rejection" onchange={valueChange}
+                                                        class="slds-m-left_x-small slds-m-right_x-small slds-m-bottom_x-small">
+                                                    </lightning-textarea>
+
+                                                    <lightning-button data-id="rejectR" variant="destructive" class="slds-var-m-right_x-small"
+                                                        name="reject" label="Reject Service" title="Reject Service"
+                                                        onclick={onActionService} disabled>
+                                                    </lightning-button>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+
+                                        <div if:true={selectedCon.statusconfrim}>
+                                            <div data-id="censhareId"
+                                                class="slds-badge slds-badge_lightest badge-success slds-m-right_small slds-hide">
+                                                Contacting Censhare, Updating Project..
+                                            </div>
+
+                                            <div class="slds-dropdown-trigger slds-dropdown-trigger_click"
+                                                data-id="rejectMenu1" aria-expanded="false" aria-haspopup="dialog"
+                                                role="combobox">
+                                                <lightning-button icon-position="right" variant="destructive"
+                                                    class="slds-var-m-left_xx-small" label="Request for Review"
+                                                    title="Request for Review" icon-name="utility:chevrondown"
+                                                    onclick={onReview}>
+                                                </lightning-button>
+
+                                                <div class="slds-dropdown slds-dropdown_fluid slds-dropdown_medium">
+
+                                                    <lightning-textarea data-id="reviewId" name="reviewReason"
+                                                        value={reviewReason} label="Enter reason for review"
+                                                        onchange={valueChange}
+                                                        class="slds-m-left_x-small slds-m-right_x-small slds-m-bottom_x-small">
+                                                    </lightning-textarea>
+
+                                                    <lightning-button variant="destructive" data-id="reviewR"  class="slds-m-right_x-small"
+                                                        name="review" label="Review Requested" title="Review Requested"
+                                                        onclick={onActionService} disabled> </lightning-button>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div>
+                                            <div if:true={selectedCon.statusReview}>
+
+                                               
+
+
+                                             
+                                                    <div style="padding-right: 30rem;position: relative; padding-bottom: 0.2rem;" >
+                                                        <div if:true={statusReviewTooltip}
+                                                            class="slds-popover slds-popover_tooltip ms-help-popup-in-header slds-nubbin_right" role="tooltip"
+                                                            aria-live="polite" id="help">
+                                                            <div class="slds-popover__body ms-help-popup-body" style="color: white;">
+                                                                The confirmation is getting reviewed by the vendor manager, he will update the confirmation as requested.
+                                                                <!--<ui:outputText value="{!v.text}"/>-->
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                
+                                                    <div class="slds-box slds-box_x-small graycolor slds-var-m-left_xx-small slds-form-element__icon"
+                                                        onclick={handleClick} aria-describedby="help" tabindex="-1" onmouseover={showToolTip} onmouseout={HideToolTip}>
+                                                        Request for Review <lightning-icon icon-name="utility:chevrondown" size="xx-small"
+                                                            alternative-text="Request for Review">
+                                                        </lightning-icon>
+                                                        <span class="slds-assistive-text">Help</span>
+                                                    </div>
+                                              
+
+
+                                                <!--
+
+                                                <div class="slds-box slds-box_x-small graycolor slds-var-m-left_xx-small"
+                                                    onclick={handleClick} aria-describedby="help"
+                                                    onmouseover={showToolTip} onmouseout={HideToolTip}>
+                                                    Request for Review <lightning-icon icon-name="utility:chevrondown"
+                                                        size="xx-small" alternative-text="Request for Review">
+                                                    </lightning-icon>
+
+                                                </div>
+                                                <div if:true={statusReviewTooltip} class="slds-popover slds-popover_tooltip slds-nubbin_right slds-float_left slds-m-right_x-large"
+                                                role="tooltip" id="help">
+                                                <div class="slds-popover__body">Confirmation getting reviewed by project Manager, will open up a new confirmation shortly with updated data.</div>
+                                            </div> -->
+
+
+
+
+                                             
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+
+
+                            </footer>
+                        </div>
+                    </section>
+                    <div class="slds-backdrop slds-backdrop_open"></div>
+                </div>
+                <br />
+            </div>
+        </template>
+    </div>
+
+    <br>
+    <!--Formats Section starts from here-->
+    <div if:true={confirmExists} class="slds-var-m-right_large slds-var-m-left_medium">
+
+        <div if:true={asignFormatFlg}>
+
+
+            <div class="slds-text-heading_large slds-var-m-left_medium">
+                <span>
+                    <bold>Formats</bold>
+
+                </span>
+            </div>
+
+            <br />
+            <div class="slds-grid slds-wrap">
+                <div class="slds-card">
+                    <table
+                        class="slds-table slds-table_bordered slds-table_fixed-layout slds-table_cell-buffer table-test">
+                        <thead>
+                            <tr class="slds-line-height_reset tabHeader">
+                                <template for:each={tableHeaders} for:item="th">
+                                    <th class="" scope="col" key={th}>
+                                        <div class="slds-truncate" title={th}>
+                                            <span>
+                                                <bold class="fieldLabelSize">{th}</bold>
+                                            </span>
+                                        </div>
+                                    </th>
+                                </template>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <template for:each={transmittalData.formatListsMap} for:item="value">
+                                <tr class="slds-hint-parent" key={value.Id}>
+                                    <td class="">
+                                        <div class="slds-truncate fieldDataSize" title={value.Name}>
+                                            {value.Name}
+                                        </div>
+                                    </td>
+                                    <td class="">
+                                        <div class="slds-truncate fieldDataSize" title={value.ASIN__c}>
+                                            {value.ASIN__c}
+                                        </div>
+                                    </td>
+                                    <td class="">
+                                        <div class="slds-truncate fieldDataSize" title={value.ISBN_13__c}>
+                                            {value.ISBN_13__c}
+                                        </div>
+                                    </td>
+                                    <td class="">
+                                        <div class="slds-truncate fieldDataSize" title={value.APub_Publish_Date__c}>
+                                            <lightning-formatted-date-time value=
+                                            {value.APub_Publish_Date__c}
+                                            year="numeric" month="short" day="2-digit"></lightning-formatted-date-time>
+                                        </div>
+                                    </td>
+                                    <td class="">
+                                        <div class="slds-truncate fieldDataSize" title={value.Trim_Width__c}>
+                                            {value.Trim_Width__c}
+                                        </div>
+                                    </td>
+                                    <td class="">
+                                        <div class="slds-truncate fieldDataSize" title={value.Trim_Height__c}>
+                                            {value.Trim_Height__c}
+                                        </div>
+                                    </td>
+                                    <td class="">
+                                        <div class="slds-truncate fieldDataSize" title={value.Interior_Paper_Stock__c}>
+                                            {value.Interior_Paper_Stock__c}
+                                        </div>
+                                    </td>
+                                    <td class="">
+                                        <div class="slds-truncate fieldDataSize" title={value.Initial_Page_Count__c}>
+                                            {value.Initial_Page_Count__c}
+                                        </div>
+                                    </td>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!--    <c-apub_-asin-formats key1={sub} type="formate" smap={transmittalData.formatListsMap}>
+                </c-apub_-asin-formats> -->
+
+    </div>
+
+
+    <br></br>
+
+    <!--Service Prep Information starts from here-->
+    <div if:true={confirmExists} class="slds-var-m-right_medium">
+
+        <div class="col-lg-4" if:true={CofirmationsFlg}>
+            <div if:true={additionalServiceFlg}>
+                <div class="col-lg-4 ">
+                    <div class="slds-text-heading_large slds-var-m-left_large">
+                        <span>
+                            <bold>Additional Service Information</bold>
+
+                        </span>
+                    </div>
+                </div>
+
+                <br />
+            </div>
+            <div class="slds-grid slds-wrap">
+                <template for:each={transmittalData.subCatMap} for:item="sub">
+                    <div class="slds-size_1-of-2 slds-max-small-size_1-of-1" key={sub}>
+                        <div class="slds-var-m-left_medium slds-var-m-right_small">
+                            <c-ppw_-service-prep-information key1={sub} type="servicePrep"
+                                smap={transmittalData.servicePrepListsMap}>
+                            </c-ppw_-service-prep-information>
+                        </div>
+                    </div>
+
+
+                </template>
+            </div>
+        </div>
+    </div>
+
+    </div>
+
+
+
+</template>

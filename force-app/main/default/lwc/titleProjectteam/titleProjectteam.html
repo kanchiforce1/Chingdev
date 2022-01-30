@@ -1,0 +1,48 @@
+<template>
+	<template if:true={title}>
+		<div class="slds-card">
+			<div class="slds-m-top_small slds-m-left_small">
+				<h2 class="slds-card__header-title hideHelpicon"> <span> Project Team</span> </h2>
+				<lightning-record-view-form record-id={titleId} object-api-name="Title__c">
+					<div class="slds-m-top_small"></div>
+
+					<div class="slds-col slds-m-bottom_x-small">
+						<label class="slds-form-element__label"> Acquiring Editor </label>
+						<div class="slds-form-element__control">
+							<div class="slds-form-element__static"> {title.Acquiring_Editor__c}@</div>
+						</div>
+					</div>
+
+					<div class="slds-col slds-m-bottom_x-small">
+						<label class="slds-form-element__label"> Current Editor </label>
+						<div class="slds-form-element__control">
+							<div class="slds-form-element__static"> {title.Current_Editor__c}@</div>
+						</div>
+					</div>
+
+					<div class="slds-col slds-m-bottom_x-small">
+						<label class="slds-form-element__label"> Production Manager </label>
+						<div class="slds-form-element__control">
+							<div class="slds-form-element__static"> {title.Production_Manager__c}@</div>
+						</div>
+					</div>
+
+					<div class="slds-col slds-m-bottom_x-small">
+						<label class="slds-form-element__label"> Art Director </label>
+						<div class="slds-form-element__control">
+							<div class="slds-form-element__static"> {title.Art_Director__c}@</div>
+						</div>
+					</div>
+
+					<div class="slds-col slds-m-bottom_x-small">
+						<label class="slds-form-element__label"> Marketing Manager </label>
+						<div class="slds-form-element__control">
+							<div class="slds-form-element__static"> {title.Marketing_Manager__c}@</div>
+						</div>
+					</div>
+					
+				</lightning-record-view-form>
+			</div>
+		</div>
+	</template>
+</template>

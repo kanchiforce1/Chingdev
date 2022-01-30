@@ -1,0 +1,40 @@
+<template>
+    
+    <template if:true={c}>
+        <tbody>
+    <tr>
+        <td>
+            <span class={badgeClass}
+                  data-toggle="tooltip" 
+                  data-placement="top" 
+                  title={badgeHelpText}>
+                  {badgeHelpText1}
+            </span>
+            
+        </td>
+        <td>
+
+            <lightning-formatted-date-time
+            value={c.createdDate}
+            time-zone="UTC">
+            </lightning-formatted-date-time>
+           
+        </td>
+        <td>
+            <lightning-formatted-date-time
+            value={c.Date_of_Confirmation__c}
+            time-zone="UTC">
+            </lightning-formatted-date-time>
+       
+        </td>
+        <td>{c.Confirmed_Service__c}</td>
+        <td>{c.Confirmed_Rate_Amount__c}</td>
+        <td if:true={rushFeeFlg}> 
+            {c.Confirmed_Rush_Fee__c}% 
+        </td>
+        
+        <!--<td>{!c.Confirmed_Vendor__c}</td> -->
+    </tr>
+</tbody>
+    </template>
+</template>

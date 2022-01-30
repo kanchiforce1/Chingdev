@@ -1,0 +1,49 @@
+<aura:component>
+    <aura:attribute name="activeSections" type="List" default="['A','C']" />
+    <aura:attribute name="activeSectionsMessage" type="String" default="" />
+
+    <p>{! v.activeSectionsMessage }</p>
+    <lightning:card title="Hello" >
+
+    </lightning:card>
+    <article class="slds-card" >
+      <a onclick="{!c.actions}">  <div class="slds-card__header slds-grid" >
+          Standard Edit
+          </div> </a>
+    
+    </article>
+    
+    
+    
+    
+    <lightning:accordion
+        allowMultipleSectionsOpen="true"
+        onsectiontoggle="{! c.handleSectionToggle }"
+        activeSectionName="{! v.activeSections }"
+    >
+        <lightning:accordionSection name="A" label="Accordion Title A1">
+           
+            <aura:set attribute="body">
+                <p>This is the content area for section A.</p>
+                <p>.</p>
+                <p>.</p>
+                <p>.</p>
+                <p>The section height expands to fit your content.</p>
+            </aura:set>
+        </lightning:accordionSection>
+        <lightning:accordionSection name="B" label="Accordion Title B1">
+                <p>This is the content area for section B.</p>
+                <p>.</p>
+                <p>.</p>
+                <p>.</p>
+                <p>The section height expands to fit your content.</p>
+        </lightning:accordionSection>
+        <lightning:accordionSection name="C" label="Accordion Title C1">
+                <p>This is the content area for section C.</p>
+                <p>.</p>
+                <p>.</p>
+                <p>.</p>
+                <p>The section height expands to fit your content.</p>
+        </lightning:accordionSection>
+    </lightning:accordion>
+</aura:component>

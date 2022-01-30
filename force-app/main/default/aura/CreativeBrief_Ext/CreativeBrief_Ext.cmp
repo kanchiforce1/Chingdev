@@ -1,0 +1,1016 @@
+<aura:component
+  implements="forceCommunity:availableForAllPageTypes"
+  access="global"
+                controller="cb_externalController_Lnt"
+>
+      <aura:attribute name="CB" description="list of CBI for the underlying image section" 
+                     type="Creative_Brief__c" 
+                    />
+     <aura:attribute name="imageGalleryMap" description="list of CBI for the underlying image section" type="Map" />
+     <aura:attribute name="tlCheck"   description="list of CBI for the underlying image section" type="Boolean" />
+     <aura:attribute name="euCheck"  description="list of CBI for the underlying image section" type="Boolean" />
+    <aura:attribute name="deCheck"  description="list of CBI for the underlying image section" type="Boolean" />
+     <aura:attribute name="translatorCheck"  description="list of CBI for the underlying image section" type="String" />
+    <aura:attribute name="illustratorName"  description="list of CBI for the underlying image section" type="String" />
+     <aura:attribute name="nonStandardFormats"   description="list of CBI for the underlying image section" type="List" />
+    <aura:attribute name="selectedPublicationBackgrounds"   description="list of CBI for the underlying image section" type="List" />
+   
+       
+ <!--  <aura:handler name="init" value="{!this}" action="{!c.doInit}" description="doinit system event"/>   -->
+    
+    <ltng:require afterScriptsLoaded="{!c.doInit}"
+                  styles="{!$Resource.Bootstrap +'/bootstrap-3.3.6-dist/css/bootstrap.css'}"
+  />
+ 
+<aura:if isTrue="{!v.CB!=null}">
+  <div class="container"
+    ><!-- Main page container -->
+    <span id="top" />
+    <div class="row" style="margin-bottom:0px;">
+      <div class="jumbotron">
+        <!--  <apex:image url="{!$Resource.APubLogo}" /> -->
+        <h1 style="font-size:50px;">The Creative Brief</h1>
+        <p
+          ><strong
+            > {!v.CB.Title__r.Full_Title_Name__c}  
+            ({!v.CB.Title__r.Marty_Title_ID__c})</strong
+          ><br /> This page contains creative direction for the cover design and
+          promotional text.
+        </p>
+        <div rendered="{!v.CB.Photo_Shoot__c}">
+          <p>
+            <a
+              href="#cbData"
+              aria-controls="creative brief"
+              role="tab"
+              data-toggle="tab"
+              class="btn btn-default btn-lg"
+              >Standard Brief</a
+            >
+            <a
+              href="#psData"
+              aria-controls="photo shoot"
+              role="tab"
+              data-toggle="tab"
+              class="btn btn-default btn-lg"
+              >Photo Shoot Brief</a
+            >
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tabbed Sections -->
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane active" id="cbData">
+        <div class="row navBtn">
+          <a href="#requiredCoverContent" class="btn btn-primary"
+            >Required Cover Content</a
+          >
+          <a href="#author" class="btn btn-primary">About the Author</a>
+          <a
+            value="#series"
+            rendered="{!v.CB.Title__r.Is_In_Series__c}"
+            styleClass="btn btn-primary"
+            style="margin-left:4px;"
+            >About the Series</a
+          >
+          <a href="#book" class="btn btn-primary">About the Book</a>
+          <a href="#packaging" class="btn btn-primary">Packaging</a>
+          <a href="#creative" class="btn btn-primary">Creative Direction</a>
+          <a href="#promo" class="btn btn-primary">Promotional Text</a>
+        </div>
+
+        <div class="row">
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <span id="requiredCoverContent" />
+              <h3 class="panel-title">Required Cover Content</h3>
+            </div>
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="slds-form-element__label">Title Name</label
+                    ><br />
+                    <label class="slds-form-element__label emptyCheck"
+                      >{!v.CB.Title__r.Full_Title_Name__c}
+                    </label>
+                  </div>
+                  <div class="form-group">
+                    <label class="slds-form-element__label">Author</label
+                    ><br />
+                    <label class="slds-form-element__label emptyCheck"
+                      >{!v.CB.Title__r.Author__c}</label
+                    >
+                  </div>
+
+                  <div class="form-group">
+                    <label class="slds-form-element__label">Subtitle</label
+                    ><br />
+                    <label class="slds-form-element__label emptyCheck"
+                      >{!v.CB.Title__r.Sub_Title__c}</label
+                    >
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="slds-form-element__label">Subtitle</label
+                    ><br />
+                    <label class="slds-form-element__label emptyCheck"
+                      >{!v.CB.Title__r.Series__c}</label
+                    >
+                  </div>
+
+                  <div class="form-group">
+                    <label class="slds-form-element__label"
+                      >External_Imprint__c</label
+                    ><br />
+
+                    <small>(for spine and back cover logo)</small><br />
+                   
+                      {!v.CB.Title__r.External_Imprint__c}
+                  </div>
+
+                  <div layout="none" rendered="{!deCheck}">
+                    <div class="form-group">
+                     
+                        Category / Genre
+                      ><br />
+                      <label class="slds-form-element__label emptyCheck"
+                        >{!v.CB.Title__r.Category__c}</label
+                      >
+                    </div>
+                  </div>
+
+                  <div layout="none" rendered="{!translatorCheck}">
+                    <div class="form-group">
+                      <label class="slds-form-element__label">Translator</label
+                      ><br />
+                      <label class="slds-form-element__label emptyCheck"
+                        >translatorName</label
+                      >
+                    </div>
+                  </div>
+
+                  <div layout="none" rendered="{!tlCheck}">
+                    <div class="form-group viewstate">
+                      <label class="slds-form-element__label">Illustrator</label
+                      ><br />
+                      <label class="slds-form-element__label emptyCheck"
+                        >{!illustratorName}</label
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <label class="slds-form-element__label"
+                    >Bestselling_Author_Line__c</label
+                  ><br />
+                  <label class="slds-form-element__label rowEmptyCheck"
+                    >{!v.CB.Bestselling_Author_Line__c}</label
+                  >
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12"
+                  >\
+                  <label class="slds-form-element__label"
+                    >Author_of_X_Line__c</label
+                  ><br />
+                  <label class="slds-form-element__label emptyCheck"
+                    >{!v.CB.Author_of_X_Line__c}</label
+                  >
+                </div>
+              </div>
+              <div layout="none" rendered="{!euCheck}">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <label class="slds-form-element__label">Tagline__c</label
+                    ><br />
+                    <label class="slds-form-element__label rowEmptyCheck"
+                      >{!v.CB.Tagline__c}</label
+                    >
+                  </div>
+                </div>
+                </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <label class="slds-form-element__label"
+                    >Publicity_Quotes__c</label
+                  ><br />
+                  <label class="slds-form-element__label rowEmptyCheck"
+                    >{!v.CB.Publicity_Quotes__c}</label
+                  >
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <label class="slds-form-element__label">p1_Other__c</label
+                  ><br />
+                  <label class="slds-form-element__label rowEmptyCheck"
+                    >{!v.CB.p1_Other__c}</label
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <span id="author" />
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <a href="#top" class="btn btn-default btn-xs pull-right">Top</a>
+              <h3 class="panel-title">About the Author</h3>
+            </div>
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-lg-12">
+                  <label class="slds-form-element__label"
+                    >Author_Branding_Requirements__c</label
+                  ><br />
+                  <label class="slds-form-element__label rowEmptyCheck"
+                    >{!v.CB.Author_Branding_Requirements__c}</label
+                  >
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-12">
+                  <label class="slds-form-element__label"
+                    >Publishing_Background__c</label
+                  ><br />
+                  <label class="slds-form-element__label rowEmptyCheck"
+                    >{!selectedPublicationBackgrounds}</label
+                  >
+                  <br />
+                  <div class="rowEmptyCheck">
+                    <aura:iteration
+                      items="{!selectedPublicationBackgrounds}"
+                      var="spb"
+                    >
+                      {!spb}<br />
+                    </aura:iteration>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <span id="series" />
+
+          <div style="{!v.CB.Title__r.Is_In_Series__c}">
+            <div class="panel panel-primary">
+              <div class="panel-heading">
+                <a href="#top" class="btn btn-default btn-xs pull-right">Top</a>
+                <h3 class="panel-title">About the Series</h3>
+              </div>
+              <div class="panel-body">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <label class="slds-form-element__label"
+                      >Number_of_Books_in_the_Series__c</label
+                    ><br />
+                    <label class="slds-form-element__label rowEmptyCheck"
+                      >{!selectedPublicationBackgrounds}</label
+                    >
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <label class="slds-form-element__label"
+                      >Number_in_Series__c</label
+                    ><br />
+                    <label class="slds-form-element__label rowEmptyCheck"
+                      >{!v.CB.Title__r.Number_in_Series__c}</label
+                    >
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <label class="slds-form-element__label"
+                      >Series_Description__c</label
+                    ><br />
+                    <label class="slds-form-element__label rowEmptyCheck"
+                      >{!v.CB.Series_Description__c}</label
+                    >
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <label class="slds-form-element__label"
+                      >Relevant_Series_Details__c</label
+                    ><br />
+                    <label class="slds-form-element__label rowEmptyCheck"
+                      >{!v.CB.Relevant_Series_Details__c}</label
+                    >
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <label class="slds-form-element__label"
+                      >Series_Branding_Requirements__c</label
+                    ><br />
+                    <label class="slds-form-element__label rowEmptyCheck"
+                      >{!v.CB.Series_Branding_Requirements__c}</label
+                    >
+                  </div>
+                </div>
+
+                <h5>Other Books In This Series</h5>
+                <div class="row">
+                  <aura:iteration items="{!PublishedSeries}" var="pp">
+                    <div class="col-sm-3">
+                      <div class="thumbnail">
+                        <label class="slds-form-element__label"
+                          >Series_Branding_Requirements__c</label
+                        ><br />
+                        <label class="slds-form-element__label rowEmptyCheck"
+                          >{!v.CB.Series_Branding_Requirements__c}</label
+                        >
+
+                       <a
+                          target="_blank"
+                          href="https://www.amazon.com/dp/"
+                        > 
+                         <!-- <image class="img-rounded" value="http://ecx.images-amazon.com/images/P/{!pp.ASIN__c}" /> -->
+                          <div class="caption">
+                            <p>
+                              <br />
+                              <strong
+                                ><label class="slds-form-element__label"
+                                  >pp.title__r.name</label
+                                ></strong
+                              ><br />
+                              <label class="slds-form-element__label"
+                                >{!pp.title__r.External_Imprint__c}</label
+                              >
+                            </p>
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+                    </aura:iteration>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <span id="book" />
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <a href="#top" class="btn btn-default btn-xs pull-right">Top</a>
+              <h3 class="panel-title">About the Book</h3>
+            </div>
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-lg-12">
+                  <label class="slds-form-element__label">bq_5_3__c</label
+                  ><br />
+                  <label
+                    class="slds-form-element__label rowEmptyCheck newLineFix"
+                    >{!v.CB.bq_5_3__c}</label
+                  >
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <label class="slds-form-element__label">bq_5_4__c</label
+                  ><br />
+                  <strong
+                    ><em
+                      >- These are content comps, not visual comps.</em
+                    ></strong
+                  >
+                  <label
+                    class="slds-form-element__label rowEmptyCheck newLineFix"
+                    >{!v.CB.bq_5_4__c}</label
+                  >
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <label class="slds-form-element__label">bq_5_5__c</label
+                  ><br />
+                  <label
+                    class="slds-form-element__label rowEmptyCheck newLineFix"
+                    >{!v.CB.bq_5_5__c}</label
+                  >
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <label class="slds-form-element__label">bq_5_5__c</label
+                  ><br />
+                  <label
+                    class="slds-form-element__label rowEmptyCheck newLineFix"
+                    >{!v.CB.bq_5_10__c}</label
+                  >
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <label class="slds-form-element__label">bq_5_6__c</label
+                  ><br />
+                  <label
+                    class="slds-form-element__label rowEmptyCheck newLineFix"
+                    >{!v.CB.bq_5_6__c}</label
+                  >
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <label class="slds-form-element__label">bq_5_7__c</label
+                  ><br />
+                  <label
+                    class="slds-form-element__label rowEmptyCheck newLineFix"
+                    >{!v.CB.bq_5_7__c}</label
+                  >
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <label class="slds-form-element__label">bq_5_13__c</label
+                  ><br />
+                  <label
+                    class="slds-form-element__label rowEmptyCheck newLineFix"
+                    >{!v.CB.bq_5_13__c}</label
+                  >
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <label class="slds-form-element__label">bq_5_11__c</label
+                  ><br />
+                  <label
+                    class="slds-form-element__label rowEmptyCheck newLineFix"
+                    >{!v.CB.bq_5_11__c}</label
+                  >
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <label class="slds-form-element__label">bq_5_14__c</label
+                  ><br />
+                  <label
+                    class="slds-form-element__label rowEmptyCheck newLineFix"
+                    >{!v.CB.bq_5_14__c}</label
+                  >
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <label class="slds-form-element__label">bq_5_15__c</label
+                  ><br />
+                  <label
+                    class="slds-form-element__label rowEmptyCheck newLineFix"
+                    >{!v.CB.bq_5_15__c}</label
+                  >
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <label class="slds-form-element__label"
+                    >Restricted_Content_to_Avoid__c</label
+                  ><br />
+                  <label
+                    class="slds-form-element__label rowEmptyCheck newLineFix"
+                    >{!v.CB.Restricted_Content_to_Avoid__c}</label
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <span id="packaging" />
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <a href="#top" class="btn btn-default btn-xs pull-right">Top</a>
+              <h3 class="panel-title">Packaging</h3>
+            </div>
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-lg-12">
+                  <label class="slds-form-element__label"
+                    >Non_Standard_Formats__c</label
+                  ><br />
+
+                  <div class="rowEmptyCheck">
+                    <aura:iteration items="{!nonStandardFormats}" var="nsf">
+                      {!nsf}<br />
+                    </aura:iteration>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <label class="slds-form-element__label"
+                    >Non_Standard_Format_Notes__c</label
+                  ><br />
+                  <label
+                    class="slds-form-element__label rowEmptyCheck newLineFix"
+                    >{!v.CB.Non_Standard_Format_Notes__c}</label
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <span id="creative" />
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <a href="#top" class="btn btn-default btn-xs pull-right">Top</a>
+              <h3 class="panel-title">Creative Direction</h3>
+            </div>
+            <div class="panel-body">
+              <p
+                >Please note, these concepts are not meant to limit creativity.
+                We welcome a "designer's choice" solution.</p
+              >
+              <div class="row">
+                <div class="col-lg-12">
+                  <label class="slds-form-element__label">Visual Details</label
+                  ><br />
+                  <label class="slds-form-element__label newLineFix"
+                    >{!v.CB.Visual_Details_1__c}</label
+                  >
+                </div>
+              </div>
+              <h4>Concept #1</h4>
+              <div class="row">
+                <div class="col-lg-12">
+                  <label class="slds-form-element__label"
+                    >Concept Description</label
+                  ><br />
+                  <label class="slds-form-element__label newLineFix"
+                    >{!v.CB.Concept_Description_1__c}</label
+                  >
+                </div>
+              </div>
+              <div class="row">
+               <!--   <c:cb_gallery_external cbiList="{!imageGalleryMap['cbc1']}" /> -->
+                <c:CB_Gallery_External cbiList="" />
+              </div>
+              <hr /> <h4>Concept #2</h4>
+              <div class="row">
+                <div class="col-lg-12">
+                  <label class="slds-form-element__label"
+                    >Concept Description</label
+                  ><br />
+                  <label class="slds-form-element__label newLineFix"
+                    >{!v.CB.Concept_Description_2__c}</label
+                  >
+                </div>
+              </div>
+              <div class="row"> <c:CB_Gallery_External cbiList="" /> </div>
+              <hr /> <h4>Concept #3</h4>
+              <div class="row">
+                <div class="col-lg-12">
+                  <label class="slds-form-element__label"
+                    >Concept Description</label
+                  ><br />
+                  <label class="slds-form-element__label newLineFix"
+                    >{!v.CB.Concept_Description_3__c}</label
+                  >
+                </div>
+              </div>
+              <div class="row">
+                <!--  <c:cb_gallery_external cbiList="{!imageGalleryMap['cbc3']}" /> -->
+              </div>
+              <hr /> <h4>Additional Images</h4>
+              <div class="row">
+                <!--   <c:CB_Gallery_External cbiList="{!imageGalleryMap['cbca']}" /> -->
+              </div>
+              <div layout="none" rendered="{!deCheck}">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <label class="slds-form-element__label"
+                      >Genre_Subgenre_Conventions__c</label
+                    ><br />
+                    <label class="slds-form-element__label newLineFix"
+                      >{!v.CB.Genre_Subgenre_Conventions__c}</label
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <span id="promo" />
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <a href="#top" class="btn btn-default btn-xs pull-right">Top</a>
+              <h3 class="panel-title">Promotional Text</h3>
+            </div>
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-lg-12">
+                  <label class="slds-form-element__label"
+                    >Cover_and_Promo_Text_Interplay__c</label
+                  ><br />
+                  <label
+                    class="slds-form-element__label rowEmptyCheck newLineFix"
+                    >{!v.CB.Cover_and_Promo_Text_Interplay__c}</label
+                  >
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <label class="slds-form-element__label"
+                    >Hook_That_the_Promo_Text_Should_Leverage__c</label
+                  ><br />
+                  <label
+                    class="slds-form-element__label rowEmptyCheck newLineFix"
+                    >{!v.CB.Hook_That_the_Promo_Text_Should_Leverage__c}</label
+                  >
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <label class="slds-form-element__label"
+                    >Promo_Text_Focus_Area__c</label
+                  ><br />
+
+                  <br />
+                  <label
+                    class="slds-form-element__label rowEmptyCheck newLineFix"
+                    >{!v.CB.Promo_Text_Focus_Area__c}</label
+                  >
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <label class="slds-form-element__label"
+                    >Sexual_Content_Rating__c</label
+                  >
+
+                  <br />
+                  <label
+                    class="slds-form-element__label rowEmptyCheck newLineFix"
+                    >{!v.CB.Sexual_Content_Rating__c}</label
+                  >
+
+                  <p>
+                    <small class="text-muted">
+                      <br /> <strong>Rating Descriptions</strong><br />
+                      <strong>Simmering:</strong><br /> These titles are sweet.
+                      They may focus on love but not always its physical
+                      expression. The characters are emotionally engaged, but
+                      may have little physical contact, or the contact is hinted
+                      at, or “off the page.”<br />
+
+                      <strong>Steamy:</strong><br /> These titles turn up the
+                      heat. Characters engage in sexual activities but
+                      descriptions are not overly explicit. <br />
+
+                      <strong>Searing:</strong><br /> The relationship is the
+                      focal point of the book. Sex scenes and physical
+                      descriptions, while detailed, are not graphiCB. <br />
+
+                      <strong>Scorching:</strong><br /> The relationship between
+                      the protagonists still takes center stage, but the love
+                      scenes are given equal weight and the language is graphiCB.
+                    </small>
+                  </p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <label class="slds-form-element__label"
+                    >Violence_Ratings__c</label
+                  ><br />
+                  <label
+                    class="slds-form-element__label rowEmptyCheck newLineFix"
+                    >{!v.CB.Violence_Ratings__c}</label
+                  >
+
+                  <p>
+                    <br />
+                    <small class="text-muted">
+                      <strong>Rating Descriptions</strong><br />
+                      <strong>Mild (PG):</strong><br /> Violence “off the
+                      page”—indicated or implied but not directly described.<br />
+
+                      <strong>Medium (PG-13):</strong><br /> Violence on and off
+                      the page; gory details withheld.<br />
+
+                      <strong>Strong (R):</strong><br /> Strong and frequent
+                      violence, described in detail.<br />
+
+                      <strong>Extreme (NC-17):</strong><br /> Intense and/or
+                      profuse violence; mature audience recommended.
+                    </small>
+                  </p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <label class="slds-form-element__label"
+                    >Violence_Description__c</label
+                  ><br />
+                  <label
+                    class="slds-form-element__label rowEmptyCheck newLineFix"
+                    >{!v.CB.Violence_Description__c}</label
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> </div
+      ><!-- close cb content -->
+
+      <div role="tabpanel" class="tab-pane" id="psData">
+        <!-- Photo Shoot Content -->
+        <div class="row navBtn">
+          <a href="#preProduction" class="btn btn-primary">Pre-Production</a>
+          <a href="#psCreativeDirection" class="btn btn-primary"
+            >Creative Direction</a
+          >
+          <a href="#postProduction" class="btn btn-primary"
+            >Post-Production Deliverables</a
+          >
+        </div>
+
+        <div class="row">
+          <span id="preProduction" />
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <h3 class="panel-title">Pre-Production</h3>
+            </div>
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-lg-12">
+                  <label class="slds-form-element__label"
+                    >ps_date_of_shoot__c</label
+                  ><br />
+                  <label
+                    class="slds-form-element__label rowEmptyCheck newLineFix"
+                    >{!v.CB.ps_date_of_shoot__c}</label
+                  >
+                  <br />
+                  <!-- <apex:outputText value="{0, date, MMMM d','  yyyy}" styleClass="rowEmptyCheck">
+                                        <apex:param value="{!v.CB.ps_date_of_shoot__c}"/>
+                                    </apex:outputText>  -->
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <label class="slds-form-element__label"
+                    >ps_Assets_Deliverable_Due_Date__c</label
+                  ><br />
+                  <label
+                    class="slds-form-element__label rowEmptyCheck newLineFix"
+                    >{!v.CB.ps_Assets_Deliverable_Due_Date__c}</label
+                  >
+
+                  <!-- <apex:outputText value="{0, date, MMMM d','  yyyy}" styleClass="rowEmptyCheck">
+                                        <apex:param value="{!v.CB.ps_Assets_Deliverable_Due_Date__c}"/>
+                                    </apex:outputText>  -->
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <label class="slds-form-element__label"
+                    >ps_Photo_Shoot_Description__c</label
+                  ><br />
+                  <label
+                    class="slds-form-element__label rowEmptyCheck newLineFix"
+                    >{!v.CB.ps_Photo_Shoot_Description__c}</label
+                  >
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <label class="slds-form-element__label"
+                    >ps_Photo_Shoot_Location__c</label
+                  ><br />
+                  <label
+                    class="slds-form-element__label rowEmptyCheck newLineFix"
+                    >{!v.CB.ps_Photo_Shoot_Location__c}</label
+                  >
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <label class="slds-form-element__label">ps_Subject__c</label
+                  ><br />
+                  <label
+                    class="slds-form-element__label rowEmptyCheck newLineFix"
+                    >{!v.CB.ps_Subject__c}</label
+                  >
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <label class="slds-form-element__label"
+                    >ps_Time_Period__c</label
+                  ><br />
+                  <label
+                    class="slds-form-element__label rowEmptyCheck newLineFix"
+                    >{!v.CB.ps_Time_Period__c}</label
+                  >
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <label class="slds-form-element__label"
+                    >ps_Description_of_Characters__c</label
+                  ><br />
+                  <label
+                    class="slds-form-element__label rowEmptyCheck newLineFix"
+                    >{!v.CB.ps_Description_of_Characters__c}</label
+                  >
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <label class="slds-form-element__label"
+                    >ps_Detailed_Physical_Descriptions__c</label
+                  ><br />
+                  <label
+                    class="slds-form-element__label rowEmptyCheck newLineFix"
+                    >{!v.CB.ps_Detailed_Physical_Descriptions__c}</label
+                  >
+                </div>
+              </div>
+              <div class="row">
+                <!-- <c:CB_Gallery_External cbiList="{!imageGalleryMap['dpd']}" />  -->
+                <c:CB_Gallery_External cbiList="" />
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <label class="slds-form-element__label">ps_Wardrobe__c</label
+                  ><br />
+                  <label
+                    class="slds-form-element__label rowEmptyCheck newLineFix"
+                    >{!v.CB.ps_Wardrobe__c}</label
+                  >
+                </div>
+              </div>
+              <div class="row">
+                <!--  <c:cb_gallery_external cbiList="{!imageGalleryMap['w']}" />  -->
+                <c:CB_Gallery_External cbiList="" />
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <label class="slds-form-element__label"
+                    >ps_Hair_Makeup__c</label
+                  ><br />
+                  <label
+                    class="slds-form-element__label rowEmptyCheck newLineFix"
+                    >{!v.CB.ps_Hair_Makeup__c}</label
+                  >
+                </div>
+              </div>
+              <div class="row">
+                <!--  <c:cb_gallery_external cbiList="{!imageGalleryMap['hm']}" />  -->
+                <c:CB_Gallery_External cbiList="" />
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <label class="slds-form-element__label">ps_Props__c</label
+                  ><br />
+                  <label
+                    class="slds-form-element__label rowEmptyCheck newLineFix"
+                    >{!v.CB.ps_Props__c}</label
+                  >
+                </div>
+              </div>
+              <div class="row">
+                <!--  <c:cb_gallery_external cbiList="{!imageGalleryMap['p']}" /> -->
+                <c:CB_Gallery_External cbiList="" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <span id="psCreativeDirection" />
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <a href="#top" class="btn btn-default btn-xs pull-right">Top</a>
+              <h3 class="panel-title">Creative Direction</h3>
+            </div>
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-lg-12">
+                  <label class="slds-form-element__label"
+                    >ps_Personality_Descriptions__c</label
+                  ><br />
+                  <label
+                    class="slds-form-element__label rowEmptyCheck newLineFix"
+                    >{!v.CB.ps_Personality_Descriptions__c}</label
+                  >
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <label class="slds-form-element__label">ps_Location__c</label
+                  ><br />
+                  <label
+                    class="slds-form-element__label rowEmptyCheck newLineFix"
+                    >{!v.CB.ps_Location__c}</label
+                  >
+                </div>
+              </div>
+              <div class="row">
+                <!--   <c:cb_gallery_external cbiList="{!imageGalleryMap['location']}" />  -->
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <label class="slds-form-element__label">ps_Mood_Tone__c</label
+                  ><br />
+                  <label
+                    class="slds-form-element__label rowEmptyCheck newLineFix"
+                    >{!v.CB.ps_Mood_Tone__c}</label
+                  >
+                </div>
+              </div>
+              <div class="row">
+                <!--  <c:CB_Gallery_External cbiList="{!imageGalleryMap['mt']}" />  -->
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <label class="slds-form-element__label"
+                    >ps_Lighting_Description__c</label
+                  ><br />
+                  <label
+                    class="slds-form-element__label rowEmptyCheck newLineFix"
+                    >{!v.CB.ps_Lighting_Description__c}</label
+                  >
+                </div>
+              </div>
+              <div class="row">
+                <!--    <c:cb_gallery_external cbiList="{!imageGalleryMap['lighting']}" />  -->
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <label class="slds-form-element__label">ps_Shot_List__c</label
+                  ><br />
+                  <label
+                    class="slds-form-element__label rowEmptyCheck newLineFix"
+                    >{!v.CB.ps_Shot_List__c}</label
+                  >
+                </div>
+              </div>
+
+              <!--  <apex:variable value="{!imageGalleryMap['layout']}" var="layoutSize"/> -->
+              <label class="slds-form-element__label"
+                ><h5>Layout Examples</h5></label
+              ><br />
+
+              <!-- <apex:outputText rendered="{!layoutSize.size>0}"><h5>Layout Examples</h5></apex:outputText>  -->
+              <div class="row">
+                <!--  <c:CB_Gallery_External cbiList="{!imageGalleryMap['layout']}" />  -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <span id="postProduction" />
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <a href="#top" class="btn btn-default btn-xs pull-right">Top</a>
+              <h3 class="panel-title">Post-Production Deliverables</h3>
+            </div>
+            <div class="panel-body">
+              <h3>Instructions for delivering imagery to Amazon Publishing.</h3>
+              <p
+                >Once the shoot is complete, please submit all imagery in an
+                online lightbox so we can make a selection for the front cover.
+                Please let us know if you prefer to deliver by an alternative
+                method.</p
+              >
+              <p
+                >Once final artwork is selected, please carry out any needed
+                minor adjustments (i.e., color/exposure corrections). We ask
+                that final images be supplied as high resolution TIFF and RAW
+                files via S3.</p
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> </div
+  >
+ </aura:if>   <!-- Closes main page container -->
+  <!-- jquery must be called before bootstrap.js to work properly -->
+ <!--<ltng:require afterScriptsLoaded="{!c.scriptsLoaded}"
+                scripts="{!$Resource.Bootstrap +'/bootstrap-3.3.6-dist/js/bootstrap.min.js'}"
+  /> -->  
+  <!-- <apex:includeScript value="//code.jquery.com/jquery-2.1.4.min.js"/>  -->
+</aura:component>

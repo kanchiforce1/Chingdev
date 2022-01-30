@@ -1,0 +1,35 @@
+<template> 
+    <div class="slds-box slds-m-bottom_small" if:true={sectionQustinCount}>
+        <!-- GENERAL -->
+        <div class="slds-m-bottom_large">
+            <div class="slds-header slds-card__header" style="background-color: #EEEEEE;">
+                <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                    <div class="slds-grid_vertical-align-center slds-size_3-of-4 slds-medium-size_2-of-3">
+                        <div class="slds-media__body slds-m-bottom_x-small">
+                            <h1 class="slds-truncate" style="font-size:16px;">
+                            {key1}
+                        </h1> </div>
+                    </div>
+                </header>
+                
+            </div>
+            <div class="slds-card__body slds-card__body_inner slds-m-bottom_large">
+                <div class="slds-form slds-m-vertical_small" role="list"> 
+                   
+                            <template for:each={parentQuestions} for:item="i">
+                                
+                                <div class="slds-form-element" key={i.Id}> 
+                                        <c-ppw_-select-options-map question-static-map={questionStaticMap} ser-prep-question={i.serPrepQuestion} ser-type-sub-questions-order-map={serTypeSubQuestionsOrderMap} selected-name={selectedName} 
+                                        onquestionchange={onQuestionValue} ser-type-sub-questions-map={i.serTypeSubQuestionsMap}
+                                        ser-prep={i}></c-ppw_-select-options-map>
+                                 
+        
+                                </div>
+                              
+                            </template>
+                     
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

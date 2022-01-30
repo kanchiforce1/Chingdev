@@ -1,0 +1,9 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes" access="global" >
+    <aura:attribute name="conlist" type="List"/>
+    <aura:handler event="c:searchContact" action="{!c.searchContact}"/>
+    <aura:iteration items="{!v.conlist}" var="con">
+        First Name : {!con.FirstName} <br/>
+        LastName : {!con.LastName}
+    
+    </aura:iteration>
+</aura:component>

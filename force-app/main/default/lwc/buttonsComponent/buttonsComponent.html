@@ -1,0 +1,85 @@
+<template>
+  
+ 
+  <template if:true={titleId}>
+  <div class="slds-m-left_small" style="flex-wrap:nowrap;">
+
+    <div class="demo-only slds-m-top_xx-small">
+      <label for="ptf_btn">
+
+        <div class="slds-box slds-box_x-small slds-media slds-p-around_medium" data-id="Transmittal"
+          name="Transmittal" onclick={handleClick}>
+          <div class="slds-media__figure slds-align_absolute-center slds-m-left_xx-small">
+            <span class="slds-icon_container slds-icon-utility-knowledge_base">
+              <c-svg-icon svgicon="/utility-sprite/svg/symbols.svg#knowledge_base"
+                style-class="slds-icon slds-icon-text-default slds-current-color iconStyle">
+              </c-svg-icon>
+
+            </span>
+          </div>
+          <div class="slds-media__body slds-border_left slds-p-around_medium">
+            <h2 class="slds-truncate slds-text-heading_small" title="Project Transmittal">Project Transmittal</h2>
+
+          <span class="slds-badge slds-m-right_small" if:true={btnToggle.transimittalBtn}>
+
+              <c-svg-icon svgicon="/utility-sprite/svg/symbols.svg#warning"
+                style-class="slds-icon slds-icon_xx-small iconColor "></c-svg-icon>
+              <span class="slds-text-color_destructive" style="font-size: 10px;"> {servicesCount} Services Require Confirmation</span>
+
+            </span> 
+
+
+            <p><span class="slds-text-color_destructive"> </span></p>
+          </div>
+        </div>
+      </label>
+    </div>
+
+
+
+    <div class="demo-only slds-m-top_xx-small">
+      <label for="ptf_btn">
+        <div class="slds-box slds-box_x-small slds-media slds-p-around_medium" data-id="CB" name="Creative Brief"
+          onclick={handleClick}>
+          <div class="slds-media__figure slds-align_absolute-center slds-m-left_xx-small">
+            <span class="slds-icon_container slds-icon-utility-knowledge_base">
+              <c-svg-icon svgicon="/utility-sprite/svg/symbols.svg#brush"
+                style-class="slds-icon slds-icon-text-default slds-current-color iconStyle">
+              </c-svg-icon>
+
+            </span>
+          </div>
+          <div class="slds-media__body slds-border_left slds-p-around_medium">
+            <h2 class="slds-truncate slds-text-heading_small" title="Creative Brief">Creative Brief</h2>
+            <p><span class="slds-text-color_destructive"> </span></p>
+          </div>
+        </div>
+      </label>
+    </div>
+
+    <div class="demo-only slds-m-top_xx-small">
+      <label for="ptf_btn">
+        <div class="slds-box slds-box_x-small slds-media slds-p-around_medium" data-id="Chinook" name="Chinook"
+          onclick={handleClick}>
+          <div class="slds-media__figure slds-align_absolute-center slds-m-left_xx-small">
+            <span class="slds-icon_container slds-icon-utility-knowledge_base">
+              <c-svg-icon svgicon="/utility-sprite/svg/symbols.svg#prompt_edit"
+                style-class="slds-icon slds-icon-text-default slds-current-color iconStyle">
+              </c-svg-icon>
+
+            </span>
+          </div>
+          <div class="slds-media__body slds-border_left slds-p-around_medium">
+            <h2 class="slds-truncate slds-text-heading_small" title="Chinook">Editorial Service <br/>Performance</h2>
+            <p><span class="slds-text-color_destructive"> </span></p>
+          </div>
+        </div>
+      </label>
+    </div>
+
+
+
+  </div>
+</template>
+
+</template>

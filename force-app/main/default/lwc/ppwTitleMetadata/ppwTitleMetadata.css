@@ -1,0 +1,23 @@
+.slds-card__header-title .slds-button_icon {
+    display: none;
+}
+ .slds-button_icon {
+    display: none !important;
+}
+.dnone {
+    display: none;
+}
+
+.slds-button .slds-button_icon {
+    display: none;
+}
+
+
+  :host button{
+    display: none;
+    
+  }
+
+  .cursorpoint{
+      cursor:pointer;
+  }

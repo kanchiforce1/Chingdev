@@ -1,0 +1,8 @@
+.slds-card {
+  border:1 !important;
+}
+
+.warningColor {
+  color: white;
+  background-color: #ffc107; 
+}

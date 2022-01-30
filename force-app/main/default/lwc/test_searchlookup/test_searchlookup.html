@@ -1,0 +1,52 @@
+<template>
+    <div class="slds">      
+        <div class="slds-form-element"> 
+            <div class="slds-form-element__control">
+                <div class="slds-combobox_container slds-has-inline-listbox">
+                    <div class="slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click slds-is-open" 
+                         aria-expanded="true" aria-haspopup="listbox" role="combobox" style="width:95%">
+                        <div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right">
+                            <span class="slds-pill slds-pill_link fullWidth"> 
+                                <button onclick={clearSelection} class="slds-button slds-button_icon slds-button_icon slds-pill__remove"
+                                    title="Remove">
+                                    <lightning-icon icon-name="utility:close" size="small" alternative-text="Press delete or backspace to remove" ></lightning-icon>
+                                    <span class="slds-assistive-text">Remove</span>
+                                </button>
+                                </span>
+
+
+                                <template if:true={selItem}> 
+                                         <input type="text" class="slds-input slds-combobox__input" id="combobox-unique-id" 
+                                                aria-activedescendant="listbox-option-unique-id-01" aria-autocomplete="list" 
+                                                aria-controls="listbox-unique-id" autocomplete="off" role="combobox" 
+                                                placeholder={placeholder}
+                                                onkeyup={searchField} ></template>
+                            
+
+                                        
+                                                <span class="slds-pill slds-pill_link fullWidth"> 
+                                                  <a href="javascript:void(0);" 
+                                                     class="slds-pill__action slds-p-left_x-small" title="dfdf">
+                                                   
+                                                      <span class="slds-pill__label slds-p-left_x-small"></span>
+                                                  </a>
+                                                  <button onclick={clearSelection}
+                                                          class="slds-button slds-button_icon slds-button_icon slds-pill__remove" 
+                                                          title="Remove">
+                                                    <lightning-icon icon-name="utility:close" size="small" 
+                                                                    alternative-text="Press delete or backspace to remove"></lightning-icon>
+                                                    <span class="slds-assistive-text" >Remove</span>
+                                                  </button>
+                                                </span> 
+                            
+                                
+                                </div> 
+                            </div>
+                        <!-- Section added to accept the prospect or customer user email to search in existing contacts-->
+                       
+                        </div>
+                    </div>
+                </div>
+            </div> 
+        
+</template>

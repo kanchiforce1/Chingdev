@@ -1,0 +1,119 @@
+<template>
+    <template if:true={title}>
+       <div class="slds-card">
+          <div class="slds-m-top_small slds-m-left_small">
+             <h2 class="slds-card__header-title hideHelpicon"> <span> Title Metadata</span> </h2>
+             <lightning-record-view-form record-id={title.Id} object-api-name="Title__c">
+                <div class="slds-m-top_small"></div>
+                <div class="slds-col slds-m-bottom_x-small">
+                   <label class="slds-form-element__label"> Marty Title ID </label>
+                   <div class="slds-form-element__control">
+                      <div class="slds-form-element__static"> {title.Marty_Title_ID__c}</div>
+                   </div>
+                </div>
+                <div class="slds-col slds-m-bottom_x-small">
+                   <label class="slds-form-element__label"> Status </label>
+                   <div class="slds-form-element__control">
+                      <div class="slds-form-element__static"> {title.Status__c}</div>
+                   </div>
+                </div>
+                <div class="slds-col slds-m-bottom_x-small">
+                   <label class="slds-form-element__label"> Digital Publication Date </label>
+                   <div class="slds-form-element__control">
+                      <div class="slds-form-element__static">
+                         <lightning-formatted-date-time value={title.Digital_Publication_Date__c} year="numeric" month="short" day="2-digit"> </lightning-formatted-date-time>
+                      </div>
+                   </div>
+                </div>
+                <div class="slds-col slds-m-bottom_x-small">
+                   <label class="slds-form-element__label"> External Imprint </label>
+                   <div class="slds-form-element__control">
+                      <div class="slds-form-element__static"> {title.External_Imprint__c}</div>
+                   </div>
+                </div>
+                <div class="slds-col slds-m-bottom_x-small">
+                   <label class="slds-form-element__label"> Internal Imprint </label>
+                   <div class="slds-form-element__control">
+                      <div class="slds-form-element__static"> {title.Internal_Imprint__c}</div>
+                   </div>
+                </div>
+                <div class="slds-col slds-m-bottom_x-small">
+                   <label class="slds-form-element__label"> Category </label>
+                   <div class="slds-form-element__control">
+                      <div class="slds-form-element__static"> {title.Category__c}</div>
+                   </div>
+                </div>
+                <div class="slds-col slds-m-bottom_x-small">
+                   <label class="slds-form-element__label"> Sub-Category </label>
+                   <div class="slds-form-element__control">
+                      <div class="slds-form-element__static"> {title.Sub_Category__c}</div>
+                   </div>
+                </div>
+                <div class="slds-col slds-m-bottom_x-small">
+                   <label class="slds-form-element__label"> Literary Form </label>
+                   <div class="slds-form-element__control">
+                      <div class="slds-form-element__static"> {title.Literary_Form__c}</div>
+                   </div>
+                </div>
+                <div class="slds-col slds-m-bottom_x-small">
+                   <label class="slds-form-element__label"> Manuscript Delivery Date </label>
+                   <div class="slds-form-element__control">
+                      <div class="slds-form-element__static">
+                         <lightning-formatted-date-time value={title.Manuscript_Delivery_Date__c} year="numeric" month="short" day="2-digit"> </lightning-formatted-date-time>
+                      </div>
+                   </div>
+                </div>
+                <div class="slds-col slds-m-bottom_x-small">
+                   <label class="slds-form-element__label"> Production Locale </label>
+                   <div class="slds-form-element__control">
+                      <div class="slds-form-element__static"> {title.Production_Locale__c}</div>
+                   </div>
+                </div>
+                <div class="slds-col slds-m-bottom_x-small">
+                   <label class="slds-form-element__label"> Current Word Count </label>
+                   <div class="slds-form-element__control">
+                      <div class="slds-form-element__static"> {title.Pre_Dev_Edit_Word_Count__c}</div>
+                   </div>
+                </div>
+             </lightning-record-view-form>
+          </div>
+       </div>
+    </template>
+
+    <!-- Series section starts from here-->
+
+    <template if:true={series}>
+        <div class="slds-card">
+           <div class="slds-m-top_small slds-m-left_small">
+              <h2 class="slds-card__header-title hideHelpicon"> <span> Other Titles in Series</span> </h2>
+              <div class="slds-m-top_medium"></div>
+              <template for:each={series.Titles__r} for:item="t">
+                 <div class="slds-p-around_xx-small" key={t.Id}>
+                    <div class="slds-col slds-m-bottom_small">
+                       <h4>
+                          <span class="slds-truncate">
+                          <a name={t.Id} onclick={nagivateTotitle}
+                             target="_blank">{t.Full_Title_Name__c}</a>
+                          </span>
+                       </h4>
+                       <p class="slds-page-header__name-meta"> {t.Marty_Title_ID__c} •
+                          {t.Status__c}
+                       </p>
+
+
+                       <!--Icons Section-->
+
+                       
+                       <lightning-icon icon-name="utility:world" class="cursorpoint" onclick={projectNavigation} name={t.Id}  title="Project" size="x-small" ></lightning-icon> &nbsp;&nbsp;&nbsp;
+                       <lightning-icon icon-name="utility:image" class="cursorpoint" onclick={cbNavigation} name={t.Id}  title="Creative Brief" size="x-small" ></lightning-icon> &nbsp;&nbsp;&nbsp;&nbsp;
+                       <lightning-icon icon-name="utility:new_window" class="cursorpoint" onclick={censhareNavigation} name={t.Id}  title="Censhare" size="x-small" ></lightning-icon> &nbsp;&nbsp;&nbsp;
+
+
+                    </div>
+                 </div>
+              </template>
+           </div>
+        </div>
+     </template>
+
+ </template>

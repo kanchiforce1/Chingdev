@@ -1,0 +1,59 @@
+<aura:component>
+    <lightning:helptext class="backGround"
+        content="The tooltip displays on the lower left of the icon or above the icon if space is available. It automatically adjusts its position according to the viewport."
+    />
+    
+      <aura:attribute name="tooltip" type="boolean" default="false" />
+    
+    <lightning:button class="slds-button slds-button_success colr" label="Base" title="Base action"/>
+    
+    <div style="padding-left:2rem;padding-top:3rem;position:relative">
+        <a href="" aria-describedby="help" onmouseover="{!c.showToolTip}" onmouseout="{!c.HideToolTip}">Help Text</a>
+        <aura:if isTrue="{!v.tooltip}" >
+            <div class="slds-popover slds-popover_tooltip slds-nubbin_bottom-left" role="tooltip" id="help" style="position:absolute;top:-4px;left:35px">
+                <div class="slds-popover__body">Show ToolTip.</div>
+            </div>
+        </aura:if>
+    </div>
+    
+    <div style="padding-left:2rem;padding-top:5rem;position:relative">
+       <lightning:button variant="brand" label="Brand" title="Brand action" onclick="{! c.handleClick }" disabled="true"/>
+ 
+  <div class="slds-popover slds-popover_tooltip slds-nubbin_bottom-left" role="tooltip" id="help" style="position:absolute;top:-20px;left:35px">
+    <div class="slds-popover__body">Sit nulla est ex deserunt exercitation anim occaecat. Nostrud ullamco deserunt aute id consequat veniam incididunt duis in sint irure nisi.</div>
+  </div>
+</div>
+    
+   <lightning:avatar size="large"   src="/docs/component-library/app/images/examples/avatar2.jpg" initials="CR" fallbackIconName="standard:person_account" alternativeText="Cindy Rice" class="slds-m-right_small"/>
+mohan
+    
+    <lightning:recordEditForm recordId="{!v.noteId}" objectApiName="Note">
+        <div class="slds-grid slds-wrap">
+            <div class="slds-col">
+                <lightning:inputField fieldName="Name" />
+            </div>
+          
+            
+        </div>
+      
+        
+        <div class="demo-only demo--inverse" style="height:6rem">
+            <div role="status" class="slds-spinner slds-spinner_medium">
+                <span class="slds-assistive-text">Loading</span>
+                <div class="slds-spinner__dot-a"></div>
+                <div class="slds-spinner__dot-b"></div>
+            </div>
+        </div>
+        
+        
+        
+        
+    </lightning:recordEditForm>
+    
+    <span class="slds-badge">Badge Label</span>
+    <span class="slds-badge slds-badge_lightest" style="background-color:#FFC107;">Badge Label</span>
+    <span class="slds-badge slds-badge_lightest">Badge Label</span>
+    <span class="slds-badge slds-badge_lightest">Badge Label</span>
+    
+    
+</aura:component>

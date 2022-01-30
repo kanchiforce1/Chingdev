@@ -1,0 +1,23 @@
+.cursorPoint { 
+    cursor: pointer; 
+}
+
+.redColor { /* static  */
+    background-color : #EEEEEE; 
+}
+
+.redColor1 {  /* enable */
+    background-color : rgb(99, 196, 128); 
+}
+
+.iconColor {
+    color:#FFC107;
+}
+
+.show {
+    display: inline;
+}
+
+.hide {
+    display: none;
+}

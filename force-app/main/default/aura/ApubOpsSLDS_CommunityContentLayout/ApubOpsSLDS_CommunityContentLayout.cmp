@@ -1,0 +1,29 @@
+<aura:component implements="forceCommunity:layout" description="Custom Content Layout" access="global">
+    
+    <aura:attribute name="leftcol1" type="Aura.Component[]" required="false"></aura:attribute>
+    <aura:attribute name="leftcol2" type="Aura.Component[]" required="false"></aura:attribute>
+    <aura:attribute name="rightbody" type="Aura.Component[]" required="false"></aura:attribute>
+    
+    <div class="slds-grid slds-wrap">
+        
+        <!-- Left Panel Section -->
+        <div class="slds-small-size--3-of-12">
+            <div class="slds-var-m-right_medium">
+                <div class="slds-col ">
+                    <span>{!v.leftcol1}</span>
+                </div>
+                <div class="slds-col slds-text-align_center"> 
+                    <span>{!v.leftcol2}</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- right body section -->
+        <div class="slds-small-size--9-of-12">
+            <div class="slds-col slds-var-m-right_small">
+                <span>{!v.rightbody}</span>
+            </div>
+        </div>
+    </div>
+    
+</aura:component>

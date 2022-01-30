@@ -1,0 +1,1435 @@
+<template>
+                  
+    <div class="tab-content">
+
+        <div class="slds-card graycolor" if:true={title}>
+            <span id="top"> </span>
+            <div class="slds-m-top_large slds-m-left_large slds-m-bottom_large">
+                <h1 style="font-size:40px;">The Creative Brief</h1>
+                
+                    <strong style="font-size:25px;"> {title.fullTitleName} ({title.MartyId}) </strong>
+                    <br /> 
+                    <div class="slds-clearfix"> 
+                    <div class="slds-float_left"> 
+                    This page contains creative direction for the cover design and promotional text.
+                    
+               </div>
+               <div if:false={photoShoot} class="slds-float_right slds-m-right_large">
+            
+                
+                    <a class="slds-button slds-button_neutral slds-m-right_small" icon-name="utility:download" icon-position="right" onclick={cdDownLoad} name={title.MartyId} aria-controls="photo shoot" role="tab"
+                    data-toggle="tab">Save as PDF  &nbsp;
+                    <c-svg-icon svgicon="/utility-sprite/svg/symbols.svg#download"
+                    style-class="slds-icon slds-icon_xx-small iconColor1 marginDown">
+                </c-svg-icon>
+                 <!--<lightning-icon icon-name="utility:download" size="x-small" class="iconColor" alternative-text="download" title="download" > </lightning-icon>-->
+                </a>
+                </div>
+                </div>
+            </div>
+            <div if:true={photoShoot} class="slds-clearfix"> 
+                <div class="slds-float_left slds-m-left_large slds-m-bottom_large"> 
+                    <template if:true={photoShoot}> 
+                
+                    <a href="#cbData" class="slds-button slds-button_neutral" aria-controls="creative brief" role="tab"
+                        data-toggle="tab">Standard Brief</a>
+                    <a href="#psData" class="slds-button slds-button_neutral" aria-controls="photo shoot" role="tab"
+                        data-toggle="tab">Photo Shoot Brief</a>
+                    </template> 
+                    </div>
+                
+                    <div class="slds-float_right slds-m-right_large slds-m-left_large slds-m-bottom_large">
+                        <a class="slds-button slds-button_neutral slds-m-right_small" icon-name="utility:download" icon-position="right"
+                            onclick={cdDownLoad} name={title.MartyId} aria-controls="photo shoot" role="tab"
+                            data-toggle="tab">Save as PDF &nbsp;
+                            <c-svg-icon svgicon="/utility-sprite/svg/symbols.svg#download"
+                                style-class="slds-icon slds-icon_xx-small iconColor1 marginDown">
+                            </c-svg-icon>
+                           
+                        </a>
+                    </div>
+
+            </div>
+        </div>
+        
+
+        </div>
+    
+
+
+    <!-- TABBED SECTIONS -->
+    <div role="tabpanel" class="slds-m-top_medium" id="cbData">
+
+        <div class="row navBtn">
+            <a href="#requiredCoverContent" class="slds-button slds-button_neutral">Required Cover Content</a>
+            <a href="#author" class="slds-button slds-button_neutral">About the Author</a>
+            <a href="#series" class="slds-button slds-button_neutral" if:true={c.Title__r.Is_In_Series__c}>About the
+                Series</a>
+            <a href="#book" class="slds-button slds-button_neutral">About the Book</a>
+            <a href="#packaging" class="slds-button slds-button_neutral">Packaging</a>
+            <a href="#creative" class="slds-button slds-button_neutral">Creative Direction</a>
+            <a href="#promo" class="slds-button slds-button_neutral">Promotional Text</a>
+        </div>
+
+
+    </div>
+
+    <br />
+
+    <!--- REQUIRED COVER CONTENT SECTION-->
+    <div class="slds-card slds-m-bottom_large" if:true={coverContent}>
+
+        <div class="slds-grid slds-header slds-card__header" style="background-color: #EEEEEE;">
+            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                <div class="slds-grid slds-grid_vertical-align-center slds-size_3-of-4 slds-medium-size_2-of-3">
+
+                    <div class="slds-media__body slds-m-bottom_x-small">
+                        <span id="requiredCoverContent"> </span>
+
+                        <h1 class="slds-truncate" style="font-size:16px;">
+                            Required Cover Content
+                        </h1>
+                    </div>
+                </div>
+
+            </header>
+            <div class="slds-einstein-header__actions">
+                <div class="slds-button-group slds-m-bottom_x-small" role="group" style="height:30px;">
+                    <a href="#top" class="slds-button slds-button_neutral">Top</a>
+                </div>
+            </div>
+        </div>
+        <div class="slds-card__body  slds-card__body_inner">
+
+
+            <div class="slds-form" role="list">
+
+                <div class="slds-grid slds-gutters">
+                    <div class="slds-col">
+                        <div class="slds-m-left_small">
+                            <div if:true={c.Title__r.Full_Title_Name__c}>
+                                <span class="slds-form-element__label">
+                                    <bold class="fieldLabelSize">Title Name </bold>
+                                </span>
+                                <br />
+                                <div class="slds-form-element__control slds-m-bottom_x-small">
+                                    <div class="slds-form-element__static" style="font-size:14px;">
+                                        {c.Title__r.Full_Title_Name__c}</div>
+                                </div>
+                            </div>
+
+                            <div if:true={c.Title__r.Author__c}>
+                                <span class="slds-form-element__label">
+                                    <bold class="fieldLabelSize bold">Author</bold>
+                                </span>
+                                <br />
+                                <div class="slds-form-element__control slds-m-bottom_x-small">
+                                    <div class="slds-form-element__static" style="font-size:14px;">
+                                        {c.Title__r.Author__c}</div>
+                                </div>
+                            </div>
+
+                            <div if:true={c.Title__r.Sub_Title__c}>
+                                <span class="slds-form-element__label">
+                                    <bold style="font-size:13px;">Subtitle</bold>
+                                </span>
+                                <br />
+                                <div class="slds-form-element__control slds-m-bottom_x-small">
+                                    <div class="slds-form-element__static" style="font-size:14px;">
+                                        {c.Title__r.Sub_Title__c}</div>
+                                </div>
+                            </div>
+                            <div if:true={deCheck}>
+
+                                <div if:true={c.Title__r.Category__c}>
+
+                                    <span class="slds-form-element__label">
+                                        <bold style="font-size:13px;">Category / Genre</bold>
+                                    </span>
+                                    <br />
+                                    <div class="slds-form-element__control slds-m-bottom_x-small">
+                                        <div class="slds-form-element__static" style="font-size:14px;">
+                                            {c.Title__r.Category__c}</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div if:true={translatorName}>
+                                <!--Need to check how to put these names, also check how to pass these to controller in this. section-->
+                                <span class="slds-form-element__label">
+                                    <bold style="font-size:13px;">Translator</bold>
+                                </span>
+                                <br />
+                                <div class="slds-form-element__control">
+                                    <div class="slds-form-element__static" style="font-size:14px;"> {translatorName}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div if:true={illustratorName}>
+
+                                <div if:true={tlcheck}>
+                                    <span class="slds-form-element__label">
+                                        <bold style="font-size:13px;">Illustrator</bold>
+                                    </span>
+                                    <br />
+                                    <div class="slds-form-element__control slds-m-bottom_x-small">
+                                        <div class="slds-form-element__static" style="font-size:14px;">
+                                            {illustratorName}</div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div if:true={c.Bestselling_Author_Line__c}>
+                                <span class="slds-form-element__label">
+                                    <bold style="font-size:13px;">Bestselling Author Line</bold>
+                                </span>
+                                <br />
+                                <div class="slds-form-element__control slds-m-bottom_x-small">
+                                    <div class="slds-form-element__static" style="font-size:14px;">
+                                        {c.Bestselling_Author_Line__c}</div>
+                                </div>
+                            </div>
+
+                            <div if:true={c.Author_of_X_Line__c}>
+                                <span class="slds-form-element__label">
+                                    <bold style="font-size:13px;">"Author of X" Line</bold>
+                                </span>
+                                <br />
+                                <div class="slds-form-element__control slds-m-bottom_x-small">
+                                    <div class="slds-form-element__static" style="font-size:14px;">
+                                        {c.Author_of_X_Line__c}</div>
+                                </div>
+                            </div>
+
+                            <div if:true={c.Tagline__c}>
+
+                                <div if:true={euCheck}>
+                                    <span class="slds-form-element__label">
+                                        <bold style="font-size:13px;">Tagline</bold>
+                                    </span>
+                                    <br />
+                                    <div class="slds-form-element__control slds-m-bottom_x-small">
+                                        <div class="slds-form-element__static" style="font-size:14px;"> {c.Tagline__c}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div if:true={c.Publicity_Quotes__c}>
+                                <span class="slds-form-element__label">
+                                    <bold style="font-size:13px;">Publicity Quotes</bold>
+                                </span>
+                                <br />
+                                <div class="slds-form-element__control slds-m-bottom_x-small">
+                                    <div class="slds-form-element__static" style="font-size:14px;">
+                                        {c.Publicity_Quotes__c}</div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                    <div class="slds-col">
+                        <div class="slds-m-left_small">
+                            <div if:true={c.Title__r.Series__c}>
+                                <span class="slds-form-element__label">
+                                    <bold style="font-size:13px;"> Series</bold>
+                                </span>
+                                <br />
+                                <div class="slds-form-element__control slds-m-bottom_x-small">
+                                    <div class="slds-form-element__static" style="font-size:14px;">
+                                        {c.Title__r.Series__c}</div>
+                                </div>
+                            </div>
+
+                            <div if:true={c.Title__r.External_Imprint__c}>
+                                <span class="slds-form-element__label">
+                                    <bold style="font-size:13px;"> External Imprint</bold>
+                                </span>
+                                <small>(for spine and back cover logo)</small>
+                                <br />
+                                <div class="slds-form-element__control slds-m-bottom_x-small">
+                                    <div class="slds-form-element__static" style="font-size:14px;">
+                                        {c.Title__r.External_Imprint__c}</div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+
+                  
+                </div>
+                <div if:true={c.p1_Other__c} class="slds-m-left_small">
+                    <span class="slds-form-element__label">
+                        <bold style="font-size:13px;"> Other</bold>
+                    </span>
+                    <br />
+                    <div class="slds-form-element__control slds-m-bottom_x-small">
+                        <div class="slds-form-element__static" style="font-size:14px;"> {c.p1_Other__c}
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!--<apex:outputPanel layout="none" rendered="{!euCheck}">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <apex:outputLabel value="{!$ObjectType.Creative_Brief__c.fields.Tagline__c.label}"/><br />
+                                        <apex:outputText value="{!c.Tagline__c}" styleClass="rowEmptyCheck" />
+                                    </div>
+                                </div>
+                            </apex:outputPanel>-->
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+    <!--- About the Author Section-->
+
+    <div class="slds-card slds-m-bottom_large" if:true={aboutTheAuthor}>
+        <div class="slds-grid slds-header slds-card__header" style="background-color: #EEEEEE;">
+            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                <div class="slds-grid slds-grid_vertical-align-center slds-size_3-of-4 slds-medium-size_2-of-3">
+
+                    <div class="slds-media__body slds-m-bottom_x-small">
+                        <span id="author"> </span>
+                        <h1 class="slds-truncate" style="font-size:16px;">
+                            About the Author
+                        </h1>
+                    </div>
+                </div>
+
+            </header>
+            <div class="slds-einstein-header__actions">
+                <div class="slds-button-group slds-m-bottom_x-small" role="group" style="height:30px;">
+                    <a href="#top" class="slds-button slds-button_neutral">Top</a>
+                </div>
+            </div>
+        </div>
+        <div class="slds-card__body  slds-card__body_inner">
+
+            <div class="slds-form" role="list">
+
+                <div class="slds-grid slds-gutters">
+                    <div class="slds-col">
+                        <div class="slds-m-left_small">
+                            <div if:true={c.Author_Branding_Requirements__c}>
+                                <span class="slds-form-element__label">
+                                    <bold style="font-size:13px;"> Author Branding Requirements</bold>
+                                </span>
+                                <br />
+                                <div class="slds-form-element__control slds-m-bottom_x-small">
+                                    <div class="slds-form-element__static justify" style="font-size:14px;">
+                                        {c.Author_Branding_Requirements__c}</div>
+                                </div>
+                            </div>
+
+                            <div if:true={c.Publishing_Background__c}>
+                                <span class="slds-form-element__label">
+                                    <bold style="font-size:13px;">Publishing Background</bold>
+                                </span>
+                                <br />
+                                <div class="slds-form-element__control slds-m-bottom_x-small">
+                                    <div class="slds-form-element__static justify" style="font-size:14px;">
+                                        {c.Publishing_Background__c}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-col"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--ABOUT THE SERIES SECTION STARTS FROM HERE-->
+
+    <div class="slds-card slds-m-bottom_large" if:true={aboutTheSeries}>
+        <div class="slds-grid slds-header slds-card__header" style="background-color: #EEEEEE;">
+            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                <div class="slds-grid slds-grid_vertical-align-center slds-size_3-of-4 slds-medium-size_2-of-3">
+
+                    <div class="slds-media__body slds-m-bottom_x-small">
+                        <span id="series"> </span>
+
+                        <h1 class="slds-truncate" style="font-size:16px;">
+                            About the Series
+                        </h1>
+                    </div>
+                </div>
+
+            </header>
+            <div class="slds-einstein-header__actions">
+                <div class="slds-button-group slds-m-bottom_x-small" role="group" style="height:30px;">
+                    <a href="#top" class="slds-button slds-button_neutral">Top</a>
+                </div>
+            </div>
+        </div>
+        <div class="slds-card__body  slds-card__body_inner">
+
+            <div class="slds-form" role="list">
+
+                <div class="slds-grid slds-gutters">
+                    <div class="slds-col">
+                        <div class="slds-m-left_small">
+                            <div if:true={c.Number_of_Books_in_the_Series__c}>
+                                <span class="slds-form-element__label">
+                                    <bold style="font-size:13px;"> Number of Books in the Series</bold>
+                                </span>
+                                <br />
+                                <div class="slds-form-element__control slds-m-bottom_x-small">
+                                    <div class="slds-form-element__static" style="font-size:14px;">
+                                        {c.Number_of_Books_in_the_Series__c}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div if:true={c.Number_in_Series__c}>
+                                <span class="slds-form-element__label">
+                                    <bold style="font-size:13px;">Number in Series</bold>
+                                </span>
+                                <br />
+                                <div class="slds-form-element__control slds-m-bottom_x-small">
+                                    <div class="slds-form-element__static" style="font-size:14px;">
+                                        {c.Number_in_Series__c}</div>
+                                </div>
+                            </div>
+
+                            <div if:true={c.Series_Description__c}>
+                                <span class="slds-form-element__label">
+                                    <bold style="font-size:13px;">Series Description</bold>
+                                </span>
+                                <br />
+                                <div class="slds-form-element__control slds-m-bottom_x-small">
+                                    <div class="slds-form-element__static justify" style="font-size:14px;">
+                                        {c.Series_Description__c}</div>
+                                </div>
+                            </div>
+
+                            <div if:true={c.Relevant_Series_Details}>
+                                <span class="slds-form-element__label">
+                                    <bold style="font-size:13px;">Relevant Series Details</bold>
+                                </span>
+                                <br />
+                                <div class="slds-form-element__control slds-m-bottom_x-small">
+                                    <div class="slds-form-element__static" style="font-size:14px;">
+                                        {c.Relevant_Series_Details}</div>
+                                </div>
+                            </div>
+
+                            <div if:true={c.Series_Branding_Requirements__c}>
+                                <span class="slds-form-element__label">
+                                    <bold style="font-size:13px;">Series Branding Requirements</bold>
+                                </span>
+                                <br />
+                                <div class="slds-form-element__control slds-m-bottom_x-small">
+                                    <div class="slds-form-element__static" style="font-size:14px;">
+                                        {c.Series_Branding_Requirements__c}</div>
+                                </div>
+                            </div>
+
+                            <!--OTHER BOOKS IN THE SERIES SECTION START FROM HERE-->
+                         <h5>Other Books In This Series</h5>
+
+                         <template if:true={publishedSeries}>
+                            <template for:each={publishedSeries} for:item="pub">
+
+                                <div class="slds-size_1-of-3" key={pub.id}>
+                                    <div class="slds-box slds-m-top_x-small slds-m-left_x-small">
+                                        <a href={pub.ASIN__c} target="_blank">
+                                            <img alt="product picture" src={pub.ASIN__c} />
+                                        </a>
+                                        <div class="Caption slds-m-top_small">
+                                            <p class="slds-text-title_caps slds-line-height_reset">
+                                                <bold style="font-size:13px;">{pub.Title_Name__c}</bold>
+                                            </p>
+                                          
+                                        
+                                          <p>  <span class="slds-image__text" title="Image Title">{pub.Title_External_Imprint__c}</span></p>
+                                        </div>
+
+
+                                         <!--   <p class="slds-text-title_caps slds-line-height_reset">
+                                                <bold style="font-size:13px;">{pub.Title_Name__c}</bold>
+                                            </p>
+                                            <p class="slds-text-title_caps slds-line-height_reset">
+                                                <bold style="font-size:13px;">{pub.Title_External_Imprint__c}
+                                                </bold>
+                                            </p> -->
+
+                                        
+
+                                    </div>
+                                </div>
+                            </template>
+                        </template>
+
+                        <!-- <template if:true={publishedSeries}>
+                                <template for:each={publishedSeries} for:item="pub">
+                                    <div key={pub.Id}>
+                                        
+                                        
+                                        <a href={pub.ASIN__c} target="_blank">
+                                            <div class="slds-media slds-no-space slds-grow">
+                                                <div class="slds-media__figure">
+                                                    <span class="slds-avatar slds-avatar_medium">
+                                                        <img src="https://m.media-amazon.com/images/P/B0192CTMYG.01.SY450_SCLZZZZZZZ_.jpg"
+                                                            alt="Amazon Domain"> </img>
+                                                            
+                                                         <img src={pub.ASIN__c}
+                                                            alt="Amazon Domain"> </img>
+                                                    </span>
+                                                </div>
+                                                <div class="slds-media__body">
+                                                    
+                                                    <p class="slds-text-title_caps slds-line-height_reset">
+                                                        <bold style="font-size:13px;">{pub.Title_Name__c}</bold>
+                                                    </p>
+                                                    <p class="slds-text-title_caps slds-line-height_reset">
+                                                        <bold style="font-size:13px;">{pub.Title_External_Imprint__c}
+                                                        </bold>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </a>
+
+                                    </div>
+                                </template>
+                            </template> -->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--ABOUT THE BOOK SECTIO0N START FROM HERE-->
+    <div class="slds-card slds-m-bottom_large" if:true={aboutTheBook}>
+        <div class="slds-grid slds-header slds-card__header" style="background-color: #EEEEEE;">
+            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                <div class="slds-grid slds-grid_vertical-align-center slds-size_3-of-4 slds-medium-size_2-of-3">
+
+                    <div class="slds-media__body slds-m-bottom_x-small">
+                        <span id="book"> </span>
+
+                        <h1 class="slds-truncate" style="font-size:16px;">
+                            About the Book
+                        </h1>
+                    </div>
+                </div>
+
+            </header>
+            <div class="slds-einstein-header__actions">
+                <div class="slds-button-group slds-m-bottom_x-small" role="group" style="height:30px;">
+                    <a href="#top" class="slds-button slds-button_neutral">Top</a>
+                </div>
+            </div>
+        </div>
+        <div class="slds-card__body  slds-card__body_inner">
+
+            <div class="slds-form" role="list">
+
+                <div class="slds-grid slds-gutters">
+                    <div class="slds-col">
+                        <div class="slds-m-left_small">
+                            <div if:true={c.bq_5_3__c}>
+                                <span class="slds-form-element__label">
+                                    <bold style="font-size:13px;"> Customer Pitch</bold>
+                                </span>
+                                <br />
+                                <div class="slds-form-element__control slds-m-bottom_x-small">
+                                    <div class="slds-form-element__static justify" style="font-size:14px;"> {c.bq_5_3__c}</div>
+                                </div>
+                            </div>
+
+                            <div if:true={c.bq_5_4__c}>
+                                <span class="slds-form-element__label">
+                                    <bold style="font-size:13px;">Content Comp Titles/Author</bold>
+                                    <strong>
+                                        <em>- These are content comps, not visual comps.</em>
+                                    </strong>
+                                </span>
+                                <br />
+                                <div class="slds-form-element__control slds-m-bottom_x-small">
+                                    <div class="slds-form-element__static justify" style="font-size:14px;"> {c.bq_5_4__c}</div>
+                                </div>
+                            </div>
+
+                            <div if:true={c.bq_5_5__c}>
+                                <span class="slds-form-element__label">
+                                    <bold style="font-size:13px;">Tone</bold>
+                                </span>
+                                <br />
+                                <div class="slds-form-element__control slds-m-bottom_x-small">
+                                    <div class="slds-form-element__static justify" style="font-size:14px;"> {c.bq_5_5__c}</div>
+                                </div>
+                            </div>
+
+                            <div if:true={c.bq_5_10__c}>
+                                <span class="slds-form-element__label">
+                                    <bold style="font-size:13px;">Excerpt for Tone</bold>
+                                </span>
+                                <br />
+                                <div class="slds-form-element__control slds-m-bottom_x-small">
+                                    <div class="slds-form-element__static justify" style="font-size:14px;"> {c.bq_5_10__c}</div>
+                                </div>
+                            </div>
+
+                            <div if:true={c.bq_5_6__c}>
+                                <span class="slds-form-element__label">
+                                    <bold style="font-size:13px;">Genre/Subgenre, and Crossover Potential</bold>
+                                </span>
+                                <br />
+                                <div class="slds-form-element__control slds-m-bottom_x-small">
+                                    <div class="slds-form-element__static justify" style="font-size:14px;"> {c.bq_5_6__c}</div>
+                                </div>
+                            </div>
+
+                            <div if:true={c.bq_5_7__c}>
+                                <span class="slds-form-element__label">
+                                    <bold style="font-size:13px;">Target Audience</bold>
+                                </span>
+                                <br />
+                                <div class="slds-form-element__control slds-m-bottom_x-small">
+                                    <div class="slds-form-element__static justify" style="font-size:14px;"> {c.bq_5_7__c}</div>
+                                </div>
+                            </div>
+
+                            <div if:true={c.bq_5_13__c}>
+                                <span class="slds-form-element__label">
+                                    <bold style="font-size:13px;">Setting</bold>
+                                </span>
+                                <br />
+                                <div class="slds-form-element__control slds-m-bottom_x-small">
+                                    <div class="slds-form-element__static justify" style="font-size:14px;"> {c.bq_5_13__c}</div>
+                                </div>
+                            </div>
+
+                            <div if:true={c.bq_5_11__c}>
+                                <span class="slds-form-element__label">
+                                    <bold style="font-size:13px;">Plot/Content Synopsis</bold>
+                                </span>
+                                <br />
+                                <div class="slds-form-element__control slds-m-bottom_x-small">
+                                    <div class="slds-form-element__static justify" style="font-size:14px;"> {c.bq_5_11__c}</div>
+                                </div>
+                            </div>
+
+                            <div if:true={c.bq_5_14__c}>
+                                <span class="slds-form-element__label">
+                                    <bold style="font-size:13px;">Character Descriptions</bold>
+                                </span>
+                                <br />
+                                <div class="slds-form-element__control slds-m-bottom_x-small">
+                                    <div class="slds-form-element__static justify" style="font-size:14px;"> {c.bq_5_14__c}</div>
+                                </div>
+                            </div>
+
+                            <div if:true={c.bq_5_15__c}>
+                                <span class="slds-form-element__label">
+                                    <bold style="font-size:13px;">Spoilers to Avoid</bold>
+                                </span>
+                                <br />
+                                <div class="slds-form-element__control slds-m-bottom_x-small">
+                                    <div class="slds-form-element__static justify" style="font-size:14px;"> {c.bq_5_15__c}</div>
+                                </div>
+                            </div>
+
+                            <div if:true={c.Restricted_Content_to_Avoid__c}>
+                                <span class="slds-form-element__label">
+                                    <bold style="font-size:13px;">Restricted Content to Avoid</bold>
+                                </span>
+                                <br />
+                                <div class="slds-form-element__control slds-m-bottom_x-small">
+                                    <div class="slds-form-element__static justify" style="font-size:14px;">
+                                        {c.Restricted_Content_to_Avoid__c}</div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="slds-col"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- PACKAGING SECTION STARTS FROM HERE-->
+    <div class="slds-card slds-m-bottom_large" if:true={packaging}>
+        <div class="slds-grid slds-header slds-card__header" style="background-color: #EEEEEE;">
+            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                <div class="slds-grid slds-grid_vertical-align-center slds-size_3-of-4 slds-medium-size_2-of-3">
+
+                    <div class="slds-media__body slds-m-bottom_x-small">
+                        <span id="packaging"> </span>
+
+                        <h1 class="slds-truncate" style="font-size:16px;">
+                            Packaging
+                        </h1>
+                    </div>
+                </div>
+
+            </header>
+            <div class="slds-einstein-header__actions">
+                <div class="slds-button-group slds-m-bottom_x-small" role="group" style="height:30px;">
+                    <a href="#top" class="slds-button slds-button_neutral">Top</a>
+                </div>
+            </div>
+        </div>
+        <div class="slds-card__body  slds-card__body_inner">
+
+            <div class="slds-form" role="list">
+
+                <div class="slds-grid slds-gutters">
+                    <div class="slds-col">
+                        <div class="slds-m-left_small">
+                            <div if:true={c.Non_Standard_Formats__c}>
+                                <span class="slds-form-element__label">
+                                    <bold style="font-size:13px;"> Non Standard Formats</bold>
+                                </span>
+                                <br />
+                                <div class="slds-form-element__control slds-m-bottom_x-small">
+                                    <div class="slds-form-element__static justify" style="font-size:14px;">
+                                        {c.Non_Standard_Formats__c}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div if:true={c.Non_Standard_Format_Notes__c}>
+                                <span class="slds-form-element__label">
+                                    <bold style="font-size:13px;">Non Standard Format Notes</bold>
+                                </span>
+                                <br />
+                                <div class="slds-form-element__control slds-m-bottom_x-small">
+                                    <div class="slds-form-element__static justify" style="font-size:14px;">
+                                        {c.Non_Standard_Format_Notes__c}</div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!--CREATIVE DIRECTION SECTION STARTS FROM HERE-->
+
+    <div class="slds-card slds-m-bottom_large" if:true={creativeDirection}>
+        <div class="slds-grid slds-header slds-card__header" style="background-color: #EEEEEE;">
+            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                <div class="slds-grid slds-grid_vertical-align-center slds-size_3-of-4 slds-medium-size_2-of-3">
+
+                    <div class="slds-media__body slds-m-bottom_x-small">
+                        <span id="creative"> </span>
+
+                        <h1 class="slds-truncate" style="font-size:16px;">
+                            Creative Direction
+                        </h1>
+                        <p>Please note, these concepts are not meant to limit creativity. We welcome a "designer's
+                            choice" solution.</p>
+                    </div>
+                </div>
+
+            </header>
+            <div class="slds-einstein-header__actions">
+                <div class="slds-button-group slds-m-bottom_x-small" role="group" style="height:30px;">
+                    <a href="#top" class="slds-button slds-button_neutral">Top</a>
+                </div>
+            </div>
+        </div>
+        <div class="slds-card__body  slds-card__body_inner">
+
+
+            <div class="slds-form" role="list">
+
+                <div class="slds-grid slds-gutters">
+                    <div class="slds-col">
+                        <div class="slds-m-left_small">
+
+                            <div if:true={c.Visual_Details_1__c}>
+                                <span class="slds-form-element__label">
+                                    <bold style="font-size:13px;">Visual Details</bold>
+                                </span>
+                                <br />
+                                <div class="slds-form-element__control slds-m-bottom_x-small">
+                                    <div class="slds-form-element__static" style="font-size:14px;">
+                                        {c.Visual_Details_1__c}
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <h4>Concept #1</h4>
+                            <!--Concept description where to end the div tag-->
+                            <div class="row">
+                                <div class="col-sm-4">
+
+                                    <div if:true={c.Concept_Description_1__c}>
+                                        <span class="slds-form-element__label">
+                                            <bold style="font-size:13px;">Concept Description 1</bold>
+                                        </span>
+                                        <br />
+                                        <div class="slds-form-element__control slds-m-bottom_x-small">
+                                            <div class="slds-form-element__static justify" style="font-size:14px;">
+                                                {c.Concept_Description_1__c}</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="slds-grid">
+                                        <div class="slds-p-around_medium-large">
+
+                                            <div class="slds-col-sm-4">
+                                                <c-cb-gallery-external1 data-id="cbc1"> </c-cb-gallery-external1>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="slds-border_top slds-m-top_medium slds-m-bottom_medium"> </div>
+
+                            <h4>Concept #2</h4>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div if:true={c.Concept_Description_2__c}>
+                                        <span class="slds-form-element__label">
+                                            <bold style="font-size:13px;">Concept Description 2</bold>
+                                        </span>
+                                        <br />
+                                        <div class="slds-form-element__control slds-m-bottom_x-small">
+                                            <div class="slds-form-element__static justify" style="font-size:14px;">
+                                                {c.Concept_Description_2__c}</div>
+                                        </div>
+                                    </div>
+                                    <div class="slds-grid">
+                                        <div class="slds-col">
+                                            <c-cb-gallery-external1 data-id="cbc2">
+                                            </c-cb-gallery-external1>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="slds-border_top slds-m-top_medium slds-m-bottom_medium"> </div>
+
+
+
+                            <h4>Concept #3</h4>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div if:true={c.Concept_Description_3__c}>
+                                    <span class="slds-form-element__label">
+                                        <bold style="font-size:13px;">Concept Description 3</bold>
+                                    </span>
+                                    <br />
+                                    <div class="slds-form-element__control slds-m-bottom_x-small">
+                                        <div class="slds-form-element__static justify" style="font-size:14px;">
+                                            {c.Concept_Description_3__c}</div>
+                                    </div>
+                                    <div class="slds-grid">
+                                        <c-cb-gallery-external1 data-id="cbc3"> </c-cb-gallery-external1>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                            <div class="slds-border_top slds-m-top_medium slds-m-bottom_medium"> </div>
+
+
+
+
+
+                            <h4>Additional Images</h4>
+                            <div class="slds-form-element__control slds-m-bottom_x-small">
+                                <div class="slds-form-element__static" style="font-size:14px;">
+                                    <c-cb-gallery-external1 data-id="cbca"> </c-cb-gallery-external1>
+                                </div>
+                            </div>
+
+                            <template if:true={deCheck}>
+                                <div if:true={c.Genre_Subgenre_Conventions__c}>
+
+                                <span class="slds-form-element__label">
+                                    <bold style="font-size:13px;">Genre Subgenre Conventions</bold>
+                                </span>
+                                <br />
+                                <div class="slds-form-element__control slds-m-bottom_x-small">
+                                    <div class="slds-form-element__static justify" style="font-size:14px;">
+                                        {c.Genre_Subgenre_Conventions__c}</div>
+                                </div>
+                            </div>
+
+                            </template>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- PROMOTIONAL TEXT SECTION STARTS FROM HERE-->
+
+    <div class="slds-card slds-m-bottom_large" if:true={promotionalText}>
+        <div class="slds-grid slds-header slds-card__header" style="background-color: #EEEEEE;">
+            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                <div class="slds-grid slds-grid_vertical-align-center slds-size_3-of-4 slds-medium-size_2-of-3">
+
+                    <div class="slds-media__body slds-m-bottom_x-small">
+                        <span id="promo"> </span>
+
+                        <h1 class="slds-truncate" style="font-size:16px;">
+                            Promotional Text
+                        </h1>
+                    </div>
+                </div>
+
+            </header>
+            <div class="slds-einstein-header__actions">
+                <div class="slds-button-group slds-m-bottom_x-small" role="group" style="height:30px;">
+                    <a href="#top" class="slds-button slds-button_neutral">Top</a>
+                </div>
+            </div>
+        </div>
+        <div class="slds-card__body  slds-card__body_inner">
+
+            <div class="slds-form" role="list"></div>
+
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col">
+                    <div class="slds-m-left_small">
+
+                        <div if:true={c.Cover_and_Promo_Text_Interplay__c}>
+                            <span class="slds-form-element__label">
+                                <bold style="font-size:13px;">Cover and Promo Text Interplay</bold>
+                            </span>
+                            <br />
+                            <div class="slds-form-element__control slds-m-bottom_x-small">
+                                <div class="slds-form-element__static justify" style="font-size:14px;">
+                                    {c.Cover_and_Promo_Text_Interplay__c}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div if:true={c.Hook_That_the_Promo_Text_Should_Leverage__c}>
+                            <span class="slds-form-element__label">
+                                <bold style="font-size:13px;">Hook That the Promo Text Should Leverage</bold>
+                            </span>
+                            <br />
+                            <div class="slds-form-element__control slds-m-bottom_x-small">
+                                <div class="slds-form-element__static justify" style="font-size:14px;">
+                                    {c.Hook_That_the_Promo_Text_Should_Leverage__c}</div>
+                            </div>
+                        </div>
+
+                        <div if:true={c.Promo_Text_Focus_Area__c}>
+                            <span class="slds-form-element__label">
+                                <bold style="font-size:13px;">Promo Text Focus Area</bold>
+                            </span>
+                            <br />
+                            <div class="slds-form-element__control slds-m-bottom_x-small">
+                                <div class="slds-form-element__static justify" style="font-size:14px;">
+                                    {c.Promo_Text_Focus_Area__c}</div>
+                                <br />
+                            </div>
+                        </div>
+
+                        <div if:true={c.Sexual_Content_Rating__c}>
+                            <!--where to end the div tag-->
+                            <span class="slds-form-element__label">
+                                <bold style="font-size:13px;">Sexual Content Rating</bold>
+                            </span>
+                            <div class="slds-form-element__control slds-m-bottom_x-small">
+                                <div class="slds-form-element__static justify" style="font-size:14px;">
+                                    {c.Sexual_Content_Rating__c}</div>
+                                  
+                                <p class="slds-m-left_large">
+                                    <small>
+                                        <span class="slds-form-element__label">
+                                            <strong>Rating Descriptions</strong>
+                                        </span>
+                                        <br />
+                                        <strong>Simmering:</strong>
+                                        <br /> These titles are sweet. They may focus on love but not always its
+                                        physical expression.
+                                        The characters are emotionally engaged, but may have little physical contact, or
+                                        the contact is hinted at, or “off the page.”
+                                        <br />
+
+                                        <strong>Steamy:</strong>
+                                        <br /> These titles turn up the heat. Characters engage in sexual activities but
+                                        descriptions
+                                        are not overly explicit.
+                                        <br />
+
+                                        <strong>Searing:</strong>
+                                        <br /> The relationship is the focal point of the book. Sex scenes and physical
+                                        descriptions,
+                                        while detailed, are not graphic.
+                                        <br />
+
+                                        <strong>Scorching:</strong>
+                                        <br /> The relationship between the protagonists still takes center stage, but
+                                        the love
+                                        scenes are given equal weight and the language is graphic.
+                                    </small>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div if:true={c.Violence_Ratings__c}>
+                            <!--Where to end this div tag-->
+                            <span class="slds-form-element__label">
+                                <bold style="font-size:13px;">Violence Ratings</bold>
+                            </span>
+                            <div class="slds-form-element__control slds-m-bottom_x-small">
+                                <div class="slds-form-element__static justify" style="font-size:14px;"> {c.Violence_Ratings__c}
+                                </div>
+                               
+                                <p class="slds-m-left_large">
+                                    <small class="text-muted">
+                                        <span class="slds-form-element__label">
+                                        <strong>Rating Descriptions</strong>
+                                        </span>
+                                        <br />
+                                        <strong>Mild (PG):</strong>
+                                        <br /> Violence “off the page”—indicated or implied but not directly described.
+                                        <br />
+
+                                        <strong>Medium (PG-13):</strong>
+                                        <br /> Violence on and off the page; gory details withheld.
+                                        <br />
+
+                                        <strong>Strong (R):</strong>
+                                        <br /> Strong and frequent violence, described in detail.
+                                        <br />
+
+                                        <strong>Extreme (NC-17):</strong>
+                                        <br /> Intense and/or profuse violence; mature audience recommended.
+                                    </small>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!--<div class="row">
+                                <div class="col-lg-12">
+                                    <apex:outputLabel value="{!$ObjectType.Creative_Brief__c.fields.Violence_Description__c.label}"/><br />
+                                    <apex:outputText value="{!c.Violence_Description__c}" styleClass="rowEmptyCheck newLineFix" />
+                                </div>
+                            </div>
+                        </div>
+                        </div>  
+                        </div>
+            </div>-->
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- PHOTO SHOOT CONTENT SECTION STARTS FROM HERE   -->
+    <div class="row slds-m-top_small slds-m-bottom_large" id="psData">
+        <a href="#preProduction" class="slds-button slds-button_neutral" if:true={preProduction}>Pre-Production</a>
+        <a href="#psCreativeDirection" class="slds-button slds-button_neutral" if:true={psCreativeDirection}>Creative
+            Direction</a>
+        <a href="#postProduction" class="slds-button slds-button_neutral" if:true={postProduction}>Post-Production
+            Deliverables</a>
+    </div>
+
+
+    <!-- PRE-PRODUCTION CONTENT SECTION STARTS FROM HERE  -->
+
+    <div class="slds-card slds-m-bottom_large" if:true={preProduction}>
+        <div class="slds-grid slds-header slds-card__header" style="background-color: #EEEEEE;">
+            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                <div class="slds-grid slds-grid_vertical-align-center slds-size_3-of-4 slds-medium-size_2-of-3">
+
+                    <div class="slds-media__body slds-m-bottom_x-small">
+                        <span id="preProduction"> </span>
+
+                        <h1 class="slds-truncate" style="font-size:16px;">
+                            Pre-Production
+                        </h1>
+                    </div>
+                </div>
+
+            </header>
+            <div class="slds-einstein-header__actions">
+                <div class="slds-button-group slds-m-bottom_x-small" role="group" style="height:30px;">
+                    <a href="#top" class="slds-button slds-button_neutral">Top</a>
+                </div>
+            </div>
+        </div>
+        <div class="slds-card__body  slds-card__body_inner">
+
+            <div class="slds-form" role="list">
+
+                <div class="slds-grid slds-gutters">
+                    <div class="slds-col">
+                        <div class="slds-m-left_small">
+
+                            <div if:true={c.ps_date_of_shoot__c}>
+                                <span class="slds-form-element__label">
+                                    <bold style="font-size:13px;">Date of Shoot</bold>
+                                </span>
+                                <br />
+                                <div class="slds-form-element__control slds-m-bottom_x-small">
+                                    <div class="slds-form-element__static" style="font-size:14px;">
+                                        {c.ps_date_of_shoot__c}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div if:true={c.ps_Assets_Deliverable_Due_Date__c}>
+                                <span class="slds-form-element__label">
+                                    <bold style="font-size:13px;">Assets Deliverable Due Date</bold>
+                                </span>
+                                <br />
+                                <div class="slds-form-element__control slds-m-bottom_x-small">
+                                    <div class="slds-form-element__static" style="font-size:14px;">
+                                        {c.ps_Assets_Deliverable_Due_Date__c}</div>
+                                </div>
+                            </div>
+
+                            <div if:true={c.ps_Photo_Shoot_Description__c}>
+                                <span class="slds-form-element__label">
+                                    <bold style="font-size:13px;">Photo Shoot Description</bold>
+                                </span>
+                                <br />
+                                <div class="slds-form-element__control slds-m-bottom_x-small">
+                                    <div class="slds-form-element__static justify" style="font-size:14px;">
+                                        {c.ps_Photo_Shoot_Description__c}</div>
+                                </div>
+                            </div>
+
+                            <div if:true={c.ps_Photo_Shoot_Location__c}>
+                                <span class="slds-form-element__label">
+                                    <bold style="font-size:13px;">Photo Shoot Description</bold>
+                                </span>
+                                <br />
+                                <div class="slds-form-element__control slds-m-bottom_x-small">
+                                    <div class="slds-form-element__static" style="font-size:14px;">
+                                        {c.ps_Photo_Shoot_Location__c}</div>
+                                </div>
+                            </div>
+
+                            <div if:true={c.ps_Subject__c}>
+                                <span class="slds-form-element__label">
+                                    <bold style="font-size:13px;">Subject</bold>
+                                </span>
+                                <br />
+                                <div class="slds-form-element__control slds-m-bottom_x-small">
+                                    <div class="slds-form-element__static justify" style="font-size:14px;"> {c.ps_Subject__c}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div if:true={c.ps_Time_Period__c}>
+                                <span class="slds-form-element__label">
+                                    <bold style="font-size:13px;">Time Period</bold>
+                                </span>
+                                <br />
+                                <div class="slds-form-element__control slds-m-bottom_x-small">
+                                    <div class="slds-form-element__static" style="font-size:14px;">
+                                        {c.ps_Time_Period__c}</div>
+                                </div>
+                            </div>
+
+                            <div if:true={c.ps_Description_of_Characters__c}>
+                                <span class="slds-form-element__label">
+                                    <bold style="font-size:13px;">Description of Characters</bold>
+                                </span>
+                                <br />
+                                <div class="slds-form-element__control slds-m-bottom_x-small">
+                                    <div class="slds-form-element__static justify" style="font-size:14px;">
+                                        {c.ps_Description_of_Characters__c}</div>
+                                </div>
+                            </div>
+
+                            <div if:true={c.ps_Detailed_Physical_Descriptions__c}>
+                                <span class="slds-form-element__label">
+                                    <bold style="font-size:13px;">Detailed Physical Descriptions</bold>
+                                </span>
+                                <br />
+                                <div class="slds-form-element__control slds-m-bottom_x-small">
+                                    <div class="slds-form-element__static justify" style="font-size:14px;">
+                                        {c.ps_Detailed_Physical_Descriptions__c}</div>
+                                </div>
+                            </div>
+
+                            <div class="slds-form-element__control slds-m-bottom_x-small">
+                                <div class="slds-form-element__static" style="font-size:14px;">
+                                    <c-cb-gallery-external1 cbi={dpd}> </c-cb-gallery-external1>
+                                </div>
+                            </div>
+
+                            <div if:true={c.ps_Wardrobe__c}>
+                                <span class="slds-form-element__label">
+                                    <bold style="font-size:13px;">Wardrobe</bold>
+                                </span>
+                                <br />
+                                <div class="slds-form-element__control slds-m-bottom_x-small">
+                                    <div class="slds-form-element__static justify" style="font-size:14px;"> {c.ps_Wardrobe__c}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="slds-form-element__control slds-m-bottom_x-small">
+                                
+                                <div class="slds-form-element__static" style="font-size:14px;">
+                                    <c-cb-gallery-external1 data-id="w"> </c-cb-gallery-external1>
+                                </div>
+                            </div>
+
+                            <div if:true={c.ps_Hair_Makeup__c}>
+                                <span class="slds-form-element__label">
+                                    <bold style="font-size:13px;">Hair & Makeup</bold>
+                                </span>
+                                <br />
+                                <div class="slds-form-element__control slds-m-bottom_x-small">
+                                    <div class="slds-form-element__static justify" style="font-size:14px;">
+                                        {c.ps_Hair_Makeup__c}</div>
+                                </div>
+                            </div>
+
+                            <div class="slds-form-element__control slds-m-bottom_x-small">
+                                <div class="slds-form-element__static" style="font-size:14px;">
+                                    <c-cb-gallery-external1 data-id="hm"> </c-cb-gallery-external1>
+                                </div>
+                            </div>
+
+                            <div if:true={c.ps_Props__c}>
+                                <span class="slds-form-element__label">
+                                    <bold style="font-size:13px;">Props</bold>
+                                </span>
+                                <br />
+                                <div class="slds-form-element__control slds-m-bottom_x-small">
+                                    <div class="slds-form-element__static justify" style="font-size:14px;"> {c.ps_Props__c}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="slds-form-element__control slds-m-bottom_x-small">
+                                <div class="slds-form-element__static" style="font-size:14px;">
+                                    <c-cb-gallery-external1 file={p}> </c-cb-gallery-external1>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CREATIVE DIRECTION SECTION STARTS FROM HERE -->
+    <div class="slds-card slds-m-bottom_large" if:true={psCreativeDirection}>
+        <div class="slds-grid slds-header slds-card__header" style="background-color: #EEEEEE;">
+            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                <div class="slds-grid slds-grid_vertical-align-center slds-size_3-of-4 slds-medium-size_2-of-3">
+
+                    <div class="slds-media__body slds-m-bottom_x-small">
+                        <span id="psCreativeDirection"> </span>
+
+                        <h1 class="slds-truncate" style="font-size:16px;">
+                            Creative Direction
+                        </h1>
+                    </div>
+                </div>
+
+            </header>
+            <div class="slds-einstein-header__actions">
+                <div class="slds-button-group slds-m-bottom_x-small" role="group" style="height:30px;">
+                    <a href="#top" class="slds-button slds-button_neutral">Top</a>
+                </div>
+            </div>
+        </div>
+        <div class="slds-card__body  slds-card__body_inner">
+
+            <div class="slds-form" role="list">
+
+                <div class="slds-grid slds-gutters">
+                    <div class="slds-col">
+                        <div class="slds-m-left_small">
+
+                            <div if:true={c.ps_Personality_Descriptions__c}>
+                                <span class="slds-form-element__label">
+                                    <bold style="font-size:13px;">Personality Descriptions</bold>
+                                </span>
+                                <br />
+                                <div class="slds-form-element__control slds-m-bottom_x-small">
+                                    <div class="slds-form-element__static" style="font-size:14px;">
+                                        {c.ps_Personality_Descriptions__c}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div if:true={c.ps_Location__c}>
+                                <span class="slds-form-element__label">
+                                    <bold style="font-size:13px;">Location</bold>
+                                </span>
+                                <br />
+                                <div class="slds-form-element__control slds-m-bottom_x-small">
+                                    <div class="slds-form-element__static" style="font-size:14px;"> {c.ps_Location__c}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="slds-form-element__control slds-m-bottom_x-small">
+                                
+                                <div class="slds-form-element__static" style="font-size:14px;">
+                                    <c-cb-gallery-external1 file={location}> </c-cb-gallery-external1>
+                                </div>
+                            </div>
+
+                            <div if:true={c.ps_Mood_Tone__c}>
+                                <span class="slds-form-element__label">
+                                    <bold style="font-size:13px;">Mood/Tone</bold>
+                                </span>
+                                <br />
+                                <div class="slds-form-element__control slds-m-bottom_x-small">
+                                    <div class="slds-form-element__static" style="font-size:14px;"> {c.ps_Mood_Tone__c}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="slds-form-element__control slds-m-bottom_x-small">
+                                <div class="slds-form-element__static" style="font-size:14px;">
+                                    <c-cb-gallery-external1 file={mt}> </c-cb-gallery-external1>
+                                </div>
+                            </div>
+
+                            <div if:true={c.ps_Lighting_Description__c}>
+                                <span class="slds-form-element__label">
+                                    <bold style="font-size:13px;">Lighting Description</bold>
+                                </span>
+                                <br />
+                                <div class="slds-form-element__control slds-m-bottom_x-small">
+                                    <div class="slds-form-element__static justify" style="font-size:14px;">
+                                        {c.ps_Lighting_Description__c}</div>
+                                </div>
+                            </div>
+                            <div class="slds-form-element__control slds-m-bottom_x-small">
+                                <div class="slds-form-element__static" style="font-size:14px;">
+                                    <c-cb-gallery-external1 file={lighting}> </c-cb-gallery-external1>
+                                </div>
+                            </div>
+
+                            <div if:true={c.ps_Shot_List__c}>
+                                <span class="slds-form-element__label">
+                                    <bold style="font-size:13px;">Shot List</bold>
+                                </span>
+                                <br />
+                                <div class="slds-form-element__control slds-m-bottom_x-small">
+                                    <div class="slds-form-element__static justify" style="font-size:14px;"> {c.ps_Shot_List__c}
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 
+                            <apex:variable value="{!imageGalleryMap['layout']}" var="layoutSize"/>
+                            <apex:outputText rendered="{!layoutSize.size>0}"><h5>Layout Examples</h5></apex:outputText>
+                            <div class="row">
+                                <c:cb_gallery_external cbiList="{!imageGalleryMap['layout']}" />
+                            </div>
+                        </div>-->
+                            <template if:true={layout}>
+                                <div class="slds-form-element__control slds-m-bottom_x-small">
+                                    <div class="slds-form-element__static" style="font-size:14px;"> {layoutSize} </div>
+                                    <div class="slds-form-element__static" style="font-size:14px;">
+                                        <c-cb-gallery-external1 file={layout}> </c-cb-gallery-external1>
+                                    </div>
+                                </div>
+                            </template>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- POST-PRODUCTION DELIVERABLES SECTION STARTS FROM HERE-->
+    <div class="slds-card slds-m-bottom_large" if:true={postProduction}>
+        <div class="slds-grid slds-header slds-card__header" style="background-color: #EEEEEE;">
+            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                <div class="slds-grid slds-grid_vertical-align-center slds-size_3-of-4 slds-medium-size_2-of-3">
+
+                    <div class="slds-media__body slds-m-bottom_x-small">
+                        <span id="postProduction"> </span>
+
+
+                        <h1 class="slds-truncate" style="font-size:16px;">
+                            Post-Production Deliverables
+                        </h1>
+                    </div>
+                </div>
+
+            </header>
+            <div class="slds-einstein-header__actions">
+                <div class="slds-button-group slds-m-bottom_x-small" role="group" style="height:30px;">
+                    <a href="#top" class="slds-button slds-button_neutral">Top</a>
+                </div>
+            </div>
+        </div>
+        <div class="slds-card__body  slds-card__body_inner">
+
+            <div class="slds-form" role="list">
+
+                <div class="slds-grid slds-gutters">
+                    <div class="slds-col">
+                        <div class="slds-m-left_small">
+                            <div if:true={c.ps_Personality_Descriptions__c}>
+                                <span class="slds-form-element__label">
+                                    <bold style="font-size:13px;">Personality Descriptions</bold>
+                                </span>
+                                <br />
+                                <div class="slds-form-element__control slds-m-bottom_x-small">
+                                    <div class="slds-form-element__static justify" style="font-size:14px;">
+                                        {c.ps_Personality_Descriptions__c}</div>
+                                </div>
+                            </div>
+                            <div class="slds-form-element__control slds-m-bottom_x-small">
+                                
+                                <div class="slds-form-element__static" style="font-size:14px;">
+                                    <h3>Instructions for delivering imagery to Amazon Publishing.</h3>
+                                    <p>Once the shoot is complete, please submit all imagery in an online lightbox so we
+                                        can
+                                        make a selection for the front cover. Please let us know if you prefer to
+                                        deliver
+                                        by an alternative method.</p>
+                                    <p>Once final artwork is selected, please carry out any needed minor adjustments
+                                        (i.e.,
+                                        color/exposure corrections). We ask that final images be supplied as high
+                                        resolution
+                                        TIFF and RAW files via S3.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+</template>

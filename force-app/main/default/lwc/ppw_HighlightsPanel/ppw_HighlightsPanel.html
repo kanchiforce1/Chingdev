@@ -1,0 +1,57 @@
+<template>
+	<div class="slds-page-header" if:true={project}>
+		<div class="slds-page-header__row">
+			<div class="slds-page-header__col-title">
+				<div class="slds-media">
+					<div class="slds-media__figure"> <span class="slds-icon_container slds-icon-standard-opportunity"
+							title="opportunity">
+
+							<c-svg-icon svgicon="/custom-sprite/svg/symbols.svg#custom68"
+								style-class="slds-icon slds-page-header__icon iconColorProject" aria-hidden="true">
+							</c-svg-icon>
+							<span class="slds-assistive-text">Project Details</span>
+						</span>
+					</div>
+					<div class="slds-media__body" if:true={project.Title__r}>
+						<div class="slds-page-header__name">
+							<div class="slds-page-header__name-title">
+								<h1>
+									<span class="slds-page-header__title slds-truncate">
+										<a name={project.Title__r.Id} onclick={nagivateTotitle}
+											target="_blank">{project.Title__r.Full_Title_Name__c}</a>
+
+									</span>
+								</h1>
+							</div>
+						</div>
+						<p class="slds-page-header__name-meta">{project.Name} • {project.Title__r.Marty_Title_ID__c} •
+							{project.Title__r.Status__c}</p>
+					</div>
+
+					<!--Series version of code starts from here-->
+					<div class="slds-media__body" if:true={project.Series__r}>
+						<div class="slds-page-header__name">
+							<div class="slds-page-header__name-title">
+								<h1>
+									<span class="slds-page-header__title slds-truncate">
+										<a name={project.Series__r.Id} onclick={nagivateTotitle}
+											target="_blank">{project.Series__r.Series_Title__c}</a>
+
+									</span>
+								</h1>
+							</div>
+						</div>
+						<p class="slds-page-header__name-meta">{project.Name} • {project.Series__r.Wombat_Series_ID__c}
+							</p>
+					</div>
+
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+</template>

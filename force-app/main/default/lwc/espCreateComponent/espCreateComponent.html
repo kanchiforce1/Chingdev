@@ -1,0 +1,423 @@
+<template>
+    <template if:true={espComplete_Cancel}>
+
+        <div class="intro slds-m-top_small">
+            The review that you are trying to access is no longer available. It may have been cancelled or compelted
+            in the past.
+            If you feel that this is an error, please reach out to your Vendor Management representative, or Contact
+            Us above.
+        </div>
+    </template>
+    <lightning-record-edit-form record-id={esprec.Id} density="comfy" object-api-name="ESP__c"
+    onsuccess={handleSuccess} onsubmit={handleSubmit} if:true={espStatusNew_Review}>
+    <template if:true={esprec}>
+        <span id="top"> </span>
+        <div class="intro" if:true={espStatusNew}>
+
+
+            <p>
+            Please continue filling out Editorial Service Performance data for 
+            <span style="font-weight:bold;" class="slds-m-left_xx-small">{esprec.Title__r.Name} (ID:{esprec.Title__r.Marty_Title_ID__c})</span>. 
+
+            Remember to click “Save” after entering any new information. 
+            Alerts will be sent to the Amazon Publishing team according to the information you provide. 
+            Use the Notes fields to provide any pertinent details. Once all editorial services are finished, click “Complete” to close out the review. </p>
+
+            <p class="intro slds-m-bottom_small"> The Amazon Publishing team will follow up if any further detail or action is required. Thank you </p>
+
+
+
+
+
+
+<!--
+
+
+            <p>Welcome to the editorial service review for <span style="font-weight:10;">{esprec.Title__r.Name} (ID:
+                    {esprec.Title__r.Marty_Title_Id__c})</span>.</p>
+            <br />
+            <p>If <span style="font-weight:10;">{esprec.Title__r.Name} (ID: {esprec.Title__r.Marty_Title_Id__c})</span>
+                is not the title you intended to review, please scroll to the bottom of this page and click “Cancel.”
+            </p>
+            <br />
+            <p>Please fill out the below form as you manage the project. Once you click “Save” at the bottom of this
+                page, you can return to the review via the Dashboard. Please return to the review throughout the project
+                to enter additional information as services progress.
+                Alerts will be sent to the Vendor Management team according to the information you provide.
+                Use the Notes fields to provide any pertinent details and provide links to OnStage threads as necessary.
+                Once all editorial services are finished, click “Complete” to close out the review.</p>
+            <br />
+            <p>The VM team will follow up if any further detail or action is required. Thank you!</p> -->
+        </div>
+
+        
+
+
+        <!--    <div class="intro" >
+            <p>Welcome to the editorial service review for <span style="font-weight:10;">{esprec.Title__r.Name} (ID: {esprec.Title__r.Marty_Title_Id__c})</span>.</p>
+            <br /><p>If <span style="font-weight:10;">{esprec.Title__r.Name} (ID: {esprec.Title__r.Marty_Title_Id__c})</span> is not the title you intended to review, please scroll to the bottom of this page and click “Cancel.”</p>
+            <br /><p>Please fill out the below form as you manage the project. Once you click “Save” at the bottom of this page, you can return to the review via the Dashboard. Please return to the review throughout the project to enter additional information as services progress. 
+            Alerts will be sent to the Vendor Management team according to the information you provide. 
+            Use the Notes fields to provide any pertinent details and provide links to OnStage threads as necessary. Once all editorial services are finished, click “Complete” to close out the review.</p>
+            <br /><p>The VM team will follow up if any further detail or action is required. Thank you!</p>
+        </div>  -->
+
+        <template if:true={espInprogress}>
+
+
+            <div class="intro">
+                <p>Please continue the service review for <span style="font-weight:10;">{esprec.Title__r.Name} (ID:
+                        {esprec.Title__r.Marty_Title_Id__c})</span>. Remember to click “Save” after entering any new
+                    information.
+                    Alerts will be sent to the Vendor Management team according to the information you provide.
+                    Use the Notes fields to provide any pertinent details and provide links to OnStage threads as
+                    necessary.
+                    Once all editorial services are finished, click “Complete” to close out the review.</p>
+                <br />
+                <p>The VM team will follow up if any further detail or action is required. Thank you!</p>
+            </div>
+        </template>
+
+       
+
+        <!-- GENERAL -->
+        <div class="slds-card slds-m-bottom_large">
+            <div class="slds-grid slds-header slds-card__header" style="background-color: #EEEEEE;">
+                <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                    <div class="slds-grid slds-grid_vertical-align-center slds-size_3-of-4 slds-medium-size_2-of-3">
+
+                        <div class="slds-media__body slds-m-bottom_x-small">
+                            <span id="General"> </span>
+
+                            <h1 class="slds-truncate" style="font-size:16px;">
+                                General
+                            </h1>
+                        </div>
+                    </div>
+
+                </header>
+                <div class="slds-einstein-header__actions">
+                    <div class="slds-button-group slds-m-bottom_x-small" role="group" style="height:30px;">
+                        <a href="#top" class="slds-button slds-button_neutral">Top</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slds-card__body slds-card__body_inner slds-m-bottom_large">
+
+                <div class="description">Update this section throughout the project if you see any of the below issues
+                    arise. If you select yes, please provide details in the Notes field.</div>
+            
+            <div class="slds-form" role="list">
+            
+
+                    <legend class="slds-form-element__legend slds-form-element__label">Project Manager</legend>
+                    <lightning-input-field field-name="Project_Manager__c" variant="label-hidden">
+                    </lightning-input-field>
+                    <legend class="slds-form-element__legend slds-form-element__label">Receptive_to_Edits</legend>
+                    <lightning-input-field field-name="Receptive_to_Edits__c" variant="label-hidden">
+                    </lightning-input-field>
+                    <legend class="slds-form-element__legend slds-form-element__label">Software/Technology Issues
+                    </legend>
+                    <lightning-input-field field-name="Software_Technology_Issues__c" variant="label-hidden">
+                    </lightning-input-field>
+                    <legend class="slds-form-element__legend slds-form-element__label">Unique Author Preferences
+                    </legend>
+                    <lightning-input-field field-name="Unique_Author_Preferences__c" variant="label-hidden">
+                    </lightning-input-field>
+                    <legend class="slds-form-element__legend slds-form-element__label">Complex Formatting Elements
+                    </legend>
+                    <lightning-input-field field-name="Complex_Formatting_Elements__c" variant="label-hidden">
+                    </lightning-input-field>
+                  
+
+            </div>
+        </div>
+        </div>
+
+
+
+
+        <!-- KICKOFF -->
+
+        <div class="slds-card slds-m-bottom_large">
+            <div class="slds-grid slds-header slds-card__header" style="background-color: #EEEEEE;">
+                <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                    <div class="slds-grid slds-grid_vertical-align-center slds-size_3-of-4 slds-medium-size_2-of-3">
+
+                        <div class="slds-media__body slds-m-bottom_x-small">
+                            <span id="ProjectKickoff"> </span>
+                            <h1 class="slds-truncate" style="font-size:16px;">
+                                Project Kickoff
+                            </h1>
+                        </div>
+                    </div>
+
+                </header>
+                <div class="slds-einstein-header__actions">
+                    <div class="slds-button-group slds-m-bottom_x-small" role="group" style="height:30px;">
+                        <a href="#top" class="slds-button slds-button_neutral">Top</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slds-card__body  slds-card__body_inner">
+                <div class="description">Use this section to log any delays in the project’s kickoff, selecting both
+                    extent and
+                    reason for the delay if applicable.</div>
+
+                <div class="slds-form" role="list">
+                    <lightning-input-field field-name='KO_Delay__c' onchange={onhandlekoDelay}></lightning-input-field>
+                    <template if:true={iskodelayval}>
+
+                        {iskodelayval}
+
+                        <lightning-input-field field-name='KO_DRC__c'></lightning-input-field>
+
+                    </template>
+                    <div> Kickoff Asset Delivery Delay </div>
+                    <lightning-input-field field-name='Asset_Delivery_Delay__c'></lightning-input-field>
+
+                    <template if:true={isAssetDelayDelivery}>
+
+
+                        <lightning-input-field field-name='KO_ADRC__c'></lightning-input-field>
+
+                    </template>
+
+                    <lightning-input-field field-name='Kickoff_Notes__c'></lightning-input-field>
+                </div>
+            </div>
+        </div>
+            <!-- COPYEDITING -->
+            <div class="slds-card slds-m-bottom_large">
+                <div class="slds-grid slds-header slds-card__header" style="background-color: #EEEEEE;">
+                    <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                        <div class="slds-grid slds-grid_vertical-align-center slds-size_3-of-4 slds-medium-size_2-of-3">
+
+                            <div class="slds-media__body slds-m-bottom_x-small">
+                                <span id="Copyediting"> </span>
+                                <h1 class="slds-truncate" style="font-size:16px;">
+                                    Copyediting
+                                </h1>
+                            </div>
+                        </div>
+
+                    </header>
+                    <div class="slds-einstein-header__actions">
+                        <div class="slds-button-group slds-m-bottom_x-small" role="group" style="height:30px;">
+                            <a href="#top" class="slds-button slds-button_neutral">Top</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slds-card__body  slds-card__body_inner">
+                    <div class="description">Use this section to log pertinent information about the copyedit stage.
+                    </div>
+                    <div class="slds-form" role="list">
+                        <lightning-input-field onchange={onhandleCopyEditingPerformed}
+                            field-name='Copyedit_Performed__c'>
+                        </lightning-input-field>
+
+
+
+                        <template if:true={isCopyedit_Performed}>
+
+                            <lightning-input-field field-name='Copyeditor__c'></lightning-input-field>
+
+                            <lightning-input-field onchange={onhandleCopyEditingDelay}
+                                field-name='Copyediting_Delay__c'>
+                            </lightning-input-field>
+                            <template if:true={isCopyedit_Delay}>
+                                <lightning-input-field field-name='Copyediting_Delay_Root_Cause__c'>
+                                </lightning-input-field>
+                            </template>
+
+                            <lightning-input-field field-name='Level_Of_Copyedit_Requested__c'></lightning-input-field>
+                            <lightning-input-field field-name='Copyedit_Sample_Status__c'></lightning-input-field>
+                            <lightning-input-field field-name='Sample_Notes__c'></lightning-input-field>
+                            <lightning-input-field field-name='Number_of_Copyedit_Revisions__c'></lightning-input-field>
+                            <lightning-input-field field-name='Additional_Author_Changes__c'></lightning-input-field>
+                            <lightning-input-field field-name='Additional_Author_Change_Count_CE__c'>
+                            </lightning-input-field>
+                            <lightning-input-field field-name='Extensive_Reconciliation_Required_CE__c'>
+                            </lightning-input-field>
+                            <lightning-input-field field-name='Specific_Freelancer_Requested__c'>
+                            </lightning-input-field>
+                            <lightning-input-field field-name='Author_Feedback_Given_On_Freelancer__c'>
+                            </lightning-input-field>
+                            <lightning-input-field field-name='Author_Updated_Bio_CE__c'></lightning-input-field>
+
+                            <lightning-textarea name='Copyediting_Notes__c' label="Copyediting Notes">
+                            </lightning-textarea>
+
+                            <lightning-input-field onchange={onhandleAdditionalCopyEditingPerformed}
+                                field-name='Additional_Copyediting_Performed__c'></lightning-input-field>
+                            <template if:true={isAdditionalCopyedit_Performed}>
+                                <lightning-input-field field-name='CE2_Number_Of_Copyedit_Revisions__c'>
+                                </lightning-input-field>
+                                <lightning-input-field field-name='Additional_Author_Changes_CE2__c'>
+                                </lightning-input-field>
+                                <lightning-input-field field-name='Additional_Author_Change_Count_CE2__c'>
+                                </lightning-input-field>
+                                <lightning-input-field field-name='Extensive_Reconciliation_Required_CE2__c'>
+                                </lightning-input-field>
+                            </template>
+
+                        </template>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- PROOFREADING -->
+
+            <div class="slds-card slds-m-bottom_large">
+                <div class="slds-grid slds-header slds-card__header" style="background-color: #EEEEEE;">
+                    <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                        <div class="slds-grid slds-grid_vertical-align-center slds-size_3-of-4 slds-medium-size_2-of-3">
+
+                            <div class="slds-media__body slds-m-bottom_x-small">
+                                <span id="Proofreading"> </span>
+                                <h1 class="slds-truncate" style="font-size:16px;">
+                                    Proofreading
+                                </h1>
+                            </div>
+                        </div>
+
+                    </header>
+                    <div class="slds-einstein-header__actions">
+                        <div class="slds-button-group slds-m-bottom_x-small" role="group" style="height:30px;">
+                            <a href="#top" class="slds-button slds-button_neutral">Top</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slds-card__body  slds-card__body_inner">
+                    <div class="description">Use this section to log pertinent information about the proofread stage.
+                    </div>
+                    <div class="slds-form" role="list">
+
+                        <lightning-input-field onchange={onhandleProofReadingPerformed}
+                            field-name='Proofread_Performed__c'>
+                        </lightning-input-field>
+                        <template if:true={isProofReading_Performed}>
+
+                            <lightning-input-field field-name='Proofreader__c'></lightning-input-field>
+
+                            <lightning-input-field onchange={onhandleProofReadingDelay}
+                                field-name='Proofreading_Delays__c'>
+                            </lightning-input-field>
+                            <template if:true={isProofReading_Delay}>
+                                <lightning-input-field field-name='Proofreading_Delay_Root_Cause__c	'>
+                                </lightning-input-field>
+                            </template>
+
+                            <lightning-input-field field-name='Level_Of_Proofread_Requested__c'></lightning-input-field>
+                            <lightning-input-field field-name='Number_Of_Proofread_Revisions__c'>
+                            </lightning-input-field>
+                            <lightning-input-field field-name='Proofread_Format__c'></lightning-input-field>
+
+                            <lightning-input-field field-name='Additional_Author_Changes_PR__c'></lightning-input-field>
+                            <lightning-input-field field-name='Additional_Author_Change_Count_PR__c'>
+                            </lightning-input-field>
+                            <lightning-input-field field-name='Extensive_Reconciliation_Required_PR__c'>
+                            </lightning-input-field>
+                            <lightning-input-field field-name='Specific_Freelancer_Requested_PR__c'>
+                            </lightning-input-field>
+                            <lightning-input-field field-name='Author_Feedback_Given_On_Freelancer_PR__c'>
+                            </lightning-input-field>
+                            <lightning-input-field field-name='Author_Updated_Bio_PR__c'></lightning-input-field>
+                            <lightning-textarea name='Proofreading_Notes__c' label="Proofreading Notes">
+                            </lightning-textarea>
+
+                        </template>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+            <!-- COLD READ -->
+            <div class="slds-card slds-m-bottom_large">
+                <div class="slds-grid slds-header slds-card__header" style="background-color: #EEEEEE;">
+                    <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                        <div class="slds-grid slds-grid_vertical-align-center slds-size_3-of-4 slds-medium-size_2-of-3">
+
+                            <div class="slds-media__body slds-m-bottom_x-small">
+                                <span id="ColdRead"> </span>
+                                <h1 class="slds-truncate" style="font-size:16px;">
+                                    Cold Read
+                                </h1>
+                            </div>
+                        </div>
+
+                    </header>
+                    <div class="slds-einstein-header__actions">
+                        <div class="slds-button-group slds-m-bottom_x-small" role="group" style="height:30px;">
+                            <a href="#top" class="slds-button slds-button_neutral">Top</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slds-card__body  slds-card__body_inner">
+                    <div class="description">If a cold read was performed, use this section to log pertinent information about
+                        the
+                        cold read stage.</div>
+                    <div class="slds-form" role="list">
+                        <lightning-input-field onchange={onhandleColdReadPerformed} field-name='Cold_Read_Performed__c'>
+                        </lightning-input-field>
+                        <template if:true={isColdRead_Performed}>
+            
+            
+                            <lightning-input-field field-name='Cold_Reader__c'></lightning-input-field>
+                            <lightning-input-field field-name='Cold_Read_Results_Delivered__c'></lightning-input-field>
+            
+            
+                            <lightning-input-field onchange={onhandleColdReadDelay} field-name='Cold_Read_Delays__c'>
+                            </lightning-input-field>
+                            <template if:true={isColdRead_Delay}>
+                                <lightning-input-field field-name='Cold_Read_Delay_Root_Cause__c'></lightning-input-field>
+                            </template>
+            
+                            <lightning-input-field field-name='Number_Of_Cold_Read_Revisions__c'></lightning-input-field>
+                            <lightning-input-field field-name='Additional_Author_Changes_CR__c'></lightning-input-field>
+                            <lightning-input-field field-name='Additional_Author_Change_Count_CR__c'></lightning-input-field>
+                            <lightning-input-field field-name='Extensive_Reconciliation_Required_CR__c'></lightning-input-field>
+                            <lightning-input-field field-name='Planned_Or_Reactive__c'></lightning-input-field>
+                            <lightning-input-field field-name='Planned_Or_Reactive__c'></lightning-input-field>
+                            <lightning-input-field field-name='Reason_For_The_Cold_Read__c'></lightning-input-field>
+                            <lightning-textarea name='Cold_Read_Notes__c' label="Cold Read Notes"></lightning-textarea>
+                            <lightning-input-field field-name='Additional_Author_Changes_CR__c'></lightning-input-field>
+                        </template>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Buttons Sections-->
+            <div class="slds-m-top_x-large slds-m-left_xx-small">
+                <button class="slds-button slds-button_success bwidth1" data-id="Save" onclick={handleClick}
+                        type="submit">Save</button>
+
+                <button class="slds-button slds-button_success bwidth1" data-id="Complete" onclick={handleClick}
+                    type="submit">Complete</button>
+                <button class="slds-button slds-button_success bwidth1" data-id="Cancel" onclick={handleClick}
+                    type="submit">Cancel</button>
+                <!--  <lightning-button type="submit" label="Save">
+        </lightning-button>
+        <lightning-button class="slds-m-top_small" onclick={cancel} label="Cancel">
+                    </lightning-button> 
+        <lightning-button class="slds-m-left_small" onclick={handleComplete} type="submit" label="Complete">
+        </lightning-button> -->
+
+            </div>
+          
+    </template>
+    </lightning-record-edit-form>
+</template>

@@ -1,0 +1,344 @@
+<template>
+
+	<template for:each={projectServices} for:item="a">
+	
+		
+			
+			<div class="slds-m-left_x-large slds-m-right_x-large slds-m-top_x-small" if:true={a.value.isbundle} key={a.value.bId}>
+				<div class="slds-card slds-card_boundary" >
+				
+						<div style="cursor: pointer;background-color:#F3F2F2;padding:0.89rem;" onclick={accordianToggle} data-name={a.value.bId}>
+							<div class="slds-clearfix">
+								
+							
+								<div class="slds-float_left">
+									<span> {a.key}</span> &nbsp; &nbsp; &nbsp;  
+								</div>
+								
+								
+								<div class="slds-float_right">
+								
+								
+								</div>
+							</div>
+						</div>
+						<div class="slds-card__body slds-card__body_inner slds-hide slds-grid" data-value={a.value.bId} >
+							<template for:each={a.value.bundle} for:item="b" if:true={a.value.isbundle}>
+								<div class="slds-card slds-card_boundary" if:true={b.ps} key={b.ps.Id}>
+									<div style="cursor: pointer;background-color:#F3F2F2;padding:0.89rem;" onclick={accordianToggle}
+										data-name={b.ps.Id}>
+										<div class="slds-clearfix">
+						
+										
+											<div class="slds-float_left">
+												<span> {a.key}</span> &nbsp; &nbsp; &nbsp; <span class={b.ps.badgeClass}>{b.ps.Status__c} - {b.ps.Chatter_Count_Internal__c}</span>
+											</div>
+						
+						
+						
+										</div>
+									</div>
+						
+									<div class="slds-card__body slds-card__body_inner slds-hide slds-grid" data-value={b.ps.Id} if:true={b.ps}
+										key={b.ps.Id}>
+										<div class="slds-col slds-size_6-of-12">
+											<div class="slds-wrap">
+												<div class="slds-col slds-m-bottom_x-small">
+													<label class="slds-form-element__label"> {isSystemAdmin} Service Name </label>
+													<div class="slds-form-element__control">
+														<div class="slds-form-element__static"> {b.ps.Service_Name__c}</div>
+													</div>
+												</div>
+												<div class="slds-col slds-m-bottom_x-small">
+													<label class="slds-form-element__label"> Service Type </label>
+													<div class="slds-form-element__control">
+														<div class="slds-form-element__static"> {b.ps.Service_Type_Complexity__c} - {b.ps.Chatter_Count_Internal__c}</div>
+													</div>
+												</div>
+												<div class="slds-col slds-m-bottom_x-small">
+													<label class="slds-form-element__label"> Vendor </label>
+													<div class="slds-form-element__control" if:true={b.ps.Vendor__r}>
+														<div class="slds-form-element__static"> {b.ps.Vendor__r.Name} </div>
+													</div>
+												</div>
+												<div class="slds-col slds-m-bottom_x-small">
+													<label class="slds-form-element__label"> Base Amount </label>
+													<c-custom-help-text text="Amount without the rush fee or CWP Program Fee added."
+														style-class="slds-icon-text-default ms-help-icon" icon-name="utility:info">
+													</c-custom-help-text>
+													<div class="slds-form-element__control">
+														<div class="slds-form-element__static"> {b.ps.Base_Amount_with_Currency__c}</div>
+													</div>
+												</div>
+												<div class="slds-col slds-m-bottom_x-small">
+													<label class="slds-form-element__label"> Additional Rush Fee </label>
+													<div class="slds-form-element__control">
+														<div class="slds-form-element__static"> {b.ps.Rush_Fee__c}%</div>
+													</div>
+												</div>
+												<div class="slds-col slds-m-bottom_x-small">
+													<label class="slds-form-element__label"> Rate & Est. Cost </label>
+													<c-custom-help-text text="Calculated amount including Rush Fee"
+														style-class="slds-icon-text-default ms-help-icon" icon-name="utility:info">
+													</c-custom-help-text>
+													<div class="slds-form-element__control">
+														<div class="slds-form-element__static"> {b.ps.Rate_Amount__c}</div>
+													</div>
+												</div>
+												<div class="slds-col slds-m-bottom_x-small">
+													<label class="slds-form-element__label"> CWP Program Fee </label>
+													<c-custom-help-text
+														text="The CWP Program Fee is the fee APub pays to do business with MBO or Talentwave."
+														style-class="slds-icon-text-default ms-help-icon" icon-name="utility:info">
+													</c-custom-help-text>
+													<div class="slds-form-element__control">
+														<div class="slds-form-element__static"> {b.ps.MBO_Fee_with_Currency__c}</div>
+													</div>
+												</div>
+												<div class="slds-col slds-m-bottom_x-small">
+													<label class="slds-form-element__label"> Total Rate & Est. Cost </label>
+													<c-custom-help-text text="Total calculated amount including Rush Fee and CWP Program Fee. 
+																							For vendor task start dates, please open the service for further details."
+														style-class="slds-icon-text-default ms-help-icon" icon-name="utility:info">
+													</c-custom-help-text>
+													<div class="slds-form-element__control">
+														<div class="slds-form-element__static"> {b.ps.Total_Rate_Amount__c}</div>
+													</div>
+												</div>
+												<div class="slds-col slds-m-bottom_x-small">
+													<label class="slds-form-element__label"> Notes to Vendor </label>
+													<div class="slds-form-element__control">
+														<div class="slds-form-element__static"> {b.ps.Vendor_Notes_RT__c}</div>
+													</div>
+												</div>
+												<div class="slds-col slds-m-bottom_x-small">
+													<label class="slds-form-element__label"> Internal Service Notes </label>
+													<div class="slds-form-element__control">
+														<div class="slds-form-element__static"> {b.ps.Internal_Service_Notes__c}</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="slds-col slds-size_6-of-12">
+											<div class="slds-wrap">
+												<div class="slds-col slds-m-bottom_x-small">
+													<label class="slds-form-element__label"> Estimated Start Date </label>
+													<div class="slds-form-element__control">
+														<div class="slds-form-element__static">
+															<lightning-formatted-date-time value={b.ps.Estimated_Start_Date__c} year="numeric"
+																month="short" day="2-digit"> </lightning-formatted-date-time>
+														</div>
+													</div>
+												</div>
+												<div class="slds-col slds-m-bottom_x-small">
+													<label class="slds-form-element__label"> Estimated Completion Date </label>
+													<div class="slds-form-element__control">
+														<div class="slds-form-element__static">
+															<lightning-formatted-date-time value={b.ps.Estimated_Completion_Date__c}
+																year="numeric" month="short" day="2-digit"> </lightning-formatted-date-time>
+														</div>
+													</div>
+												</div>
+												<div class="slds-col slds-m-bottom_x-small">
+													<label class="slds-form-element__label"> Actual Start Date </label>
+													<div class="slds-form-element__control">
+														<div class="slds-form-element__static">
+															<lightning-formatted-date-time value={b.ps.Actual_Start_Date__c} year="numeric"
+																month="short" day="2-digit"> </lightning-formatted-date-time>
+														</div>
+													</div>
+												</div>
+												<div class="slds-col slds-m-bottom_x-small">
+													<label class="slds-form-element__label"> Actual Completion Date </label>
+													<div class="slds-form-element__control">
+														<div class="slds-form-element__static">
+															<lightning-formatted-date-time value={b.ps.Actual_Completion_Date__c} year="numeric"
+																month="short" day="2-digit"> </lightning-formatted-date-time>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</template>
+						</div>
+				</div>
+			</div>
+
+		
+		
+
+		<template for:each={a.value.ps} for:item="b" key={a} if:false={a.value.isbundle}>
+			<div class="slds-m-left_x-large slds-m-right_x-large slds-m-top_x-small" key={b.ps.Id} if:false={a.value.isbundle}>
+				<div class="slds-card slds-card_boundary" if:true={b.ps}>
+					<div style="cursor: pointer;background-color:#F3F2F2;padding:0.89rem;" onclick={accordianToggle} data-name={b.ps.Id}>
+						<div class="slds-clearfix">
+							
+							<!--Badge space-->
+							<div class="slds-float_left">
+								<span> {a.key}</span> &nbsp; &nbsp; &nbsp;  <span class={b.ps.badgeClass}>{b.ps.Status__c}</span> 
+							</div>
+							
+							
+							<div class="slds-float_right">
+								<span >  
+								
+										  <span class="slds-dropdown-trigger slds-dropdown-trigger_click">
+										
+											 
+											  <lightning-icon onclick={pushNotification} name={b.ps.Id} data-id={b.ps.Id} class="slds-button slds-button_icon slds-button_icon slds-button_icon-container slds-button_icon-small slds-global-actions__notifications slds-global-actions__item-action slds-incoming-notification" icon-name="utility:connected_apps" alternative-text="Connected" size="xx-small"
+            										title="xx-small size"></lightning-icon>
+											 
+											<span if:true={b.ps.Chatter_Count_Internal__c} aria-hidden="true" class="slds-notification-badge slds-incoming-notification slds-show-notification">{b.ps.Chatter_Count_Internal__c}</span>
+										</span>
+									
+								</span>
+								<span class="slds-badge slds-badge_lightest warningColor" if:true={b.ps.Master_PT_Service__c}> Master PT Service</span> &nbsp; 
+								<lightning-button-menu slot="actions" alternative-text="Show menu" icon-size="x-small" menu-alignment="right" onclick={btnmenu}>
+									<lightning-menu-item value="Edit Service" name={b.ps} data-id={b.ps.Id} prefix-icon-name="utility:edit" label="Edit Service" 
+														onclick={onbuttAction} disabled={b.ps.isEdit}> </lightning-menu-item>
+									<lightning-menu-item value="Confirmations Panel" name={b.ps} data-id={b.ps.Id} prefix-icon-name="utility:like" label="Confirmations Panel" 
+														onclick={onbuttAction} disabled={b.ps.isConfirmation}> </lightning-menu-item>
+									<lightning-menu-item value="Kick Off Service" name={b.ps} data-id={b.ps.Id} prefix-icon-name="utility:setup_assistant_guide" label="Kick Off Service"
+														 onclick={onbuttAction} disabled={b.ps.isKickedoff}></lightning-menu-item>
+									<lightning-menu-item value="Cancel Service" name={b.ps} data-id={b.ps.Id} prefix-icon-name="utility:clear" label="Cancel Service" 
+														onclick={onbuttAction} disabled={b.ps.isCancel}> </lightning-menu-item>
+									<lightning-menu-item value="Transmittal form" name={b.ps} data-id={b.ps.Id} prefix-icon-name="utility:paste" label="Transmittal form" 
+														onclick={onbuttAction} disabled={b.ps.isTransimittalForm}> </lightning-menu-item>
+									<lightning-menu-item value={b.ps.Name} onclick={psDetails} name={b.ps.Id} data-id={b.ps.Id} prefix-icon-name="utility:custom_apps" label={b.ps.Name} 
+														 > </lightning-menu-item>
+													 
+								</lightning-button-menu>
+							</div>
+						</div>
+					</div>
+
+					
+					<div class="slds-card__body slds-card__body_inner slds-hide slds-grid" data-value={b.ps.Id} if:true={b.ps} key={b.ps.Id}>
+						<div class="slds-col slds-size_6-of-12">
+							<div class="slds-wrap">
+								<div class="slds-col slds-m-bottom_x-small">
+									<label class="slds-form-element__label"> {isSystemAdmin} Service Name </label>
+									<div class="slds-form-element__control">
+										<div class="slds-form-element__static"> {b.ps.Service_Name__c}</div>
+									</div>
+								</div>
+								<div class="slds-col slds-m-bottom_x-small">
+									<label class="slds-form-element__label"> Service Type </label>
+									<div class="slds-form-element__control">
+										<div class="slds-form-element__static"> {b.ps.Service_Type_Complexity__c}</div>
+									</div>
+								</div>
+								<div class="slds-col slds-m-bottom_x-small">
+									<label class="slds-form-element__label"> Vendor </label>
+									<div class="slds-form-element__control" if:true={b.ps.Vendor__r}>
+										<div class="slds-form-element__static"> {b.ps.Vendor__r.Name} </div>
+									</div>
+								</div>
+								<div class="slds-col slds-m-bottom_x-small">
+									<label class="slds-form-element__label"> Base Amount </label>
+									<c-custom-help-text text="Amount without the rush fee or CWP Program Fee added." style-class="slds-icon-text-default ms-help-icon" icon-name="utility:info"> </c-custom-help-text>
+									<div class="slds-form-element__control">
+										<div class="slds-form-element__static"> {b.ps.Base_Amount_with_Currency__c}</div>
+									</div>
+								</div>
+								<div class="slds-col slds-m-bottom_x-small">
+									<label class="slds-form-element__label"> Additional Rush Fee </label>
+									<div class="slds-form-element__control">
+										<div class="slds-form-element__static"> {b.ps.Rush_Fee__c}%</div>
+									</div>
+								</div>
+								<div class="slds-col slds-m-bottom_x-small">
+									<label class="slds-form-element__label"> Rate & Est. Cost </label>
+									<c-custom-help-text text="Calculated amount including Rush Fee" style-class="slds-icon-text-default ms-help-icon" icon-name="utility:info"> </c-custom-help-text>
+									<div class="slds-form-element__control">
+										<div class="slds-form-element__static"> {b.ps.Rate_Amount__c}</div>
+									</div>
+								</div>
+								<div class="slds-col slds-m-bottom_x-small">
+									<label class="slds-form-element__label"> CWP Program Fee </label>
+									<c-custom-help-text text="The CWP Program Fee is the fee APub pays to do business with MBO or Talentwave." style-class="slds-icon-text-default ms-help-icon" icon-name="utility:info"> </c-custom-help-text>
+									<div class="slds-form-element__control">
+										<div class="slds-form-element__static"> {b.ps.MBO_Fee_with_Currency__c}</div>
+									</div>
+								</div>
+								<div class="slds-col slds-m-bottom_x-small">
+									<label class="slds-form-element__label"> Total Rate & Est. Cost </label>
+									<c-custom-help-text text="Total calculated amount including Rush Fee and CWP Program Fee. 
+										For vendor task start dates, please open the service for further details." style-class="slds-icon-text-default ms-help-icon" icon-name="utility:info"> </c-custom-help-text>
+									<div class="slds-form-element__control">
+										<div class="slds-form-element__static"> {b.ps.Total_Rate_Amount__c}</div>
+									</div>
+								</div>
+								<div class="slds-col slds-m-bottom_x-small">
+									<label class="slds-form-element__label"> Notes to Vendor </label>
+									<div class="slds-form-element__control">
+										<div class="slds-form-element__static"> {b.ps.Vendor_Notes_RT__c}</div>
+									</div>
+								</div>
+								<div class="slds-col slds-m-bottom_x-small">
+									<label class="slds-form-element__label"> Internal Service Notes </label>
+									<div class="slds-form-element__control">
+										<div class="slds-form-element__static"> {b.ps.Internal_Service_Notes__c}</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="slds-col slds-size_6-of-12">
+							<div class="slds-wrap">
+								<div class="slds-col slds-m-bottom_x-small">
+									<label class="slds-form-element__label"> Estimated Start Date </label>
+									<div class="slds-form-element__control">
+										<div class="slds-form-element__static">
+											<lightning-formatted-date-time value={b.ps.Estimated_Start_Date__c} year="numeric" month="short" day="2-digit"> </lightning-formatted-date-time>
+										</div>
+									</div>
+								</div>
+								<div class="slds-col slds-m-bottom_x-small">
+									<label class="slds-form-element__label"> Estimated Completion Date </label>
+									<div class="slds-form-element__control">
+										<div class="slds-form-element__static">
+											<lightning-formatted-date-time value={b.ps.Estimated_Completion_Date__c} year="numeric" month="short" day="2-digit"> </lightning-formatted-date-time>
+										</div>
+									</div>
+								</div>
+								<div class="slds-col slds-m-bottom_x-small">
+									<label class="slds-form-element__label"> Actual Start Date </label>
+									<div class="slds-form-element__control">
+										<div class="slds-form-element__static">
+											<lightning-formatted-date-time value={b.ps.Actual_Start_Date__c} year="numeric" month="short" day="2-digit"> </lightning-formatted-date-time>
+										</div>
+									</div>
+								</div>
+								<div class="slds-col slds-m-bottom_x-small">
+									<label class="slds-form-element__label"> Actual Completion Date </label>
+									<div class="slds-form-element__control">
+										<div class="slds-form-element__static">
+											<lightning-formatted-date-time value={b.ps.Actual_Completion_Date__c} year="numeric" month="short" day="2-digit"> </lightning-formatted-date-time>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			</template>
+
+	</template>
+	<template if:true={isCreatePsModal}>
+		<c-ppw-project-service-modal series={series} ongetrefreshpanels={getrefreshpanels} service-action-type="edit" project-service={projectService} project={project} onclosecreatepsmodal={closeCreatePsModal}></c-ppw-project-service-modal>
+	</template>
+	<template if:true={isKickOffModal}>
+		<c-ppw_-kick-off-modal series={series} ongetrefreshpanels={getrefreshpanels} project-service={projectService} project={project} onclosecreatepsmodal={closeCreatePsModal}></c-ppw_-kick-off-modal>
+	</template>
+	<template if:true={isCancelModal}>
+		<c-ppw_-cancel-p-s-modal series={series} ongetrefreshpanels={getrefreshpanels} project-service={projectService} project={project} onclosecreatepsmodal={closeCreatePsModal}></c-ppw_-cancel-p-s-modal>
+	</template>
+	<template if:true={isConfirmationModal}>
+		{isConfirmationModal}
+		<c-ppw_-confirmation-panel-modal series={series} ongetrefreshpanels={getrefreshpanels} project-service={projectService} project={project} onclosecreatepsmodal={closeCreatePsModal}></c-ppw_-confirmation-panel-modal>
+	</template>
+</template>

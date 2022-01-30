@@ -1,0 +1,177 @@
+<template>
+	<!-- Modal/Popup Box LWC starts here -->
+	<section role="dialog" tabindex="-1" aria-modal="true" class="slds-modal slds-fade-in-open  slds-modal_small">
+		<div if:true={spinner}>
+			<lightning-spinner class="spins" alternative-text="Loading" size="large"></lightning-spinner>
+		</div>
+		<div class="slds-modal__container">
+			<!-- Modal/Popup Box LWC header here -->
+			<header class="slds-modal__header">
+				<button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeCreatePsModal}>
+					<lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse" size="small"></lightning-icon> <span class="slds-assistive-text">Close</span> </button>
+				<h2 class="slds-text-heading_medium slds-hyphenate">
+						<c-svg-icon svgicon="/utility-sprite/svg/symbols.svg#like"
+						style-class="slds-icon slds-icon-text-default slds-current-color iconStyle">
+					  </c-svg-icon> &nbsp;
+						Confirmation History - {isConfirmationModal} {projectService.Service_Type_Complexity__c}</h2> </header>
+			
+			<!-- Modal/Popup Box LWC body starts here -->
+			<!--Empty new confirmation-->
+			<div class="slds-modal__content slds-p-around_medium">
+				<div if:false={emptynewConfirmation}>
+					<template for:each={allConfirmations} for:item="c">
+						<div key={c}>
+							<div if:true={c}>
+								<div class="slds-page-header__name-title">
+									<h1>
+                              <span class="slds-page-header__title slds-truncate" title={confirmed_Service__c}>{confirmed_Service__c}</span>
+                           </h1> </div>
+								<br />
+								<div class="slds-box slds-m-top_x-small" key={c.c.Id}>
+									<div onclick={accordianToggle} data-name={c.c.Id} style="cursor: pointer;">
+										<div class="slds-clearfix">
+											<div class="slds-float_left">
+												<p> {c.c.Confirmed_Service__c} | {c.c.Confirmed_Rate_Amount__c}</p>
+											</div>
+											<!--Badge code section {c.badgeHelpText} -->
+											<div class="slds-float_right">
+
+												<div class="tooltip" if:true={c.badgeHelpText}>
+													<div class="tooltip slds-m-left_xxx-small">
+														<div class={c.badgeClass}>{c.badgeHelpText1}</div>
+														<span class="tooltiptext"> {c.badgeHelpText} </span>
+												
+												</div></div>
+												<div  if:false={c.badgeHelpText}>
+													
+														<div class={c.badgeClass}>{c.badgeHelpText1}</div>
+													</div>
+
+												<div class="tooltip">
+													<div class="tooltip slds-m-left_xxx-small">
+														<div class="slds-form-element__icon slds-align-middle" tabindex="-1">
+															<lightning-icon if:true={c.cancelIcon} onclick={closeconfirmation} data-name={c.c.Id} stlye="fill:red"
+																icon-name="utility:clear" size="xx-small" alternative-text="Warning!" title="Warning">
+															</lightning-icon>
+														</div>
+														<span class="tooltiptext"> Internally Close the Confirmation </span>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<!--Inner card body, fields section-->
+									<div data-id={c.c.Id} class="slds-card__body slds-card__body_inner slds-hide slds-grid">
+										<!--Left body section-->
+										<div class="slds-col slds-size_6-of-12">
+											<div class="slds-wrap">
+												<div class="slds-col slds-m-bottom_x-small">
+													<label class="slds-form-element__label"> Service </label>
+													<div class="slds-form-element__control">
+														<div class="slds-form-element__static"> {c.c.Confirmed_Service__c}</div>
+													</div>
+												</div>
+												<div class="slds-col slds-m-bottom_x-small">
+													<label class="slds-form-element__label"> Amount</label>
+													<div class="slds-form-element__control">
+														<div class="slds-form-element__static"> {c.c.Confirmed_Rate_Amount__c}</div>
+													</div>
+												</div>
+												<div class="slds-col slds-m-bottom_x-small">
+													<label class="slds-form-element__label"> Vendor </label>
+													<div class="slds-form-element__control">
+														<div class="slds-form-element__static"> {c.c.Confirmed_Vendor__c}</div>
+													</div>
+												</div>
+												<div class="slds-col slds-m-bottom_x-small">
+													<label class="slds-form-element__label"> Rush Fee </label>
+													<div class="slds-form-element__control">
+														<div class="slds-form-element__static"> {c.c.Confirmed_Rush_Fee__c}</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<!-- Right body section-->
+										<div class="slds-col slds-size_6-of-12">
+											<div class="slds-wrap">
+												<div class="slds-col slds-m-bottom_x-small">
+													<label class="slds-form-element__label"> Sent </label>
+													<div class="slds-form-element__control">
+														<div class="slds-form-element__static">
+															<lightning-formatted-date-time value={c.c.createdDate} year="numeric" month="short" day="2-digit"> </lightning-formatted-date-time>
+														</div>
+													</div>
+												</div>
+												<div class="slds-col slds-m-bottom_x-small">
+													<label class="slds-form-element__label"> Confirmed Date </label>
+													<div class="slds-form-element__control">
+														<div class="slds-form-element__static">
+															<lightning-formatted-date-time value={c.c.Date_of_Confirmation__c} year="numeric" month="short" day="2-digit"> </lightning-formatted-date-time>
+														</div>
+													</div>
+												</div>
+												<div class="slds-col slds-m-bottom_x-small">
+													<label class="slds-form-element__label"> Open Confirmation Notes </label>
+													<div class="slds-form-element__control">
+														<div class="slds-form-element__static"> {c.c.Open_Confirmation__c}</div>
+													</div>
+												</div>
+												<div class="slds-col slds-m-bottom_x-small">
+													<label class="slds-form-element__label"> Rejection Reason Notes </label>
+													<div class="slds-form-element__control">
+														<div class="slds-form-element__static"> {c.c.Rejection_Reason__c}</div>
+													</div>
+												</div>
+												<div class="slds-col slds-m-bottom_x-small">
+													<label class="slds-form-element__label"> Review Requested Notes</label>
+													<div class="slds-form-element__control">
+														<div class="slds-form-element__static"> {c.c.Reason_for_Review__c}</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</template>
+				</div>
+
+
+				<!--Create new confirmaation 1st time box-->
+				<div class="slds-box slds-theme_shade slds-align_absolute-center" style="margin-top:20px;" if:true={emptynewConfirmation}>
+					<div class="slds-form">
+						<div class="slds-align_absolute-center"> No Confirmation records have been created yet for this Project Service. </div>
+						<div class="slds-m-bottom_medium"></div>
+						<div class="slds-align_absolute-center">
+							<div class="slds-dropdown-trigger slds-dropdown-trigger_click" data-id="rejectMenu" aria-expanded="false" aria-haspopup="dialog" role="combobox">
+								<lightning-button icon-position="right" class="slds-var-m-left_xx-small " variant="Brand" label="Create New Confirmation" title="Create New Confirmation" icon-name="utility:chevrondown" onclick={onnewOpen}> </lightning-button>
+								<div class="slds-dropdown slds-dropdown_fluid slds-dropdown_small">
+									<lightning-textarea data-id="createIn" aria-autocomplete="list" role="textbox" name=rejectionReason value={comments} label="Please enter notes below" class="slds-m-left_x-small slds-m-right_x-small slds-m-bottom_x-small"> </lightning-textarea>
+									<lightning-button data-id="create" variant="brand" class="slds-m-right_x-small slds-float_right" name="Create" label="Create" title="Create" onclick={opennewConfirmation}> </lightning-button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+			<!-- Create new confirmation 2nd time box -->
+			<footer class="slds-modal__footer">
+				<div if:false={emptynewConfirmation} onclick={hideDropDown}>
+					<div class="slds-dropdown-trigger slds-dropdown-trigger_click" data-id="rejectMenu" aria-expanded="false" aria-haspopup="dialog" role="combobox">
+						<lightning-button icon-position="right" class="slds-var-m-left_xx-small" variant="brand" label="Open New Confirmation" title="Create New Confirmation" icon-name="utility:chevrondown" onclick={onnewOpen}> </lightning-button>
+						<div class="slds-dropdown slds-dropdown_fluid slds-dropdown_small">
+							<lightning-textarea data-id="createIn" aria-autocomplete="list" role="textbox" name="comments" value={comments} label="Please enter notes below" class="slds-m-left_x-small slds-m-right_x-small slds-m-bottom_x-small"> </lightning-textarea>
+							<lightning-button data-id="create" variant="brand" class="slds-var-m-right_x-small" name="reject" label="Create" title="Create" onclick={opennewConfirmation}> </lightning-button>
+						</div>
+					</div>
+					<lightning-button label="Close" title="Non-primary action" onclick={closeCreatePsModal} class="slds-m-left_x-small"> </lightning-button>
+				</div>
+				<lightning-button if:true={emptynewConfirmation} label="Close" title="Non-primary action" onclick={closeCreatePsModal} class="slds-m-left_x-small"> </lightning-button>
+			</footer>
+		</div>
+	</section>
+	<div class="slds-backdrop slds-backdrop_open"></div>
+</template>

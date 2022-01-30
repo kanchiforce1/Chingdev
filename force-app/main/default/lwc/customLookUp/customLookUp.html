@@ -1,0 +1,57 @@
+<template>
+
+
+    <div data-id="resultBox" class="slds-form-element slds-lookup slds-is-close" data-select="single">
+
+        <div class="slds-form-element__control">
+
+            <div class="slds-input-has-icon slds-input-has-icon--right">
+
+                <div aura:id="lookupField" class="slds-show slds-m-top_small">
+
+                    
+                    <lightning-input onclick={searchField} onblur={onmouseout} placeholder={selectedTitle} type="search"
+                    class="lookUpInput" onfocus={searchField} data-id="inputText"
+                        label="Please select title" name="Search Martyid or Title Name" onchange={searchField}
+                        value={selectRecordName} variant="label-hidden"></lightning-input> 
+                </div>
+            </div>
+
+        </div>
+        <ul style="min-height:40px;margin-top:0px !important" onmouseout={onmouseout}
+            class="slds-listbox slds-dropdown_length-5 slds-listbox_vertical slds-dropdown_fluid slds-lookup__menu resultClass"
+            role="listbox">
+            <lightning-spinner class="slds-hide" variant="brand" size="small" aura:id="mySpinner">
+            </lightning-spinner>
+            <template for:each={searchRecords} for:item="serecord">
+                <li role="presentation" class="slds-listbox__item" key={serecord.recId}>
+
+                    <div data-id={serecord.recId} data-martyid={serecord.recMartyId} data-name={serecord.recName}
+                        data-isinseries={serecord.isInSeries} data-fulltitlename={serecord.fullTitleName} data-isseries={serecord.isSeries}
+                        onclick={setSelectedRecord}
+                        class="slds-media slds-listbox__option slds-listbox__option_entity slds-listbox__option_has-meta"
+                        role="option" onmouseover={onmouseover}>
+
+                        <span class="slds-media__body">
+                            <span
+                                class="slds-listbox__option-text slds-listbox__option-text_entity">{serecord.recMartyId}</span>
+                            <span class="slds-listbox__option-meta slds-listbox__option-meta_entity">
+                                {serecord.recName} </span>
+                        </span>
+                    </div>
+                </li>
+            </template>
+        </ul>
+        <div if:true={messageFlag}>
+            No result found...
+        </div>
+        <div if:true={LoadingText}>
+            Loading... 
+        </div>
+
+
+    </div>
+
+
+
+</template>

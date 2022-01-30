@@ -1,0 +1,124 @@
+bold {
+    font-weight:bolder;
+    color: black;
+}
+
+
+
+tabHeader{
+    background-color :red;
+}
+
+
+tabHEadertest {
+    background-color: #16325c;
+    color: white
+}
+
+.confirmatioHistoryBtn {
+    background-color:rgb(63, 143, 241);
+    color: white;
+}
+
+
+.customIcon div {
+  vertical-align: top !important;
+}
+
+.graycolor {
+    background-color: #EEEEEE;
+  }
+.badge-warning {
+    background-color: #e7d917;
+    color: white
+}
+
+.badge-success {
+    background-color: #32e02c;
+    color: white
+}
+
+.badge-info {
+    background-color: #6b6c6e;
+    color: white
+}
+
+.headerFontSize {
+    font-size:25px;
+  }
+
+
+
+.slds-button_icon {
+    position: absolute !important;
+    vertical-align: top !important;
+    top: 0px !important;
+    margin-left: 5px !important;
+ 
+}
+.fieldLabelSize {
+    font-size:13px;
+    width: 100px;
+    cursor: pointer;
+    text-align: center;
+
+  }
+
+  .closeBtn {
+    font-size:13px;
+    width: 70px;
+    cursor: pointer;
+    color: white;
+    text-align: center;
+
+  }
+  
+.fieldDataSize {
+    font-size:14px;
+  
+  }
+
+.iconColor {
+    color:#FFC107;
+}
+
+.fillWhite {
+    fill:white;
+   
+}
+
+.slds-icon{
+    width: 1.1rem !important;
+}
+
+.iconColor {
+    fill:#FFC107;
+}
+
+.ms-help-popup-in-header {
+   
+    position: absolute !important;
+  
+}
+
+.slds-form-element__icon {
+    padding-top: .55rem !important
+  }
+
+ 
+ 
+
+ .ms-help-popup-in-header:before, .ms-help-popup-in-header:after {
+    
+    position: absolute;
+   
+}
+
+ .ms-help-popup-body {
+    width: auto;
+    
+}
+
+.warningTextClr{
+    color:#ff1707;
+  }

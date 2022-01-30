@@ -1,0 +1,15 @@
+<template>
+    
+    <template for:each={cbi} for:item="item">
+        <div class="col-md-3" key={item.id}>
+            <div class="thumbnail">
+                <a target="_blank" href="$Action.Attachment.Download, {item.Image_Path__c}">
+                   <img class="img-rounded" src="$Action.Attachment.Download, {item.Image_Path__c}" />
+                </a>
+                <div class="caption">
+                    <p>{item.Caption__c} /></p>
+                </div>
+            </div>
+        </div>    
+    </template>
+</template>

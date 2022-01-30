@@ -1,0 +1,52 @@
+.slds-icon{
+    width: 1.1rem !important;
+}
+
+.iconColor {
+    fill:#FFC107;
+}
+
+.ms-help-popup-in-header {
+    display: inline-block;
+    position: absolute !important;
+    top: -8px !important;
+    left: 42px !important;
+    margin-left: -1rem !important;
+    max-width: 20rem !important;
+    overflow: visible !important;
+    text-transform: none !important;
+}
+
+.slds-form-element__icon {
+    padding-top: .15rem !important
+  }
+
+  .slds-form-element__icon .pading {
+    padding-top: .00rem !important;
+    
+  }
+ 
+  svg .icon-margin {
+    padding-top: -0.5rem !important
+  }
+
+ .ms-help-popup-in-header:before, .ms-help-popup-in-header:after {
+    width: 0.8rem !important;
+    height: 0.8rem !important;
+    position: absolute;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+    content: '';
+    background-color: inherit;
+    top: 50%;
+    left: -0.4rem !important;
+    margin-top: -.8rem !important;
+}
+
+ .ms-help-popup-body {
+    white-space: unset !important;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    width: 200px;
+}

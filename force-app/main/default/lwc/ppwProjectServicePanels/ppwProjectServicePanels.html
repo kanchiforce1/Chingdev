@@ -1,0 +1,47 @@
+<template>
+	<div class="slds-card">
+
+	<lightning-tabset>
+		<lightning-tab label="Active">
+			<div data-id="notify" class="slds-notify slds-notify_alert slds-hide" role="alert">
+		
+				<h2>{ceshareMes}
+				</h2>
+				<div class="slds-notify__close">
+					<button class="slds-button" style="color: white;" onclick={notifyClose} title="Close">
+						X
+						<span class="slds-assistive-text">Close</span>
+					</button>
+				</div>
+			</div>
+	<lightning-button label="notification" onclick={pushNotification}> </lightning-button>
+			<template for:each={aServices} for:item="a">
+				<h1 style="font-size:18px;" class="slds-m-left_medium slds-m-top_x-large" key={a.key}>{a.key}</h1>
+				
+				<c-ppw-project-service-panel-map series={series} is-system-admin={isSystemAdmin} ongetrefreshpanels={renderUpdatedPs}
+					class="slds-m-left_medium" key={a.key} bundle-serivces-map={bundleSerivcesMap} tab-name="Active" cmap1={a.value}></c-ppw-project-service-panel-map>
+			</template>
+		</lightning-tab>
+		<lightning-tab label="Completed">
+			<template for:each={cService} for:item="a">
+			<h1 style="font-size:18px;" class="slds-m-left_medium slds-m-top_x-large"  key={a.key}>{a.key}</h1>
+			<c-ppw-project-service-panel-map series={series} is-system-admin={isSystemAdmin} ongetrefreshpanels={renderUpdatedPs} 
+						class="slds-m-left_medium" bundle-serivces-map={bundleSerivcesMap} key={a.key} tab-name="Completed" cmap1={a.value}></c-ppw-project-service-panel-map>
+			</template>
+		</lightning-tab>
+		<lightning-tab label="Cancelled"> <template for:each={calServices} for:item="a">
+			<h1 style="font-size:18px;" class="slds-m-left_medium slds-m-top_x-large" key={a.key}>{a.key}</h1>
+			<c-ppw-project-service-panel-map series={series} is-system-admin={isSystemAdmin} ongetrefreshpanels={renderUpdatedPs} 
+						class="slds-m-left_medium" bundle-serivces-map={bundleSerivcesMap} key={a.key} tab-name="Cancelled" cmap1={a.value}></c-ppw-project-service-panel-map>
+			</template>
+		</lightning-tab>
+	</lightning-tabset>
+	<p></p>
+
+
+	
+<!--Accordian section B-->
+	
+
+</div>
+</template>

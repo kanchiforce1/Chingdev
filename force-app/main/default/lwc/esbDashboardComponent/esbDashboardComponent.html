@@ -1,0 +1,34 @@
+<template>
+    <template if:true={ESPList}>
+    <div class="wrap">
+        <div class="intro">
+        <p>This dashboard displays your reviews that are in progress. Click on “Open Review” to enter additional project information. 
+        Once completed, the review will no longer appear in this list. 
+        If you inadvertently completed or canceled a review, please contact Vendor Management to have it restored to your dashboard.</p>
+        </div>
+            <table class="tbl">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Status</th>
+                        <th>Title ID</th>
+                        <th>Title</th>
+                    </tr>
+                </thead>
+                <tbody>
+                 
+                        <template for:each={ESPList} for:item="esp">
+                            <template if:true={esp}>
+                        <tr  key={esp.id}>
+                            <td><a href="" value="/apex/esp?id={esp.id}&v={v}" class="link">Open Review</a></td>
+                            <td>{esp.ESP_Status__c}</td>
+                            <td>{esp.title__r.Marty_Title_ID__c}</td>
+                            <td>{esp.title__r.name}</td>
+                        </tr>
+                    </template>
+                    </template>
+                </tbody>
+            </table>
+        </div>    
+</template>
+</template>

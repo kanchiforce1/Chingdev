@@ -1,0 +1,72 @@
+<template>
+
+
+
+    <lightning-spinner data-id="spinner" variant="brand" size="large" class="slds-hide"> </lightning-spinner>
+   
+    
+        <div if:true={titleId} class="slds-m-bottom_large">
+
+            <template if:true={cb}>
+                <c-creative-brief-component title={title}></c-creative-brief-component>
+            </template>
+
+            <template if:true={chinook}>
+
+                <c-esp-component title={title}></c-esp-component>
+            </template>
+
+            <template if:true={transmittal}>
+
+                <c-ppw_transmittal-component title={title}></c-ppw_transmittal-component>
+            </template>
+
+            <template if:true={titleMes}>
+                <div class="slds-box slds-theme_shade slds-align_absolute-center slds-p-horizontal_x-large"
+                    if:false={confirmExists} style="background-color: #EEEEEE;height:200px;">
+
+                    <div class="slds-form">
+
+                        <!--  <apex:image url="{!$Resource.APubLogo}" /> -->
+                        <div class="slds-text-heading_large slds-align_absolute-center">
+
+                            Please select page from options on left.
+
+                        </div>
+                        <!-- <div class="slds-align_absolute-center">
+                   add matter here
+                </div> -->
+
+                    </div>
+                </div>
+
+            </template>
+        </div>
+
+        <template if:true={titleId}>
+       <!--<template if:false={titleId}>
+            <div class="slds-box slds-theme_shade slds-align_absolute-center slds-p-horizontal_x-large"
+                if:false={confirmExists} style="background-color: #EEEEEE;height:200px;">
+
+                <div class="slds-form">
+
+                
+                    <div class="slds-text-heading_large slds-align_absolute-center">
+
+                        Please select title.
+
+                    </div>
+                   
+
+                </div>
+            </div>
+        </template> -->
+        </template>
+    
+
+    <!--<div class="slds-m-top_xx-large">
+        <c-create-new-case> </c-create-new-case>
+      </div>-->
+
+
+</template>

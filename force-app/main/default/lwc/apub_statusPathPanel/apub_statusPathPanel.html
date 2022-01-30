@@ -1,0 +1,51 @@
+<template>
+        <div class="slds-path">
+                <div class="slds-grid slds-path__track">
+                    <div class="slds-grid slds-path__scroller-container">
+                        <div class="slds-path__scroller" role="application">
+                            <div class="slds-path__scroller_inner">
+                                <ul class="slds-path__nav" role="listbox" aria-orientation="horizontal">
+
+                                    <template if:true={statusMap}>
+
+                                        <template for:each={statusMap} for:item="x">
+                                        
+                                            <!-- <c-apub_status-path-condition key={x} status-val={x} selected-status={currentStep} ></c-apub_status-path-condition> -->
+                                            <li key={x.sval} data-id={x.sval} class={x.classLst} role="presentation" aria-describedby={x.sval} >
+                                                <a   aria-selected="true" class="slds-path__link" href="javascript:void(0);" role="option" tabindex="0">
+                                        
+                                                    <span class="slds-path__title">{x.sval}</span>
+                                                </a>
+                                               
+                                            </li>
+                                         
+                                        </template>
+                                    </template>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+          <!--<template if:true={statusMap}>
+            
+                <template for:each={statusMap} for:item="x">
+                    <div key={x.sval}
+                        class="slds-popover slds-popover_tooltip slds-nubbin_top slds-slide-from-top-to-bottom slds-hide"
+                        role="tooltip" data-val={x.sval}>
+                        <div class="slds-popover__body">deserunt exercitation anim occaecat. Nostrud ullamco deserunt aute id
+                            consequat
+                            veniam incididunt duis in sint irure nisi.</div>
+                    </div>
+                </template>
+            </template>-->
+      
+    <!--<div style="padding-left:2rem;padding-top:5rem;position:relative">
+        <a href="javascript:void(0)" aria-describedby="help">Help Text</a>
+        <div class="slds-popover slds-popover_tooltip slds-nubbin_top slds-slide-from-top-to-bottom" role="tooltip" id="help" style="position:absolute;top:-4px;left:35px">
+          <div class="slds-popover__body">Sit nulla est ex deserunt exercitation anim occaecat. Nostrud ullamco deserunt aute id consequat veniam incididunt duis in sint irure nisi.</div>
+        </div>
+      </div>-->
+
+</template>

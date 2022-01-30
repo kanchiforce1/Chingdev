@@ -1,0 +1,74 @@
+<template>
+
+    <template if:true={serPrepQuestion}>
+        <div if:true={serPrepQuestion} data-id={serPrepQuestion.Id} style="display:none;">
+            <label class="slds-form-element_stacked">
+              
+                {serPrepQuestion.Question__c}
+                <div class="slds-float_right">
+                    <c-help-text-with-out-icon is-display={isTrasmitMapping}
+                        text="This is a transmittal question. Inputs entered here will populate on the transmittal form and be visible to vendors performing services on this title.">
+                    </c-help-text-with-out-icon>
+                </div>
+            </label>
+           
+           
+            <template if:true={isPicklist}>
+                <!-- picklist section-->
+                <template if:true={optionValues}>
+                <lightning-combobox onchange={onselectvalue} variant="label-hidden"  label={serPrepQuestion.Question__c} placeholder="--Please Select--" value={value}
+                     options={optionValues} disabled={questonStatic}>
+                </lightning-combobox>
+            </template>
+
+            </template>
+
+            <template if:true={isMultiselect}>
+                <!-- muli select picklist section-->
+                <template if:true={optionValues}>
+                <lightning-dual-listbox source-label="Available Options" variant="label-hidden" selected-label="Selected Options"
+                    label={serPrepQuestion.Question__c} value={value} options={optionValues} onchange={onselectvalue}
+                    disabled={questonStatic}></lightning-dual-listbox>
+            </template>
+            </template>
+
+            <template if:true={isNumber}>
+                <!-- number section-->
+                <lightning-input type="number" variant="label-hidden" value={value} label={serPrepQuestion.Question__c} onblur={onselectvalue}
+                    disabled={questonStatic}></lightning-input>
+
+            </template>
+
+            <template if:true={isTextArea}>
+                <!-- text area-->
+                <lightning-textarea label={serPrepQuestion.Question__c} value={value} onblur={onselectvalue}
+                    disabled={questonStatic}></lightning-textarea>
+
+            </template>
+
+            <template if:true={isCheckBox}>
+                <!-- check box-->
+                <lightning-input type="checkbox" value={value} variant="label-hidden" label={serPrepQuestion.Question__c}
+                    onchange={onselectvalue} disabled={questonStatic}>
+                </lightning-input>
+
+            </template>
+            <div class="slds-clearfix">
+                <div class="slds-float_right">
+                  
+                        <a if:true={serPrepQuestion.Help_Link__c} class="pointercls slds-m-right_small" href={serPrepQuestion.Help_Link__c} target="_blank">
+                            Wiki/Additional Information</a>
+            
+                   
+            
+                        <a href="javascript:void(0);" onclick={question} style="color:#6A6D70">
+                            <span class="slds-text-body_small" style="font-size: 10px;">#{serPrepQuestion.Name} </span></a>
+            
+                </div>
+            </div>
+            <div class="slds-m-bottom_small"></div>
+        </div>
+    </template>
+
+
+</template>

@@ -1,0 +1,69 @@
+<aura:component>
+  <aura:attribute name="svgPath"        default="" type="String" description="the path for the icon in the static resource, this will be use in a SVG use tag" />
+  <aura:attribute name="name"           default="" type="String" description="Symbol name of icon" />
+  <aura:attribute name="class"          default="" type="String" description="the class of this SVG tag, can be use for CSS purpose" />
+  <aura:attribute name="containerClass" default="" type="String" description="Container class name for span container of icon" />
+  <aura:attribute name="category"       default="" type="String" description="Category of icon- action, standard, utility etc." />
+  <aura:attribute name="size"           default="" type="String" description="Size of icon-- small, medium, large" />
+  <aura:attribute name="assistiveText"  default="" type="String" description="Description name of icon" />
+  <span aura:id="container" class="{!v.containerClass}">
+    <span aura:id="assistiveText" class="slds-assistive-text">{!v.assistiveText}</span>
+      uhoijo
+  </span>
+    
+
+    <fieldset class="slds-form-element" style="width:10px;">
+        <legend class="slds-form-element__legend slds-form-element__label">Select an option</legend>
+        <div class="slds-form-element__control">
+            <div class="slds-visual-picker slds-visual-picker_vertical slds-visual-picker_small" style="width:100px;">
+                <input type="radio" id="visual-picker-80" value="visual-picker-80" name="options" />
+                <label for="visual-picker-80">
+                    <span class="slds-visual-picker__figure slds-visual-picker__text slds-align_absolute-center">
+                        <span>
+                            <span class="slds-text-heading_medium slds-m-bottom_x-small">Item Text</span>
+                            <span class="slds-text-title">Some optional item description to help the user better understand what this option is about.</span>
+                        </span>
+                    </span>
+                    <span class="slds-icon_container slds-visual-picker__text-check">
+                    
+                    </span>
+                </label>
+            </div>
+            <div class="slds-visual-picker slds-visual-picker_vertical">
+                <input type="radio" id="visual-picker-81" value="visual-picker-81" name="options" />
+                <label for="visual-picker-81">
+                    <span class="slds-visual-picker__figure slds-visual-picker__text slds-align_absolute-center">
+                        <span>
+                            <span class="slds-text-heading_medium slds-m-bottom_x-small">Item Text</span>
+                            <span class="slds-text-title">Some optional item description to help the user better understand what this option is about.</span>
+                        </span>
+                    </span>
+                    <span class="slds-icon_container slds-visual-picker__text-check">
+                      
+                    </span>
+                </label>
+            </div>
+            <div class="slds-visual-picker slds-visual-picker_vertical">
+                <input type="radio" id="visual-picker-82" value="visual-picker-82" name="options" disabled="" />
+                <label for="visual-picker-82">
+                    <span class="slds-visual-picker__figure slds-visual-picker__text slds-align_absolute-center">
+                        <span>
+                            <span class="slds-text-heading_medium slds-m-bottom_x-small">Item Text</span>
+                            <span class="slds-text-title">Some optional item description to help the user better understand what this option is about.</span>
+                        </span>
+                    </span>
+                    <span class="slds-icon_container slds-visual-picker__text-check">
+                       
+                    </span>
+                </label>
+            </div>
+        </div>
+    </fieldset>
+    
+        <span class="slds-avatar slds-avatar--medium">
+        <img src="/assets/images/avatar2.jpg" alt="person name" />
+    </span>ji
+    
+     <img src="https://homepages.cae.wisc.edu/~ece533/images/airplane.png"
+                            alt="test"/>
+</aura:component>

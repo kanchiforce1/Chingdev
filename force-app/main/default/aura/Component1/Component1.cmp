@@ -1,0 +1,9 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes" access="global" >
+	
+    <aura:attribute name="firstName" type="String" />
+    <aura:attribute name="lastName" type="String" />
+    <aura:registerEvent name="search" type="c:searchContact" />
+    <lightning:input type="text" value="{!v.firstName}"/>
+    <lightning:input type="text" value="{!v.lastName}"/>
+    <lightning:button label="search" onclick="{!c.search}"/>
+</aura:component>

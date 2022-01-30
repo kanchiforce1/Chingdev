@@ -1,0 +1,36 @@
+<aura:component controller="ppw_projectControllerExtension_lwc" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+      <aura:attribute name="recordId" type="String" description="get record id from lightning record page"></aura:attribute>
+    <aura:attribute name="project" type="Project__c" description="get project details" default="{}"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    
+    <div class="slds-grid slds-wrap">
+        
+        <!-- Left Panel Section -->
+        <div class="slds-small-size--2-of-12">
+            <div class="slds-var-m-right_medium">
+                <div class="slds-col ">
+                    <c:ppw_ButtonsComponent recordId="{!v.recordId}"></c:ppw_ButtonsComponent>
+                </div>
+                
+            </div>
+        </div>
+        
+        <!-- Middle body section -->
+        <div class="slds-small-size--8-of-12">
+            <div class="slds-col slds-var-m-right_small">
+                <span><c:ppwProjectServicePanels></c:ppwProjectServicePanels></span>
+            </div>
+        </div>
+    
+    
+    <!-- Right body section -->
+    <div class="slds-small-size--2-of-12">
+        <div class="slds-var-m-right_medium">
+            <div class="slds-col hideHelpicon">
+                <c:ppwTitleMetadata titleId="{!v.project.Title__c}"></c:ppwTitleMetadata>
+            </div>
+            
+        </div>
+    </div>
+    </div>
+</aura:component>

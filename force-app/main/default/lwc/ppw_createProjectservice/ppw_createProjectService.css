@@ -1,0 +1,12 @@
+.fillBox {
+    background-color:red;
+}
+
+label.slds-form-element__label {
+    font-weight: 600 !important;
+}
+
+.sWiki {
+    background-color:rgb(63, 143, 241) !important;
+    color:white;
+  }

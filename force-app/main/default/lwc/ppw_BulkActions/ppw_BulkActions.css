@@ -1,0 +1,35 @@
+.spins::after {
+    position: absolute;
+    content: 'Please wait while loading';
+    width: 100%;
+    text-align: center;
+    top: calc(50% + 3em);
+    font-weight: bold;
+}
+
+th, td {
+   height: 38px;  
+}
+
+.slds__content {
+  
+  overflow-y: visible;
+  overflow: visible;
+}
+
+
+.drpdown {
+  overflow-y: visible;
+  overflow: visible;
+}
+
+.slds-icon-utility-warning .slds-icon_container svg {
+    fill: rgb(52,168,83);
+    background-color: red;
+  }
+/*slds-icon-utility-warning slds-icon_container*/
+
+svg {
+    fill: rgb(213, 231, 110);
+    background-color: red;
+  }

@@ -1,0 +1,10 @@
+<aura:component controller="SimpleServerSideController">
+    <aura:attribute name="firstName" type="String" default="world"/>
+    <aura:attribute name="records" type="Object"/>
+    <lightning:button label="Call server" onclick="{!c.echo}"/>
+    <aura:if isTrue="{!v.records}">
+    	{!v.records.CreatedBy.Name}
+    
+    </aura:if>
+    
+</aura:component>

@@ -1,0 +1,121 @@
+<aura:component implements="forceCommunity:themeLayout,forceCommunity:availableForAllPageTypes"
+                access="global"
+                description="Sample Custom Theme Layout"
+                controller="PPW_CommunityThemeLayoutController">
+    
+    <aura:handler name="init" value="{!this}" action="{!c.init}" />  
+    <aura:attribute name="currentUser" type="User" default="{'sObjecttype': 'User'}" />
+    <aura:attribute name="setTimeOut" type="Integer"/>
+    <aura:attribute name="col1" type="Aura.Component[]" required="false" />
+    <aura:attribute name="body" type="Aura.Component[]" required="false" />
+    
+    <div class="slds-page-header">
+        <div class="slds-page-header__row">
+            <div class="slds-page-header__col-title">
+                <div class="slds-media">
+                    
+                    <!-- Logo section starts from here --> 
+                    <div class="slds-media__figure">
+                        <span class="slds-icon_container slds-icon-standard-opportunity" title="opportunity">
+                            <img src="{!$Resource.CommunityHomeLogo}"/>
+                            
+                        </span>
+                    </div>
+                    
+                    <!-- search picklist section starts from here -->
+                    <div class="slds-media__body">
+                        <div class="slds-align_absolute-center">
+                            {!v.col1}
+                        </div>  
+                        
+                        <!-- User section starts from here --> 
+                        
+                        <div class="slds-clearfix">
+                            <div class="slds-float_right" >
+                               
+                                <div aura:id="userInfo" onmouseleave="{!c.closeUserInfo}"  
+                                     class="slds-is-close slds-dropdown-trigger slds-dropdown-trigger_click">
+                                    <button onclick="{!c.UserInfo}" class="slds-button slds-button_icon" onblur="{!c.closeUserInfo}" style="outline: none;"> 
+                                        <!--  <lightning:icon iconName="action:user" size="small" alternativeText="user" /> -->
+                                        <lightning:avatar src="{!v.currentUser.FullPhotoUrl}" variant="circle" size="medium"/> 
+                                        
+                                    </button>  
+                                    <div class="slds-dropdown slds-dropdown_right slds-dropdown_large">
+                                        
+                                        <div class="slds-media slds-m-around_small">
+                                            <div class="slds-media__figure">
+                                                
+                                                <lightning:avatar src="{!v.currentUser.FullPhotoUrl}" variant="circle" size="medium"/> 
+                                                
+                                            </div>
+                                            <div class="slds-media__body">
+                                                <div class="slds-page-header__name">
+                                                    <div class="slds-page-header__name-title">
+                                                        <h1>
+                                                            <span>{!v.currentUser.Name}</span> </h1>
+                                                        <span class="slds-m-top_xxx-small">
+                                                            {!v.currentUser.Username}
+                                                            <!--<lightning:outputField style="font-weight: bold;" class="slds-text-heading_large slds-text-title_bold" fieldName="Name" variant="label-hidden"/> -->
+                                                        </span>
+                                                        
+                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        
+                                        <div class="slds-border_top"></div>
+                                        
+                                        <ul class="slds-dropdown__list" role="menu" aria-label="Show More">
+                                            <li class="slds-dropdown__item" role="presentation">
+                                                <a href ="{!$Resource.CommunityPlatformUserGuide}" role="menuitem" tabindex="0" target="_blank">
+                                                    <span class="slds-truncate" title="Platform User Guide">  
+                                                        <lightning:icon iconName="utility:notebook" size="x-small" alternativeText="Error!" title="Error" />
+                                                        &nbsp; Platform User Guide</span>
+                                                </a>
+                                            </li>
+                                            <li class="slds-dropdown__item" role="presentation">
+                                                <a href ="/s/ForgotPassword" role="menuitem" tabindex="-1" target="_blank">
+                                                    <span class="slds-truncate" title="Change Password">
+                                                        <lightning:icon iconName="utility:note" size="x-small" alternativeText="Error!" title="Error" />
+                                                        &nbsp;Change Password</span>
+                                                </a>
+                                            </li>
+                                            <li class="slds-dropdown__item" role="presentation">
+                                                <a href ="#" role="menuitem" tabindex="-1" target="_blank" onclick="{!c.contactUs}">
+                                                    <span class="slds-truncate" title="ContactUs">
+                                                        <lightning:icon iconName="utility:log_a_call" size="x-small" alternativeText="Error!" title="Error" />
+                                                        &nbsp;Contact us</span>
+                                                </a>
+                                            </li>
+                                            <li class="slds-dropdown__item" role="presentation">
+                                                <a href ="/secur/logout.jsp" role="menuitem" tabindex="-1" target="_self">
+                                                    <span class="slds-truncate" title="Log Out">
+                                                        <lightning:icon iconName="utility:logout" size="x-small" alternativeText="Error!" title="Error" />
+                                                        &nbsp;Log Out</span>
+                                                </a>
+                                            </li>
+                                            
+                                        </ul> 
+                                    </div>
+                                </div> 
+                                
+                            </div>
+                            
+                        </div>
+                       
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+     
+    <div class="slds-m-top_medium"></div>
+    
+    
+    {!v.body}
+    
+    
+</aura:component>

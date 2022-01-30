@@ -1,0 +1,9 @@
+<aura:component implements="force:appHostable,forceCommunity:availableForAllPageTypes">
+     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler event="aura:locationChange" action="{!c.update}"/>
+      <aura:attribute name="eventMessage" type="String"/> 
+    <aura:handler name="UrlNavigationEvt" event="c:UrlNavigationEvt" action="{!c.handleBubbling}"/>
+	HI this new component navigation {!v.eventMessage}
+    
+    
+</aura:component>

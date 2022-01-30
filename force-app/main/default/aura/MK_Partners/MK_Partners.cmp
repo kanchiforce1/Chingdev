@@ -1,0 +1,322 @@
+<aura:component >
+	
+   	
+    
+<html>
+    <ltng:require scripts="{!$Resource.MK_Partners_files}"
+    afterScriptsLoaded="{!c.afterScriptsLoaded}" />
+    
+    <meta name="generator" content="Hugo 0.56.0"/>
+        <link rel="manifest" href="https://www.mkpartners.com/manifest.json"/>
+        <link rel="canonical" href="https://www.mkpartners.com/"/>
+            <meta name="viewport" content="width=device-width,initial-scale=1"/>
+                <link rel="shortcut icon" href="https://www.mkpartners.com/images/favicon.ico"/>
+                    <meta name="description" content="MK Partners - California&#39;s #1 Salesforce Implementation Partner"/>
+                    <link rel="apple-touch-icon" href="https://www.mkpartners.com//images/mk-partners-logo_192-192.png"/>
+                            <meta name="theme-color" content="#f68744"/>
+                            <meta name="keywords" content="salesforce,consultant,development,admin,customization,implementation,crm"/>
+                            <meta name="news_keywords" content="salesforce, consultant, development, admin, customization, implementation, crm"/>
+                            <meta property="og:site_name" content="MK Partners"/>
+                            <meta property="og:url" content="https://mkpartners.com"/>
+                            <meta property="og:title" content="MK Partners - California&#39;s #1 Salesforce Implementation Partner"/>
+                                                    <meta property="og:description" content="MK Partners has been California&#39;s #1 Salesforce consultant for over 14 years. We&#39;ve helped thousands of organizations, agencies, and businesses realize the full potential of the platform - all while leading the nation in customer satisfaction."/>
+                                                    <meta property="og:image" content="https://www.mkpartners.com//images/mk-partners-logo_192-192.png"/>
+                                                    <meta property="og:image:type" content="image/png"/>
+                                                    <meta property="og:image:width" content="192"/>
+                                                    <meta property="og:image:height" content="192"/>
+                                                    <meta property="og:locale" content="en_US"/>
+                                                    <meta property="og:type" content="website"/>
+                                                    <meta name="twitter:site" content="mkpartners"/>
+                                                    <meta name="twitter:url" content="https://mkpartners.com"/>
+                                                    <meta name="twitter:title" content="MK Partners - California&#39;s #1 Salesforce Implementation Partner"/>
+                                                    <meta name="twitter:description" content="MK Partners has been California&#39;s #1 Salesforce consultant for over 14 years. We&#39;ve helped thousands of organizations, agencies, and businesses realize the full potential of the platform - all while leading the nation in customer satisfaction."/>
+                                                    <meta name="twitter:card" content="summary"/>
+																							
+																								
+																																										
+																									<div class="index-splash splash">
+																										<div class="navigation-container">
+																											<div class="logo">
+																												<a href="https://www.mkpartners.com/">
+																													<img alt="MK Partners Logo" src="./images/mk-partners-logo.webp" data-retina="/images/mk-partners-logo.webp" layout="intrinsic" width="188.25" height="60" class="i-amphtml-element i-amphtml-layout-intrinsic i-amphtml-layout-size-defined i-amphtml-built i-amphtml-layout" i-amphtml-layout="intrinsic" style="--loader-delay-offset:36ms !important;">
+																														<i class="i" slot="i-amphtml-svc">
+																															<img alt="" role="presentation" aria-hidden="true" class="i-amphtml-intrinsic-sizer" src="data:image/svg+xml;charset=utf-8,&lt;svg height=&quot;60px&quot; width=&quot;188.25px&quot;
+                                                                                                                                                                                                                      xmlns=&quot;http://www.w3.org/2000/svg&quot; version=&quot;1.1&quot;/&gt;"/>
+																															</i>
+                                                                                                                        <img alt="MK Partners Logo" fallback="" src="./images/mk-partners-logo.png" layout="intrinsic" width="188.25" height="60" class="i-amphtml-element i-amphtml-layout-intrinsic i-amphtml-layout-size-defined i-amphtml-built" i-amphtml-layout="intrinsic"/>
+																																<i class="i" slot="i-amphtml-svc">
+																																	<img alt="" role="presentation" aria-hidden="true" class="i-amphtml-intrinsic-sizer" src="data:image/svg+xml;charset=utf-8,&lt;svg height=&quot;60px&quot; width=&quot;188.25px&quot;
+                                                                                                                                                                                                                              xmlns=&quot;http://www.w3.org/2000/svg&quot; version=&quot;1.1&quot;/&gt;"/>
+																																	</i>
+																																</img>
+																																<img decoding="async" alt="MK Partners Logo" src="./MK Partners_files/mk-partners-logo.webp" data-retina="/images/mk-partners-logo.webp" class="i-amphtml-fill-content i-amphtml-replaced-content">
+																																</img>
+																															</a>
+																														</div>
+																														<div class="nav-links">
+																															<ul class="nav-list">
+																																<li class="nav-item">
+																																	<a href="https://www.mkpartners.com/">home</a>
+																																</li>
+																																<li class="nav-item">
+																																	<a href="https://www.mkpartners.com/about/" aria-label="About">about</a>
+																																</li>
+																																<li class="nav-item">
+																																	<a href="https://www.mkpartners.com/services/" aria-label="Services">services</a>
+																																</li>
+																																<li class="nav-item">
+																																	<a href="https://www.mkpartners.com/blog/" aria-label="Blog">blog</a>
+																																</li>
+																																<li class="nav-item">
+																																	<a href="https://www.mkpartners.com/contact/" aria-label="Contact">contact</a>
+																																</li>
+																																<li class="nav-item">
+																																	<a href="https://my.mkpartners.com/" aria-label="Client Portal">client portal</a>
+																																</li>
+																																<li class="nav-item">
+																																	<a href="https://www.mkpartners.com/search">
+                                                                                                                                        <img src="./images/search.webp" alt="search MK Partners" height="20px" width="20px" class="i-amphtml-element i-amphtml-layout-fixed i-amphtml-layout-size-defined i-amphtml-built i-amphtml-layout" i-amphtml-layout="fixed" style="width: 20px; height: 20px;"/>
+																																			<img fallback="" src="./images/search.png" alt="search MK Partners" height="20px" width="20px" class="i-amphtml-element i-amphtml-layout-fixed i-amphtml-layout-size-defined i-amphtml-built" i-amphtml-layout="fixed" style="width: 20px; height: 20px;"></img>
+																																			<img decoding="async" alt="search MK Partners" src="./MK Partners_files/search.webp" class="i-amphtml-fill-content i-amphtml-replaced-content">
+																																			</img>
+																																		</a>
+																																	</li>
+																																</ul>
+																															</div>
+																															<div class="hamburger" on="tap:sidebar.toggle" role="button" tabindex="0" aria-label="Toggle Sidebar">
+																																<div id="hamburger" aria-label="Toggle Sidebar" tabindex="0" role="button" on="tap:sidebar.toggle">
+																																	<span></span>
+																																	<span></span>
+																																	<span></span>
+																																</div>
+																															</div>
+																														</div>
+																														<div class="menu_wrapper" style="display:block;float:left">
+																															
+																																<div style="float:right;margin:15px" class="flex justify-start items-center ampstart-sidebar-header">
+																																	<div role="button" aria-label="close sidebar" on="tap:sidebar.toggle" tabindex="0" style="font-size:2rem">✕</div>
+																																</div>
+																																<nav style="display:block;margin-bottom:20px;max-height:none">
+																																	<ul id="menu-main-menu" class="menu menu-main" style="display:block;list-style:none outside;width:100%">
+																																		<li style="border-top:1px solid rgba(255,255,255,.03);float:left;position:relative;width:100%;text-align:-webkit-match-parent">
+																																			<a style="color:#e4e7eb;display:block;font-size:13px;font-weight:700;letter-spacing:1px;line-height:19px;margin-right:50px;padding:11px 5px 10px 20px;text-decoration:none;outline:0" href="https://www.mkpartners.com/">
+																																				<span style="display:block;letter-spacing:1px;white-space:nowrap">HOME</span>
+																																			</a>
+																																		</li>
+																																		<li style="border-top:1px solid rgba(255,255,255,.03);float:left;position:relative;width:100%;text-align:-webkit-match-parent">
+																																			<a style="color:#e4e7eb;display:block;font-size:13px;font-weight:700;letter-spacing:1px;line-height:19px;margin-right:50px;padding:11px 5px 10px 20px;text-decoration:none;outline:0" href="https://www.mkpartners.com/about/">
+																																				<span style="display:block;letter-spacing:1px;white-space:nowrap">ABOUT</span>
+																																			</a>
+																																		</li>
+																																		<li style="border-top:1px solid rgba(255,255,255,.03);float:left;position:relative;width:100%;text-align:-webkit-match-parent">
+																																			<a style="color:#e4e7eb;display:block;font-size:13px;font-weight:700;letter-spacing:1px;line-height:19px;margin-right:50px;padding:11px 5px 10px 20px;text-decoration:none;outline:0" href="https://www.mkpartners.com/services/">
+																																				<span style="display:block;letter-spacing:1px;white-space:nowrap">SERVICES</span>
+																																			</a>
+																																		</li>
+																																		<li style="border-top:1px solid rgba(255,255,255,.03);float:left;position:relative;width:100%;text-align:-webkit-match-parent">
+																																			<a style="color:#e4e7eb;display:block;font-size:13px;font-weight:700;letter-spacing:1px;line-height:19px;margin-right:50px;padding:11px 5px 10px 20px;text-decoration:none;outline:0" href="https://www.mkpartners.com/blog/">
+																																				<span style="display:block;letter-spacing:1px;white-space:nowrap">BLOG</span>
+																																			</a>
+																																		</li>
+																																		<li style="border-top:1px solid rgba(255,255,255,.03);float:left;position:relative;width:100%;text-align:-webkit-match-parent">
+																																			<a style="color:#e4e7eb;display:block;font-size:13px;font-weight:700;letter-spacing:1px;line-height:19px;margin-right:50px;padding:11px 5px 10px 20px;text-decoration:none;outline:0" href="https://www.mkpartners.com/contact/">
+																																				<span style="display:block;letter-spacing:1px;white-space:nowrap">CONTACT US</span>
+																																			</a>
+																																		</li>
+																																		<li style="border-top:1px solid rgba(255,255,255,.03);float:left;position:relative;width:100%;text-align:-webkit-match-parent">
+																																			<a style="color:#e4e7eb;display:block;font-size:13px;font-weight:700;letter-spacing:1px;line-height:19px;margin-right:50px;padding:11px 5px 10px 20px;text-decoration:none;outline:0" href="https://my.mkpartners.com/">
+																																				<span style="display:block;letter-spacing:1px;white-space:nowrap">CLIENT PORTAL</span>
+																																			</a>
+																																		</li>
+																																		<li style="border-top:1px solid rgba(255,255,255,.03);float:left;position:relative;width:100%;text-align:-webkit-match-parent">
+																																			<a style="color:#e4e7eb;display:block;font-size:13px;font-weight:700;letter-spacing:1px;line-height:19px;margin-right:50px;padding:11px 5px 10px 20px;text-decoration:none;outline:0" href="https://www.mkpartners.com/search">
+																																				<img src="./images/search-white.webp" alt="search MK Partners" height="40px" width="40px" class="i-amphtml-element i-amphtml-layout-fixed i-amphtml-layout-size-defined i-amphtml-built" i-amphtml-layout="fixed" style="width: 40px; height: 40px;">
+																																					<img fallback="" src="./images/search-white.png" alt="search MK Partners" height="40px" class="i-amphtml-element i-amphtml-layout-fixed-height i-amphtml-layout-size-defined i-amphtml-built" i-amphtml-layout="fixed-height" style="height: 40px;"></img>
+																																				</img>
+																																			</a>
+																																		</li>
+																																	</ul>
+																																</nav>
+																																<button class="i-amphtml-screen-reader" tabindex="-1">Close the sidebar</button>
+																															
+																														</div>
+																														<div class="index-main-text">
+																															<div class="index-title">California's #1
+                                                                                                                                <br/>Salesforce Partner
+																																</div>
+																																<div class="subtitle">We make Salesforce work for you.
+                                                                                                                                    <br/>Your business, your processes,
+                                                                                                                                        <br/>and our help. Since 2006.
+																																		</div>
+																																	</div>
+																																</div>
+																																<div class="four-icons">
+																																	<div class="tile">
+                                                                                                                                        <img class="tile-img i-amphtml-element i-amphtml-layout-responsive i-amphtml-layout-size-defined i-amphtml-built i-amphtml-layout" src="./images/download-file-orange-background.webp" width="610" height="610" layout="responsive" alt="download a file" i-amphtml-layout="responsive" style="--loader-delay-offset:36ms !important;"/>
+																																			<i slot="i-amphtml-svc" style="padding-top: 100%;"></i>
+																																			<img fallback="" src="./images/download-file-orange-background.png" width="610" height="610" layout="responsive" alt="download a file" class="i-amphtml-element i-amphtml-layout-responsive i-amphtml-layout-size-defined i-amphtml-built" i-amphtml-layout="responsive">
+																																				<i slot="i-amphtml-svc" style="padding-top: 100%;"></i>
+																																			</img>
+                                                                                                                                            <img decoding="async" alt="download a file" src="./MK Partners_files/download-file-orange-background.webp" class="i-amphtml-fill-content i-amphtml-replaced-content">
+																																			</img>
+																																			<h3>Implementation</h3>
+																																			<p>We'll get you, and your new system, up and running fast.</p>
+																																		</div>
+																																		<div class="tile">
+                                                                                                                                            <img class="tile-img i-amphtml-element i-amphtml-layout-responsive i-amphtml-layout-size-defined i-amphtml-built i-amphtml-layout" src="./images/screwdriver-gear-red-background.webp" width="610" height="610" layout="responsive" alt="screwdriver" i-amphtml-layout="responsive" style="--loader-delay-offset:36ms !important;"/>
+																																				<i slot="i-amphtml-svc" style="padding-top: 100%;"></i>
+																																				<img fallback="" src="./images/screwdriver-gear-red-background.png" width="610" height="610" layout="responsive" alt="screwdriver gear on a red background" class="i-amphtml-element i-amphtml-layout-responsive i-amphtml-layout-size-defined i-amphtml-built" i-amphtml-layout="responsive">
+																																					<i slot="i-amphtml-svc" style="padding-top: 100%;"></i>
+																																				</img>
+																																				<img decoding="async" alt="screwdriver" src="./MK Partners_files/screwdriver-gear-red-background.webp" class="i-amphtml-fill-content i-amphtml-replaced-content">
+																																				</img>
+																																				<h3>Customization</h3>
+																																				<p>We make the platform fit your business, not the other way around.</p>
+																																			</div>
+																																			<div class="tile">
+                                                                                                                                                <img class="tile-img i-amphtml-element i-amphtml-layout-responsive i-amphtml-layout-size-defined i-amphtml-built i-amphtml-layout" src="./images/big-cursor-on-monitor-blue-background.webp" width="610" height="610" layout="responsive" alt="screwdriver" i-amphtml-layout="responsive" style="--loader-delay-offset:37ms !important;"/>
+																																					<i slot="i-amphtml-svc" style="padding-top: 100%;"></i>
+																																					<img fallback="" src="./images/big-cursor-on-monitor-blue-background.png" width="610" height="610" layout="responsive" alt="big cursor on a monitor" class="i-amphtml-element i-amphtml-layout-responsive i-amphtml-layout-size-defined i-amphtml-built" i-amphtml-layout="responsive">
+																																						<i slot="i-amphtml-svc" style="padding-top: 100%;"></i>
+																																					</img>
+																																					<img decoding="async" alt="screwdriver" src="./MK Partners_files/big-cursor-on-monitor-blue-background.webp" class="i-amphtml-fill-content i-amphtml-replaced-content">
+																																					</img>
+																																					<h3>Development</h3>
+																																					<p>Need it built? We're experts at coding custom solutions.</p>
+																																				</div>
+																																				<div class="tile">
+                                                                                                                                                    <img class="tile-img i-amphtml-element i-amphtml-layout-responsive i-amphtml-layout-size-defined i-amphtml-built i-amphtml-layout" src="./images/lightbulb-lightblue-background.webp" width="610" height="610" layout="responsive" alt="screwdriver" i-amphtml-layout="responsive" style="--loader-delay-offset:37ms !important;"/>
+																																						<i slot="i-amphtml-svc" style="padding-top: 100%;"></i>
+																																						<img fallback="" src="./images/lightbulb-lightblue-background.png" width="610" height="610" layout="responsive" alt="lightbulb on light blue" class="i-amphtml-element i-amphtml-layout-responsive i-amphtml-layout-size-defined i-amphtml-built" i-amphtml-layout="responsive">
+																																							<i slot="i-amphtml-svc" style="padding-top: 100%;"></i>
+																																						</img>
+																																						<img decoding="async" alt="screwdriver" src="./MK Partners_files/lightbulb-lightblue-background.webp" class="i-amphtml-fill-content i-amphtml-replaced-content">
+																																						</img>
+																																						<h3>On-Call</h3>
+																																						<p>Managed service packages means help is only ever a "ping" away.</p>
+																																					</div>
+																																				</div>
+																																				<div class="here-to-help">
+																																					<div class="column left">
+																																						<button id="about-us">about us</button>
+																																						<h3>We're here to help</h3>
+																																						<p>Salesforce is one of the most-powerful platforms in the world, and no two instances are identical. After completing 2200+ projects for 1100+ clients, we know exactly what it'll take to get you from vision to rollout, and beyond.</p>
+																																						<ul>
+																																							<li>Get the system you were sold</li>
+																																							<li>Drive adoption and understanding</li>
+																																							<li>Realize the full ROI from your tech investment</li>
+																																						</ul>
+																																						<a href="https://www.mkpartners.com/about/" aria-label="About Us"></a>
+																																						<button class="btn">
+																																							<a href="https://www.mkpartners.com/about/" aria-label="About Us">
+                                                                                                                                                            </a>
+                                                                                                                                                        </button>
+                                                                                                                                                    </div>
+                                                                                                                                                    </div>
+    
+	<a href="https://www.mkpartners.com/about/">Read more about us</a>
+	<div class="column">
+		<div class="img-wrapper">
+			<img class="macbook i-amphtml-element i-amphtml-layout-responsive i-amphtml-layout-size-defined i-amphtml-built i-amphtml-layout" src="./images/people-pointing-at-macbook-420x610.webp" layout="responsive" alt="people pointing at a macbook" height="610" width="420" i-amphtml-layout="responsive">
+				<i slot="i-amphtml-svc" style="padding-top: 145.238%;"></i>
+				<img fallback="" class="macbook i-amphtml-element i-amphtml-layout-responsive i-amphtml-layout-size-defined i-amphtml-built" src="./images/people-pointing-at-macbook-420x610.jpg" layout="responsive" alt="people pointing at a macbook" height="610" width="420" i-amphtml-layout="responsive">
+					<i slot="i-amphtml-svc" style="padding-top: 145.238%;"></i>
+				</img>
+				<img decoding="async" alt="people pointing at a macbook" src="./MK Partners_files/people-pointing-at-macbook-420x610.webp" class="i-amphtml-fill-content i-amphtml-replaced-content"></img>
+			</img>
+		</div>
+	</div>
+	<section class="salesforce-news">
+		<h3>Salesforce News</h3>
+		<button class="btn">
+			<a href="https://www.mkpartners.com/blog/">view all articles</a>
+		</button>
+		<a href="https://www.mkpartners.com/blog/meet-the-mk-partners-team-brisia-chain-office-manager-and-salesforce-user/">
+			<div class="article-tile" style="background:linear-gradient(0deg,rgba(0,0,0,0.3),rgba(0,0,0,0.5)),url(&#39;/images/caylin-brisia.jpeg&#39;) no-repeat center center;width:80%;height:180px;background-size:cover;margin:0 auto;padding:12px;margin-top:10px;margin-bottom:10px">
+				<h4 class="article-title">Meet the MK Partners’ Team: Brisia Chain, Office Manager (and Salesforce User!)</h4>
+				<p>MK Partners on December 2, 2020</p>
+			</div>
+		</a>
+		<a href="https://www.mkpartners.com/blog/mark-your-calendars-best-upcoming-events-november-30-december-4/">
+			<div class="article-tile" style="background:linear-gradient(0deg,rgba(0,0,0,0.3),rgba(0,0,0,0.5)),url(&#39;/images/laptop-calendar-coffee.jpeg&#39;) no-repeat center center;width:80%;height:180px;background-size:cover;margin:0 auto;padding:12px;margin-top:10px;margin-bottom:10px">
+				<h4 class="article-title">Mark Your Calendars: Best Upcoming Events November 30, 2020 — December 4, 2020</h4>
+				<p>MK Partners on November 30, 2020</p>
+			</div>
+		</a>
+		<a href="https://www.mkpartners.com/blog/salesforce-einsteins-newest-milestone/">
+			<div class="article-tile" style="background:linear-gradient(0deg,rgba(0,0,0,0.3),rgba(0,0,0,0.5)),url(&#39;/images/einstein-app.jpeg&#39;) no-repeat center center;width:80%;height:180px;background-size:cover;margin:0 auto;padding:12px;margin-top:10px;margin-bottom:10px">
+				<h4 class="article-title">Salesforce Einstein's Newest Milestone</h4>
+				<p>MK Partners on November 25, 2020</p>
+			</div>
+		</a>
+	</section>
+	<div class="contact">
+		<button class="btn white">contact</button>
+		<h2>Ready to Chat?</h2>
+		<p>We're happy to learn more about you, your business, and what you'd like to see form your Salesforce org.
+No pressure, no pitches, just some perspective.</p>
+		<button class="btn">
+			<a href="https://www.mkpartners.com/contact/">contact us now</a>
+		</button>
+		<div class="people-back"></div>
+	</div>
+	<footer>
+		<div class="footer-section">
+			<h4>Contact Us</h4>
+			<h5 class="orange">Phone</h5>
+			<p>
+				<a class="footer-link" href="tel:18187608285">+1 (818) 760-8285</a>
+			</p>
+			<h5 class="orange">Email</h5>
+			<p>
+				<a class="footer-link" href="mailto:sales@mkpartners.com">sales@mkpartners.com</a>
+			</p>
+		</div>
+		<div class="footer-section">
+			<h4>Our Office</h4>
+			<h5 class="orange">MK Partners</h5>
+			<p>
+				<a class="footer-link" href="https://www.google.com/maps/dir//mk+partners/@34.1743161,-118.4318801,12z/" target="_blank" rel="noopener">5709 Cahuenga Blvd
+					<br>North Hollywood, CA
+						<br>91601 
+            
+							<div class="footer-section">
+								<h4>Stay Connected</h4>
+								<p>Find us on your favorite platforms, or in person!</p>
+								<p>
+									<a class="social-link" href="https://www.youtube.com/channel/UCtNsCxpxe6F4x9Nw1HOePuQ">
+										<img src="./images/social/youtube.webp" class="social-media-icon i-amphtml-element i-amphtml-layout-fixed i-amphtml-layout-size-defined i-amphtml-built i-amphtml-layout" width="40px" height="40px" layout="fixed" alt="youtube icon" i-amphtml-layout="fixed" style="width: 40px; height: 40px;">
+											<img fallback="" src="./images/social/youtube.png" class="social-media-icon i-amphtml-element i-amphtml-layout-fixed i-amphtml-layout-size-defined i-amphtml-built" width="40px" height="40px" layout="fixed" alt="youtube icon" i-amphtml-layout="fixed" style="width: 40px; height: 40px;"></img>
+											<img decoding="async" alt="youtube icon" src="./MK Partners_files/youtube.webp" class="i-amphtml-fill-content i-amphtml-replaced-content"></img>
+											<a class="social-link" href="https://www.facebook.com/mkpartners1/">
+                                                <img src="./images/social/facebook.webp" class="social-media-icon i-amphtml-element i-amphtml-layout-fixed i-amphtml-layout-size-defined i-amphtml-built i-amphtml-layout" width="40px" height="40px" layout="fixed" alt="facebook icon" i-amphtml-layout="fixed" style="width: 40px; height: 40px;"/>
+													<img fallback="" src="./images/social/facebook.png" class="social-media-icon i-amphtml-element i-amphtml-layout-fixed i-amphtml-layout-size-defined i-amphtml-built" width="40px" height="40px" layout="fixed" alt="facebook icon" i-amphtml-layout="fixed" style="width: 40px; height: 40px;">
+                                                    </img>
+													<img decoding="async" alt="facebook icon" src="./MK Partners_files/facebook.webp" class="i-amphtml-fill-content i-amphtml-replaced-content"></img>
+												</a>
+												<a class="social-link" href="https://twitter.com/mkpartners">
+                                                    <img src="./images/social/twitter.webp" class="social-media-icon i-amphtml-element i-amphtml-layout-fixed i-amphtml-layout-size-defined i-amphtml-built i-amphtml-layout" width="40px" height="40px" layout="fixed" alt="twitter icon" i-amphtml-layout="fixed" style="width: 40px; height: 40px;"/>
+														<img fallback="" src="./images/social/twitter.png" class="social-media-icon i-amphtml-element i-amphtml-layout-fixed i-amphtml-layout-size-defined i-amphtml-built" width="40px" height="40px" layout="fixed" alt="twitter icon" i-amphtml-layout="fixed" style="width: 40px; height: 40px;"></img>
+														<img decoding="async" alt="twitter icon" src="./MK Partners_files/twitter.webp" class="i-amphtml-fill-content i-amphtml-replaced-content"></img>
+													</a>
+													<a class="social-link" href="https://www.linkedin.com/company/mkpartners">
+                                                        <img src="./images/social/linkedin.webp" class="social-media-icon i-amphtml-element i-amphtml-layout-fixed i-amphtml-layout-size-defined i-amphtml-built i-amphtml-layout" width="40px" height="40px" layout="fixed" alt="linkedin icon" i-amphtml-layout="fixed" style="width: 40px; height: 40px;"/>
+															<img fallback="" src="./images/social/linkedin.png" class="social-media-icon i-amphtml-element i-amphtml-layout-fixed i-amphtml-layout-size-defined i-amphtml-built" width="40px" height="40px" layout="fixed" alt="linkedin icon" i-amphtml-layout="fixed" style="width: 40px; height: 40px;"></img>
+															<img decoding="async" alt="linkedin icon" src="./MK Partners_files/linkedin.webp" class="i-amphtml-fill-content i-amphtml-replaced-content"></img>
+														</a>
+														<a class="social-link" href="https://www.instagram.com/mkpartners/">
+                                                            <img src="./images/social/instagram.webp" class="social-media-icon i-amphtml-element i-amphtml-layout-fixed i-amphtml-layout-size-defined i-amphtml-built i-amphtml-layout" width="40px" height="40px" layout="fixed" alt="instagram icon" i-amphtml-layout="fixed" style="width: 40px; height: 40px;"/>
+																<img fallback="" src="./images/social/instagram.png" class="social-media-icon i-amphtml-element i-amphtml-layout-fixed i-amphtml-layout-size-defined i-amphtml-built" width="40px" height="40px" layout="fixed" alt="instagram icon" i-amphtml-layout="fixed" style="width: 40px; height: 40px;"></img>
+																<img decoding="async" alt="instagram icon" src="./MK Partners_files/instagram.webp" class="i-amphtml-fill-content i-amphtml-replaced-content"></img>
+															</a>
+														
+														<p>
+															<a class="footer-orange-link" href="https://appexchange.salesforce.com/listingDetail?listingId=a0N30000001gF9jEAE">AppExchange</a>
+														</p>
+                                        </img></a></p></div></br></br></a></p></div>
+												</footer>
+												<div class="footer-copy">
+													<div class="copyright">© 2006-2020 MK Partners, Inc.</div>
+												</div>
+    </html>                                                                                                                    
+</aura:component>

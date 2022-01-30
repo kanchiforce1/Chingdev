@@ -1,0 +1,98 @@
+<aura:component >
+    <aura:handler name ="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="inprogress" type="boolean" default="true"/>
+    <aura:attribute name="failed" type="boolean" default="false"/>
+    <aura:attribute name="success" type="boolean" default="false"/>
+        <div class="slds-card__body slds-card__body_inner">
+            <div class="slds-path">
+                <div class="slds-grid slds-path__track">
+                    <div class="slds-grid slds-path__scroller-container">
+                        <div class="slds-path__scroller" role="application">
+                            <div class="slds-path__scroller_inner">
+                                <aura:if isTrue="{!v.inprogress}">
+                                <ul class="slds-path__nav" role="listbox" aria-orientation="horizontal" id="inprogress">
+                                    <li class="slds-path__item slds-is-active slds-is-current" role="presentation">
+                                        <a aria-selected="false" class="slds-path__link" href="javascript:void(0);" id="path-6" role="option" tabindex="-1">
+                                            <span class="slds-path__stage">
+                                                <lightning:icon iconName="utility:check" size="xx-small" alternativeText="Warning!" variant="inverse"/>
+                            
+                                            </span>
+                                            <span class="slds-path__title">Verification Sent</span>
+                                        </a>
+                                    </li>
+                                    <li class="slds-path__item slds-is-incomplete" role="presentation">
+                                        <a aria-selected="false" class="slds-path__link" href="javascript:void(0);" id="path-7" role="option" tabindex="-1">
+                                            <span class="slds-path__stage">
+                                               <lightning:icon iconName="utility:check" size="xx-small" alternativeText="Warning!" variant="inverse"/>
+                            
+                                            </span>
+                                            <span class="slds-path__title">Success</span>
+                                        </a>
+                                    </li>
+                                   
+                                </ul>
+                                </aura:if>
+                                  <aura:if isTrue="{!v.failed}">
+                                  <ul class="slds-path__nav" role="listbox" aria-orientation="horizontal" aura:id="failed">
+                                    <li class="slds-path__item slds-is-complete" role="presentation">
+                                        <a aria-selected="false" class="slds-path__link" href="javascript:void(0);" id="path-6" role="option" tabindex="-1">
+                                            <span class="slds-path__stage">
+                                                <lightning:icon iconName="utility:check" size="xx-small" alternativeText="Warning!" variant="inverse"/>
+                            
+                                            </span>
+                                            <span class="slds-path__title">Verification Sent</span>
+                                        </a>
+                                    </li>
+                                    <li class="slds-path__item slds-is-complete" role="presentation">
+                                        <a aria-selected="false" class="slds-path__link" href="javascript:void(0);" id="path-7" role="option" tabindex="-1">
+                                            <span class="slds-path__stage">
+                                               <lightning:icon iconName="utility:check" size="xx-small" alternativeText="Warning!" variant="inverse"/>
+                            
+                                            </span>
+                                            <span class="slds-path__title">Success</span>
+                                        </a>
+                                    </li>
+                                   
+                                </ul>
+                                </aura:if>
+                                  <aura:if isTrue="{!v.success}">
+                                 <ul class="slds-path__nav" role="listbox" aria-orientation="horizontal" aura:id="success">
+                                    <li class="slds-path__item slds-is-complete" role="presentation">
+                                        <a aria-selected="false" class="slds-path__link" href="javascript:void(0);" id="path-6" role="option" tabindex="-1">
+                                            <span class="slds-path__stage">
+                                                <lightning:icon iconName="utility:check" size="xx-small" alternativeText="Warning!" variant="inverse"/>
+                            
+                                            </span>
+                                            <span class="slds-path__title">Verification Sent</span>
+                                        </a>
+                                    </li>
+                                    <li class="slds-path__item slds-is-complete" role="presentation">
+                                        <a aria-selected="false" class="slds-path__link" href="javascript:void(0);" id="path-7" role="option" tabindex="-1">
+                                            <span class="slds-path__stage">
+                                               <lightning:icon iconName="utility:check" size="xx-small" alternativeText="Warning!" variant="inverse"/>
+                            
+                                            </span>
+                                            <span class="slds-path__title">Failed</span>
+                                        </a>
+                                    </li>
+                                   
+                                </ul>
+                                </aura:if>
+                            </div>
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+    
+  
+    <lightning:recordViewForm recordId="0011H00001uvOrY" objectApiName="Account">
+       
+            <lightning:outputField fieldName="Name" />
+          
+       
+    </lightning:recordViewForm>
+
+   
+</aura:component>

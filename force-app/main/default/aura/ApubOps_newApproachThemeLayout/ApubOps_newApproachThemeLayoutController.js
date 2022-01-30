@@ -1,0 +1,68 @@
+({
+	init : function(component, event, helper) {
+       // var cuUserId = $A.get("$SObjectType.CurrentUser.Id");
+        var action = component.get("c.getUserDetails");
+       
+        action.setCallback( this, function(response){
+            if(response.getState() === 'SUCCESS') {
+               component.set("v.currentUser", response.getReturnValue());
+            }
+        });
+        $A.enqueueAction(action);
+    },
+	
+    onClick: function(component, event, helper) {
+		var id = event.target.dataset.menuItemId;
+		if (id) {
+			component.getSuper().navigate(id);
+		}
+	},
+	
+    getContactInfo: function(component, event, helper){
+        helper.getContactInfo(component, event);
+    },
+    
+    scriptsLoaded: function(component, event, helper) {
+		/*var path = window.location.pathname;
+		var page = path.split("/").pop();
+		console.log('>>> Page Title : ' + document.title);
+
+		component.set("v.PageName", document.title);
+        
+         if ($A.get("$Browser.formFactor") == "DESKTOP") {
+            $(".select2class").select2({
+                width: "100%",
+                minimumResultsForSearch: 6,
+                theme: "bootstrap",
+                containerCssClass: ':all:'
+            });
+            $('select option[disabled]').remove();
+          	$(".select2class").on('select2:open',function(event){
+          	// CSS fix for select2 in Modal
+            $('.select2-dropdown').css({zIndex:'100000'});
+       		});
+        }
+        else {
+            $(".select2class").addClass("form-control");
+            $('select').on('change', function(event) {
+               //alert('event name: ' + event.currentTarget.id);
+                $('#' +  event.currentTarget.id + ' option[disabled]').remove();
+            });
+        } 
+        */
+	},
+        
+   /* createCase: function(component, event, helper){
+
+        var hasError = helper.formValidation(component);
+        if(!hasError){
+           helper.handleCreateCase(component, event); 
+        }
+        
+    },
+    
+    resetForm: function(component, event, helper){
+        console.log('>>>> HIT resetForm');
+        helper.handleResetForm(component, event);       
+    }, */
+})

@@ -1,0 +1,36 @@
+<template>
+
+  <div class="slds-grid slds-wrap custom-container" >
+    <template for:each={imageData} for:item="item">
+      
+     
+       
+      
+          <div class="girdalign" key={item.id}>
+            
+            <div class="slds-box slds-m-top_x-small slds-m-left_x-small">
+              <a target="_blank" href={item.url} class="">
+                <img
+                  
+                  alt="product picture"
+                  src={item.url}
+                />
+              </a>
+
+              <div class="Caption">
+                <span class="slds-image__text" title="Image Title"
+                >{item.Caption}</span
+                >
+                </div>
+              </div>
+              
+             
+      
+   
+
+</div>
+
+    </template>
+   </div>
+
+</template>

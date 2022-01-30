@@ -1,0 +1,31 @@
+/*adjusting help text position*/
+.THIS .customIcon {
+    position: absolute;
+  left: 100px;
+  top: 150px;
+}
+
+.THIS .box {
+  box-sizing: border-box;
+  width: 15px;
+  height: 15px;
+  background-color: red;
+  display: inline; 
+  margin-top:2px;
+  padding: 6px;
+
+}
+
+.THIS .uiInputLookError {
+    font-size: .75rem;
+  
+    color: rgb(194, 57, 52);
+}
+.THIS input::placeholder {
+  color: red;
+  font-size: 20px;
+}
+
+.THIS input {
+  height: 2.5rem;
+}

@@ -1,0 +1,44 @@
+.iconColor {
+    fill:#FFC107;
+}
+
+.iconColorProject {
+  background-color: #f26979;
+}
+
+.iconColorBreadCrumb {
+  fill: #0C5460 !important;
+  
+}
+
+.iconStyle {
+    width: 20px;
+    height: 30px;
+}
+
+.kickoffIconSize {
+  width: 25px;
+  height: 35px;
+}
+
+.iconColorGreen {
+  fill: green !important;
+  background-color: white;
+}
+
+.iconColorRed {
+  fill: red !important;
+  background-color: white;
+}
+
+.iconColorLTBlue {
+  fill:grey;
+}
+
+.iconColor1 {
+    fill: #ffc107 !important;
+  }
+
+  .marginDown {
+    vertical-align: text-top !important;
+  }

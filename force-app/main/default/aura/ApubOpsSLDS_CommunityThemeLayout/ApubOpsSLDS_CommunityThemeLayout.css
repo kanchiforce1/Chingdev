@@ -1,0 +1,11 @@
+.THIS .headerBar {
+    background-color:#26ACE2;
+}
+
+.THIS.myBtn  {
+    width: 10px;
+}
+
+.THIS .slds-notification-container {
+        padding: 5rem .25rem .5rem !important;
+}

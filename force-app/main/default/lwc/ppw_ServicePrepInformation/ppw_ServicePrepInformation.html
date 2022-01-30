@@ -1,0 +1,42 @@
+<template>
+
+
+    <!--ADDITIONAL SERVICE INFORMATION SECTION STARTS FROM HERE-->
+    <div if:true={servicePrep}>
+
+        <div data-id="section1" class="slds-section slds-card slds-is-open" >
+            <div class="slds-section__title slds-theme_shade" style="background-color: #EEEEEE; cursor: pointer;"  onclick={opensection}>
+                <div class="slds-truncate slds-var-p-horizontal_small" title="Section Title">
+                    <header class="slds-media slds-media_center slds-has-flexi-truncate" >
+                        <div class="slds-media__body">
+                            <h1 class="slds-truncate">
+                                {key1}
+                            </h1>
+                        </div>
+                    </header>
+                </div>
+            </div>
+
+            <div aria-hidden="true" class="slds-section__content">
+                <div class="slds-card__body  slds-card__body_inner">
+                    <template for:each={value} for:item="x">
+
+                        <div key={x} class="mb-3">
+                            <span class="slds-form-element__label">
+                                <bold>{x.Service_Prep_Question__r.Transmittal_Label__c}
+                                </bold>
+                            </span>
+                            <div class="slds-form-element__control">
+                                <div class="slds-form-element__static">{x.Response__c}
+                                </div>
+                            </div>
+                        </div>
+
+                    </template>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</template>

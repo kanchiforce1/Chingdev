@@ -1,0 +1,15 @@
+.spins::after {
+    position: absolute;
+    content: 'Please wait while loading';
+    width: 100%;
+    text-align: center;
+    top: calc(50% + 3em);
+    font-weight: bold;
+}
+
+
+.slds-modal__content {
+    min-height: 16%;
+    overflow-y: visible;
+    overflow: visible;
+}

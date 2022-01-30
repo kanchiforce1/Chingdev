@@ -1,0 +1,39 @@
+<template>
+    <div>
+        <a onclick={navigateToFiles}>Navigate To Files</a>
+      </div>
+
+      <lightning-record-form object-api-name="Account">
+       
+       
+                 
+    </lightning-record-form>
+
+    <lightning-record-form object-api-name={accountObject} mode="edit"
+    onsuccess={handleSuccess} onsubmit={handleSubmit}>
+
+    <lightning-input-field field-name={fieldName}></lightning-input-field>
+
+</lightning-record-form>
+<lightning-record-edit-form
+                    id="recordViewForm"
+                 
+                    object-api-name="Contact">
+            <lightning-messages></lightning-messages>
+            <lightning-input-field field-name="FirstName">
+            </lightning-input-field>
+            <lightning-input-field field-name="LastName">
+            </lightning-input-field>
+            <lightning-input-field field-name="Birthdate">
+            </lightning-input-field>
+            <lightning-input-field field-name="Phone">
+            </lightning-input-field>
+          
+            <lightning-button type="submit"
+                        label="Update record"
+                        class="slds-m-top_medium">
+            </lightning-button>
+        </lightning-record-edit-form>
+    </div>
+
+</template>

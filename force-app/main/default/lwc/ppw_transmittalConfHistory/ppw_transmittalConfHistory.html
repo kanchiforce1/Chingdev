@@ -1,0 +1,136 @@
+<template>
+    <div if:true={sBaseCon}>
+       <div class="slds-page-header__name-title">
+          <h1>
+             <span class="slds-page-header__title slds-truncate" title={sName}>{sName}</span>
+          </h1>
+       </div>
+       <br />
+       <template for:each={serviceBasedConfData1} for:item="c">
+           
+          <div class="slds-box slds-m-top_x-small" key={c.c.Id}>
+            
+            <div onclick={accordianToggle} data-name={c.c.Id} style="cursor: pointer;">
+        
+               {c.c.Confirmed_Service__c} -- {c.c.Confirmed_Rate_Amount__c}
+               <span class={c.badgeClass} >{c.badgeHelpText1}</span>
+           
+       </div>
+
+           <div data-id={c.c.Id} class="slds-card__body slds-hide  slds-card__body_inner">
+               
+                <div>
+               <div class="slds-grid slds-gutters ">
+
+                   <div class="slds-col">
+                    
+                      <div if:true={c.c.CreatedDate}>
+                         <label class="slds-form-element__label">
+                            <bold class="fieldLabelSize"> Sent </bold>
+                         </label>
+                         <div class="slds-form-element__control">
+                            <div class="slds-form-element__static fieldDataSize">
+                               <lightning-formatted-date-time
+                                  value={c.c.CreatedDate}
+                                  year="numeric" month="short" day="2-digit">
+                               </lightning-formatted-date-time>
+                               
+                            </div>
+                         </div>
+                        </div>
+                      
+
+                      <div if:true={c.c.Date_of_Confirmation__c}>
+                         <label class="slds-form-element__label">
+                            <bold class="fieldLabelSize"> Confirmed Date </bold>
+                         </label>
+                         <div class="slds-form-element__control">
+                            <div class="slds-form-element__static fieldDataSize">
+                               <lightning-formatted-date-time
+                                  value={c.c.Date_of_Confirmation__c}
+                                  year="numeric" month="short" day="2-digit">
+                               </lightning-formatted-date-time>
+                            </div>
+                         </div>
+                      </div>
+
+                      <div if:true={c.c.open_confirmation__c}>
+                        <label class="slds-form-element__label">
+                           <bold class="fieldLabelSize">Open Confirmation Notes</bold>
+                        </label>
+                        <div class="slds-form-element__control">
+                           <div class="slds-form-element__static fieldDataSize">
+                            ddfff
+                           </div>
+                        </div>
+                     </div>
+            
+                     <div if:true={c.c.Reason_for_Review__c}>
+                        <label class="slds-form-element__label">
+                           <bold class="fieldLabelSize">Reason for review Notes</bold>
+                        </label>
+                        <div class="slds-form-element__control">
+                           <div class="slds-form-element__static fieldDataSize">
+                              {c.c.Reason_for_Review__c}
+                           </div>
+                        </div>
+                     </div>
+
+                    </div>
+
+                   <div class="slds-col">
+                     
+                      <div if:true={c.c.Confirmed_Service__c}>
+                         <label class="slds-form-element__label">
+                            <bold class="fieldLabelSize"> Confirmed Service </bold>
+                         </label>
+                         <div class="slds-form-element__control">
+                            <div class="slds-form-element__static fieldDataSize">
+                               {c.c.Confirmed_Service__c}
+                            </div>
+                         </div>
+                      </div>
+                      <div if:true={c.c.Confirmed_Rate_Amount__c}>
+                         <label class="slds-form-element__label">
+                            <bold class="fieldLabelSize"> Amount </bold>
+                         </label>
+                         <div class="slds-form-element__control">
+                            <div class="slds-form-element__static fieldDataSize">
+                               {c.c.Confirmed_Rate_Amount__c}
+                            </div>
+                         </div>
+                      </div>
+                      <div if:true={c.c.Confirmed_Rush_Fee__c}>
+                         <label class="slds-form-element__label">
+                            <bold class="fieldLabelSize"> Rush Fee </bold>
+                         </label>
+                         <div class="slds-form-element__control">
+                            <div class="slds-form-element__static fieldDataSize">
+                               {c.c.Confirmed_Rush_Fee__c}%
+                            </div>
+                         </div>
+                      </div>
+                      <div if:true={c.c.Rejection_Reason__c}>
+                        <label class="slds-form-element__label">
+                           <bold class="fieldLabelSize">Rejection Reason Notes</bold>
+                        </label>
+                        <div class="slds-form-element__control">
+                           <div class="slds-form-element__static fieldDataSize">
+                              {c.c.Rejection_Reason__c}
+                           </div>
+                        </div>
+                     </div>
+
+                   </div>
+                </div>
+               </div>
+
+              
+
+
+             </div>
+          </div>
+          
+       </template>
+    </div>
+ </template>
